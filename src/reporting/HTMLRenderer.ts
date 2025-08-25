@@ -1,11 +1,57 @@
 import { StatsTracking, HistoryEntry, ClusteredFailures } from './types';
 import { escapeHtml } from './utils';
 
+// Define the ClusterDetails interface outside the class
+interface ClusterDetails {
+  description: string;
+  causes: string[];
+  solutions: string[];
+}
+
 export class HTMLRenderer {
   private styles: string;
 
   constructor() {
     this.styles = this.loadStyles();
+    this.addFailureDetailStyles();
+  }
+
+  private addFailureDetailStyles() {
+    this.styles += `
+      .failure-analysis-details {
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 4px;
+      }
+
+      .failure-section {
+        margin-bottom: 15px;
+      }
+
+      .failure-section h4 {
+        color: var(--primary-color);
+        margin: 0 0 8px 0;
+      }
+
+      .failure-section p {
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .error-message {
+        background: #fff;
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        margin: 5px 0;
+      }
+
+      .failure-details td {
+        background: #f8f9fa;
+      }
+    `;
   }
 
   private calculateSuccessRate(provider: any): number {
@@ -190,7 +236,6 @@ export class HTMLRenderer {
         color: var(--muted-color);
       }
       
-      /* Enhanced styling for tables */
       table {
         width: 100%;
         border-collapse: collapse;
@@ -724,6 +769,26 @@ export class HTMLRenderer {
                   : ''}
               </td>
             </tr>
+            <tr class="failure-details" id="failure-${idx}" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>${escapeHtml(analysis.reason || 'No reason provided')}</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>${escapeHtml(analysis.resolution || 'No resolution provided')}</p>
+                  </div>
+                  ${failure.error ? `
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">${escapeHtml(failure.error)}</pre>
+                    </div>
+                  ` : ''}
+                </div>
+              </td>
+            </tr>
           `).join('')}
         </tbody>
       </table>
@@ -733,6 +798,14 @@ export class HTMLRenderer {
       <section class="failure-details">
         <h3>Failure Analysis Details</h3>
         ${tableView}
+        <script>
+          function toggleFailure(id) {
+            const row = document.getElementById(id);
+            if (row) {
+              row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+            }
+          }
+        </script>
       </section>
     `;
   }
@@ -746,48 +819,22 @@ export class HTMLRenderer {
     passed: number,
     perFailureResults: { failure: any; analysis: any }[] = []
   ): string {
-    // Debug the failures that include trace paths
-    console.debug(`[DEBUG] Generating HTML report with ${perFailureResults.length} failure results`);
-    perFailureResults.forEach((result, idx) => {
-      console.debug(`[DEBUG] Failure #${idx + 1}: Test name: ${result.failure.testName || 'Unknown'}`);
-      console.debug(`[DEBUG] - Screenshot: ${result.failure.screenshotPath || 'None'}`);
-      console.debug(`[DEBUG] - Trace: ${result.failure.tracePath || 'None'}`);
-    });
-    const failuresByCategory = Object.entries(clusters).map(([category, items]) => {
-      // Log category details for debugging
-      console.debug(`[DEBUG] Processing category: ${category} with ${items.length} items`);
-      items.forEach((item, idx) => {
-        console.debug(`[DEBUG] - Category ${category}, Item #${idx + 1}: ${item.testName || 'No name'} | ${item.error ? item.error.substring(0, 50) + '...' : 'No error'}`);
-      });
-      
-      // Map items to matched failure results
-      const matchedFailures = items.map(item => {
-        // Find the best match with trace files if possible
-        const matchesForItem = perFailureResults.filter(r => 
-          r.failure.testFile === item.testFile && 
-          r.failure.testName === item.testName
-        );
-        
-        // Prefer matches with trace files
-        const matchWithTrace = matchesForItem.find(r => r.failure.tracePath);
-        const bestMatch = matchWithTrace || matchesForItem[0];
-        
-        if (bestMatch) {
-          console.debug(`[DEBUG] - Found match for ${item.testName || 'Unknown'}: Screenshot=${bestMatch.failure.screenshotPath ? 'Yes' : 'No'}, Trace=${bestMatch.failure.tracePath ? 'Yes' : 'No'}`);
-        } else {
-          console.debug(`[DEBUG] - No match found for ${item.testName || 'Unknown'}`);
-        }
-        
-        return bestMatch;
-      }).filter(Boolean); // Filter out any undefined values
-      
-      console.debug(`[DEBUG] Category ${category}: Found ${matchedFailures.length} matched failures out of ${items.length} items`);
-      
-      return {
-        category,
-        failures: matchedFailures
-      };
-    });
+    const failurePatterns = Object.keys(clusters).map((pattern) => {
+      const percentage = Math.round((clusters[pattern].length / Math.max(failures, 1)) * 100);
+      return `
+        <div class="collapsible">
+          <div class="collapsible-header" onclick="toggleDetails('${pattern}')">
+            <span><span class="severity medium"></span>${pattern} (${percentage}%)</span>
+          </div>
+          <div id="${pattern}" class="collapsible-content">
+            <p><strong>Description:</strong> ${clusters[pattern][0]?.description || 'No description available'}</p>
+            <p><strong>Common Causes:</strong></p>
+            <ul>${clusters[pattern][0]?.causes?.map((cause: string) => `<li>${cause}</li>`).join('') || ''}</ul>
+            <p><strong>Recommended Solutions:</strong></p>
+            <ul>${clusters[pattern][0]?.solutions?.map((solution: string) => `<li>${solution}</li>`).join('') || ''}</ul>
+          </div>
+        </div>`;
+    }).join('');
 
     return `
       <!DOCTYPE html>
@@ -814,47 +861,9 @@ export class HTMLRenderer {
             ${this.generateSummaryCards(totalTests, failures, passed)}
             ${this.generateProviderSection(stats)}
             <h2>AI Analysis Summary</h2>
-            ${failuresByCategory.map(({ category, failures }) => `
-              <section>
-                <h3>${category} (${failures.length})</h3>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Test Name</th>
-                      <th>Status</th>
-                      <th>Failure Reason (AI)</th>
-                      <th>Probable Resolution (AI)</th>
-                      <th>Provider</th>
-                      <th>Screenshot</th>
-                      <th>Trace</th>
-                      <th>AI Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${(failures.filter(f => f) as { failure: any; analysis: any }[]).map(({ failure, analysis }) => `
-                      <tr>
-                        <td>
-                          ${failure.testName || failure.id || '[No test name]'}
-                          ${failure.retry !== undefined ? `<div style="margin-top:4px"><span class="badge" style="background:#f0f0f0;color:#666;font-size:11px">Retry #${failure.retry}</span></div>` : ''}
-                        </td>
-                        <td>${failure.status || 'Failed'}</td>
-                        <td>${analysis.reason || 'Unknown'}</td>
-                        <td>${analysis.resolution || 'Unknown'}</td>
-                        <td>${analysis.provider || 'Unknown'}</td>
-                        <td>${failure.screenshotPath ? `<a href="file://${failure.screenshotPath}" target="_blank">View</a>` : '-'}</td>
-                        <td>${failure.tracePath ? `<a href="file://${failure.tracePath}" target="_blank">View Trace</a>` : '-'}</td>
-                        <td>${analysis.provider && analysis.provider !== 'None' ? 
-                           `<span class="ai-status ${analysis.provider === 'Rule-based' ? 'success' : 'failure'}">
-                              ${analysis.provider === 'Rule-based' ? '✓' : '✗'} ${analysis.provider}
-                            </span>` 
-                           : '-'}</td>
-                      </tr>
-                    `).join('')}
-                  </tbody>
-                </table>
-              </section>
-            `).join('')}
+            ${failurePatterns}
             <h2 class="section-title">Test Failure Analysis</h2>
+            ${this.renderFailureDetails(perFailureResults)}
             
             <div class="analytics-grid">
               <div class="analytics-card">
@@ -876,50 +885,6 @@ export class HTMLRenderer {
                 <div class="chart-container">
                   <canvas id="resolutionEffectivenessChart"></canvas>
                 </div>
-              </div>
-            </div>
-            
-            <h2 class="section-title">Common Failure Patterns</h2>
-            
-            <div class="collapsible">
-              <div class="collapsible-header" onclick="toggleDetails('pattern-locators')">
-                <span><span class="severity high"></span>Element Locator Issues (${Object.keys(clusters).includes('Locator Issue') ? Math.round((clusters['Locator Issue'].length / Math.max(failures, 1)) * 100) : 45}%)</span>
-              </div>
-              <div id="pattern-locators" class="collapsible-content">
-                <p><strong>Description:</strong> Failures related to locating elements in the DOM using selectors.</p>
-                <p><strong>Common Causes:</strong></p>
-                <ul>
-                  <li>Selector changes due to UI updates</li>
-                  <li>Dynamic content loading timing issues</li>
-                  <li>Iframe context switching problems</li>
-                </ul>
-                <p><strong>Recommended Solutions:</strong></p>
-                <ul>
-                  <li>Use more resilient selectors (data attributes)</li>
-                  <li>Implement proper waits in test steps</li>
-                  <li>Consider using self-healing selector mechanisms</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div class="collapsible">
-              <div class="collapsible-header" onclick="toggleDetails('pattern-timeouts')">
-                <span><span class="severity medium"></span>Timeout Issues (${Object.keys(clusters).includes('Timeout Issue') ? Math.round((clusters['Timeout Issue'].length / Math.max(failures, 1)) * 100) : 30}%)</span>
-              </div>
-              <div id="pattern-timeouts" class="collapsible-content">
-                <p><strong>Description:</strong> Test failures due to timing and timeout issues.</p>
-                <p><strong>Common Causes:</strong></p>
-                <ul>
-                  <li>Network latency affecting page loads</li>
-                  <li>Insufficient timeout settings</li>
-                  <li>Asynchronous operations completing too late</li>
-                </ul>
-                <p><strong>Recommended Solutions:</strong></p>
-                <ul>
-                  <li>Adjust timeout settings based on environment</li>
-                  <li>Implement proper waiting strategies</li>
-                  <li>Consider environment-specific configurations</li>
-                </ul>
               </div>
             </div>
           </main>

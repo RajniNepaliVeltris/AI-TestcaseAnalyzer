@@ -2,6 +2,24 @@ import { exec } from 'child_process';
 import { performance } from 'perf_hooks';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
+
+// Mock AI responses for demo mode
+const mockAIResponses = {
+  openai: {
+    authFailure: "Authentication failure detected. The system attempted to log in with invalid credentials. Recommended actions: 1) Verify input validation, 2) Check credential handling, 3) Implement rate limiting.",
+    timingIssue: "Timing issue detected. The system failed to handle async operations correctly. Recommended actions: 1) Increase wait time, 2) Implement retry mechanism, 3) Add proper error handling.",
+    domMutation: "DOM mutation error detected. Elements were not found in expected state. Recommended actions: 1) Implement mutation observer, 2) Add dynamic element handling, 3) Use more robust selectors."
+  },
+  togetherai: {
+    authFailure: "Authentication pattern analysis shows credential validation issues. Suggested fixes: 1) Enhanced input validation, 2) Improved error messages, 3) Security hardening.",
+    timingIssue: "Async operation analysis indicates race condition. Solutions: 1) Implement proper waits, 2) Add synchronization mechanisms, 3) Enhance error recovery.",
+    domMutation: "DOM structure analysis reveals unstable element states. Fixes: 1) Better element targeting, 2) Improved state management, 3) Enhanced selector strategies."
+  }
+};
 
 interface TestRunOptions {
   tags?: string[];
@@ -9,6 +27,7 @@ interface TestRunOptions {
   workers?: number;
   retries?: number;
   headed?: boolean;
+  mode?: 'production' | 'demo'; // Added mode option for production/demo runs
 }
 
 interface TestRunStats {
@@ -104,13 +123,19 @@ async function runPlaywrightTests(options: TestRunOptions = {}): Promise<TestRun
   });
 }
 
-function runReportGenerator(): Promise<void> {
+function runReportGenerator(mode: 'production' | 'demo' = 'production'): Promise<void> {
   return new Promise((resolve, reject) => {
-    console.log('Running report generator...');
+    console.log(`Running report generator in ${mode} mode...`);
+
+    const env = {
+      ...process.env,
+      AI_ANALYSIS_MODE: mode,
+      MOCK_AI_RESPONSES: mode === 'demo' ? JSON.stringify(mockAIResponses) : ''
+    };
 
     const reportProcess = exec('npx ts-node src/report-generator.ts', {
-      env: process.env,
-      maxBuffer: 20 * 1024 * 1024 // Increased buffer size for large reports
+      env,
+      maxBuffer: 20 * 1024 * 1024
     });
 
     let output = '';
@@ -128,15 +153,27 @@ function runReportGenerator(): Promise<void> {
 
     reportProcess.on('close', (code) => {
       if (code === 0) {
-        console.log('Report generation completed successfully');
         resolve();
       } else {
-        console.error(`Report generation failed with code ${code}`);
-        console.error('Error output:', errorOutput);
-        reject(new Error(`Report generation failed with code ${code}`));
+        console.error('Report generation failed with code:', code);
+        reject(new Error(errorOutput));
       }
     });
   });
+}
+
+// Check AI configuration
+function validateAIConfig(mode: 'production' | 'demo'): boolean {
+  if (mode === 'production') {
+    if (!process.env.OPENAI_API_KEY) {
+      console.warn('⚠️ OpenAI API key not found. AI analysis will fall back to Together AI.');
+    }
+    if (!process.env.TOGETHER_API_KEY) {
+      console.warn('⚠️ Together AI API key not found. AI analysis will fall back to rule-based analysis.');
+    }
+    return true;
+  }
+  return true; // Demo mode doesn't require API keys
 }
 
 async function validateTestEnvironment(): Promise<boolean> {
@@ -165,23 +202,38 @@ async function validateTestEnvironment(): Promise<boolean> {
 }
 
 async function runAll(options: TestRunOptions = {}) {
-  console.log('=== Starting Test Execution ===');
+  const mode = options.mode || 'production';
+  console.log(`=== Starting Test Execution in ${mode.toUpperCase()} mode ===`);
   
-  // Validate test environment first
-  console.log('\nValidating test environment...');
+  // Validate test environment and AI configuration
+  console.log('\nValidating environment...');
   if (!await validateTestEnvironment()) {
     console.error('\u2717 Test environment validation failed');
     process.exit(1);
   }
-  console.log('\u2713 Test environment validation passed\n');
+  
+  if (!validateAIConfig(mode)) {
+    console.error('\u2717 AI configuration validation failed');
+    process.exit(1);
+  }
+  
+  console.log('\u2713 Environment validation passed\n');
   
   // Print run configuration
   console.log('Configuration:');
+  console.log(` - Mode: ${mode.toUpperCase()}`);
   console.log(` - Workers: ${options.workers || 'default'}`);
   console.log(` - Retries: ${options.retries !== undefined ? options.retries : 'from config'}`);
-  console.log(` - Mode: ${options.headed ? 'headed' : 'headless'}`);
+  console.log(` - Browser: ${options.headed ? 'headed' : 'headless'}`);
   if (options.tags?.length) console.log(` - Tags: ${options.tags.join(', ')}`);
   if (options.grep) console.log(` - Filter: ${options.grep}`);
+  
+  if (mode === 'demo') {
+    console.log('\n📢 DEMO MODE ENABLED');
+    console.log('- Using mock AI responses for analysis');
+    console.log('- No API calls will be made');
+    console.log('- Demonstrating AI analysis capabilities\n');
+  }
   
   let testStats: TestRunStats | null = null;
   try {
@@ -222,7 +274,7 @@ async function runAll(options: TestRunOptions = {}) {
     if (!fs.existsSync('artifacts/results.json')) {
       throw new Error('No test results found at artifacts/results.json');
     }
-    await runReportGenerator();
+    await runReportGenerator(mode);
     console.log('✓ AI Failure Analysis Report generated successfully');
     
     // Open the HTML report if it exists
@@ -272,9 +324,10 @@ async function runAll(options: TestRunOptions = {}) {
   }
 }
 
-// Parse command line arguments
+// Parse command line arguments with mode support
 const args = process.argv.slice(2);
 const options: TestRunOptions = {
+  mode: args.includes('--demo') ? 'demo' : 'production',
   workers: args.includes('--parallel') ? 4 : undefined,
   headed: args.includes('--headed'),
   tags: args.includes('--tags') ? args[args.indexOf('--tags') + 1]?.split(',') : undefined,

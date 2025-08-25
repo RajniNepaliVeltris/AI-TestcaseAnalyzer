@@ -169,7 +169,6 @@
         color: var(--muted-color);
       }
       
-      /* Enhanced styling for tables */
       table {
         width: 100%;
         border-collapse: collapse;
@@ -356,6 +355,40 @@
         from { opacity: 0; }
         to { opacity: 1; }
       }
+    
+      .failure-analysis-details {
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 4px;
+      }
+
+      .failure-section {
+        margin-bottom: 15px;
+      }
+
+      .failure-section h4 {
+        color: var(--primary-color);
+        margin: 0 0 8px 0;
+      }
+
+      .failure-section p {
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .error-message {
+        background: #fff;
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        margin: 5px 0;
+      }
+
+      .failure-details td {
+        background: #f8f9fa;
+      }
     </style>
           <script>
             function toggleDetails(id) {
@@ -376,20 +409,20 @@
       <section class="summary-cards" aria-label="Test execution summary">
         <div class="stat-card white" role="region" aria-label="Total test count">
           <h3>Total Tests</h3>
-          <div class="stat-value">12</div>
+          <div class="stat-value">18</div>
         </div>
         <div class="stat-card red" role="region" aria-label="Failed test count">
           <h3>Failures</h3>
-          <div class="stat-value">1</div>
-          <div style="font-size:12px;margin-top:5px">Includes 1 retry attempts</div>
+          <div class="stat-value">9</div>
+          <div style="font-size:12px;margin-top:5px">Includes 9 retry attempts</div>
         </div>
         <div class="stat-card green" role="region" aria-label="Passed test count">
           <h3>Passed</h3>
-          <div class="stat-value">10</div>
+          <div class="stat-value">0</div>
         </div>
       </section>
       <div style="text-align:center;margin-top:10px;padding:8px;background:#f8f9fa;border-radius:4px;font-size:14px">
-        <strong>Note:</strong> This report shows 2 failure records for 1 unique test case(s). 
+        <strong>Note:</strong> This report shows 18 failure records for 9 unique test case(s). 
         Each retry attempt is shown separately to provide additional debugging context.
       </div>
     
@@ -407,21 +440,21 @@
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-label">Attempts</span>
-              <span class="stat-number">2</span>
+              <span class="stat-number">18</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Successes</span>
-              <span class="stat-number">4</span>
+              <span class="stat-number">17</span>
             </div>
           </div>
-          <div class="success-rate">Success Rate: 200%</div>
+          <div class="success-rate">Success Rate: 94%</div>
         </div>
       </div>
     
         
       <div class="provider-card">
         <h3>TogetherAI Status</h3>
-        <div class="status-icon"><div class="x-icon">×</div></div>
+        <div class="status-icon"><div class="check-icon">✓</div></div>
         <div class="provider-info">
           <div class="model-info">
             <strong>Model:</strong> LLama-2-70B
@@ -430,14 +463,14 @@
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-label">Attempts</span>
-              <span class="stat-number">2</span>
+              <span class="stat-number">18</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Successes</span>
-              <span class="stat-number">0</span>
+              <span class="stat-number">25</span>
             </div>
           </div>
-          <div class="success-rate">Success Rate: 0%</div>
+          <div class="success-rate">Success Rate: 139%</div>
         </div>
       </div>
     
@@ -469,60 +502,553 @@
     
             <h2>AI Analysis Summary</h2>
             
-              <section>
-                <h3>Locator Issue (2)</h3>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Test Name</th>
-                      <th>Status</th>
-                      <th>Failure Reason (AI)</th>
-                      <th>Probable Resolution (AI)</th>
-                      <th>Provider</th>
-                      <th>Screenshot</th>
-                      <th>Trace</th>
-                      <th>AI Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                      <tr>
-                        <td>
-                          @regression Search for an invalid user
-                          
-                        </td>
-                        <td>failed</td>
-                        <td>The self-healing wait timed out while trying alternative selectors. None of the provided selectors were able to locate the expected element within the timeout period.</td>
-                        <td>Review the selectors being used and verify the element's presence. Consider increasing timeout or adjusting the self-healing selector list.</td>
-                        <td>OpenAI</td>
-                        <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\test-failed-1.png" target="_blank">View</a></td>
-                        <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\trace.zip" target="_blank">View Trace</a></td>
-                        <td><span class="ai-status failure">
-                              ✗ OpenAI
-                            </span></td>
-                      </tr>
-                    
-                      <tr>
-                        <td>
-                          @regression Search for an invalid user
-                          
-                        </td>
-                        <td>failed</td>
-                        <td>The self-healing wait timed out while trying alternative selectors. None of the provided selectors were able to locate the expected element within the timeout period.</td>
-                        <td>Review the selectors being used and verify the element's presence. Consider increasing timeout or adjusting the self-healing selector list.</td>
-                        <td>OpenAI</td>
-                        <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\test-failed-1.png" target="_blank">View</a></td>
-                        <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\trace.zip" target="_blank">View Trace</a></td>
-                        <td><span class="ai-status failure">
-                              ✗ OpenAI
-                            </span></td>
-                      </tr>
-                    
-                  </tbody>
-                </table>
-              </section>
-            
+        <div class="collapsible">
+          <div class="collapsible-header" onclick="toggleDetails('Timeout')">
+            <span><span class="severity medium"></span>Timeout (33%)</span>
+          </div>
+          <div id="Timeout" class="collapsible-content">
+            <p><strong>Description:</strong> No description available</p>
+            <p><strong>Common Causes:</strong></p>
+            <ul></ul>
+            <p><strong>Recommended Solutions:</strong></p>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="collapsible">
+          <div class="collapsible-header" onclick="toggleDetails('Locator Issue')">
+            <span><span class="severity medium"></span>Locator Issue (56%)</span>
+          </div>
+          <div id="Locator Issue" class="collapsible-content">
+            <p><strong>Description:</strong> No description available</p>
+            <p><strong>Common Causes:</strong></p>
+            <ul></ul>
+            <p><strong>Recommended Solutions:</strong></p>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="collapsible">
+          <div class="collapsible-header" onclick="toggleDetails('Assertion Failure')">
+            <span><span class="severity medium"></span>Assertion Failure (11%)</span>
+          </div>
+          <div id="Assertion Failure" class="collapsible-content">
+            <p><strong>Description:</strong> No description available</p>
+            <p><strong>Common Causes:</strong></p>
+            <ul></ul>
+            <p><strong>Recommended Solutions:</strong></p>
+            <ul></ul>
+          </div>
+        </div>
             <h2 class="section-title">Test Failure Analysis</h2>
+            
+      <section class="failure-details">
+        <h3>Failure Analysis Details</h3>
+        
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Test</th>
+            <th>Status</th>
+            <th>Provider</th>
+            <th>Category</th>
+            <th>Severity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>
+                <div class="test-name">@auth Test intelligent authentication analysis</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  TogetherAI
+                </span>
+              </td>
+              <td>State Management</td>
+              <td>
+                <span class="severity-low">
+                  LOW
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-0')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--auth-Tes-c2cd5-ent-authentication-analysis-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-0" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>Test failed due to dynamic content changes. The application state changed during test execution causing elements to disappear or change.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Implement more robust waiting mechanisms based on application state rather than fixed timeouts. Use waitForFunction for custom conditions.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">[31mTest timeout of 30000ms exceeded.[39m</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                <div class="test-name">@timing Test AI-driven dynamic content analysis</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  OpenAI
+                </span>
+              </td>
+              <td>Timeout</td>
+              <td>
+                <span class="severity-medium">
+                  MEDIUM
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-1')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--timing-T-341b3-en-dynamic-content-analysis-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-1" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>The self-healing wait timed out while trying alternative selectors. None of the provided selectors were able to locate the expected element within the timeout period.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Review the selectors being used and verify the element&#039;s presence. Consider increasing timeout or adjusting the self-healing selector list.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">Error: Self-healing wait failed for selectors: #finish, .finish</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                <div class="test-name">@dom Test AI analysis of DOM mutations</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  TogetherAI
+                </span>
+              </td>
+              <td>Application Error</td>
+              <td>
+                <span class="severity-low">
+                  LOW
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-2')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--dom-Test-AI-analysis-of-DOM-mutations-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-2" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>JavaScript execution error in the application under test affected test stability.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Monitor console errors during test execution. Handle expected application exceptions.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">Error: Self-healing click failed for selectors: .wrong-delete-button, .delete</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                <div class="test-name">@network Test AI-driven network analysis</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  TogetherAI
+                </span>
+              </td>
+              <td>State Management</td>
+              <td>
+                <span class="severity-low">
+                  LOW
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-3')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--network-Test-AI-driven-network-analysis-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-3" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>Test failed due to dynamic content changes. The application state changed during test execution causing elements to disappear or change.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Implement more robust waiting mechanisms based on application state rather than fixed timeouts. Use waitForFunction for custom conditions.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">Error: [31mTimed out 2000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoHaveAttribute[2m([22m[32mexpected[39m[2m)[22m
+
+Locator: locator(&#039;img&#039;).first()
+Expected string: [32m&quot;0&quot;[39m
+Received string: [31m&quot;&quot;[39m
+Call log:
+[2m  - Expect &quot;toHaveAttribute&quot; with timeout 2000ms[22m
+[2m  - waiting for locator(&#039;img&#039;).first()[22m
+[2m    6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;[22m
+[2m      - unexpected value &quot;null&quot;[22m
+</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                <div class="test-name">@validation Test AI analysis of form validation</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  OpenAI
+                </span>
+              </td>
+              <td>Timing Issue</td>
+              <td>
+                <span class="severity-low">
+                  LOW
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-4')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--validati-82791-analysis-of-form-validation-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-4" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>The test failed with timing-related issues. Application state changed during test execution.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Implement more robust waiting strategies based on application state rather than fixed timeouts.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">Error: Unable to fill any of the provided selectors: input[type=&quot;number&quot;]</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                <div class="test-name">@state Test AI-driven state management analysis</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  TogetherAI
+                </span>
+              </td>
+              <td>Assertion</td>
+              <td>
+                <span class="severity-low">
+                  LOW
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-5')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--state-Te-6a4a5-n-state-management-analysis-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-5" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>Assertion failed due to unexpected application state or behavior. Expected condition was not met within timeout period.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Verify application logic and test assumptions. Adjust expectations to match actual application behavior if appropriate.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+Expected: [32m3[39m
+Received: [31m1[39m</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                <div class="test-name">@shadow Test AI analysis of Shadow DOM</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  OpenAI
+                </span>
+              </td>
+              <td>Selector Issue</td>
+              <td>
+                <span class="severity-low">
+                  LOW
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-6')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--shadow-Test-AI-analysis-of-Shadow-DOM-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-6" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>The test failed due to an invalid selector syntax. The text= selector is being used incorrectly within a CSS selector string.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Split the selector into separate Playwright locators. Use proper Playwright APIs for text matching instead of CSS selectors.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                <div class="test-name">@iframe Test AI-driven iframe analysis</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  OpenAI
+                </span>
+              </td>
+              <td>Test Environment</td>
+              <td>
+                <span class="severity-low">
+                  LOW
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-7')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--iframe-Test-AI-driven-iframe-analysis-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-7" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>Test environment inconsistency detected. Browser or application state was not as expected.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Add environment setup verification steps. Clean state between test runs.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">Error: Self-healing click failed for selectors: #mce_0_ifr</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                <div class="test-name">@recovery Test AI-driven error recovery analysis</div>
+                <div class="test-file text-muted"></div>
+              </td>
+              <td>
+                <span class="status-cell status-failed">
+                  <svg width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
+                  </svg>
+                  Failed
+                </span>
+              </td>
+              <td>
+                <span class="provider-cell">
+                  TogetherAI
+                </span>
+              </td>
+              <td>State Management</td>
+              <td>
+                <span class="severity-low">
+                  LOW
+                </span>
+              </td>
+              <td class="action-cell">
+                <button class="action-button" onclick="toggleFailure('failure-8')">View Details</button>
+                <button class="action-button" onclick="window.open('file://C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results\ai-analysis-demo--recovery-33aa8-ven-error-recovery-analysis-chromium\test-failed-1.png', '_blank')">View Screenshot</button>
+                
+              </td>
+            </tr>
+            <tr class="failure-details" id="failure-8" style="display: none;">
+              <td colspan="6">
+                <div class="failure-analysis-details">
+                  <div class="failure-section">
+                    <h4>Failure Reason:</h4>
+                    <p>Test failed due to dynamic content changes. The application state changed during test execution causing elements to disappear or change.</p>
+                  </div>
+                  <div class="failure-section">
+                    <h4>Resolution Steps:</h4>
+                    <p>Implement more robust waiting mechanisms based on application state rather than fixed timeouts. Use waitForFunction for custom conditions.</p>
+                  </div>
+                  
+                    <div class="failure-section">
+                      <h4>Error Message:</h4>
+                      <pre class="error-message">Error: [31mTimed out 2000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoHaveText[2m([22m[32mexpected[39m[2m)[22m
+
+Locator: locator(&#039;h1&#039;)
+Expected string: [32m&quot;Welcome to the-internet&quot;[39m
+Received: &lt;element(s) not found&gt;
+Call log:
+[2m  - Expect &quot;toHaveText&quot; with timeout 2000ms[22m
+[2m  - waiting for locator(&#039;h1&#039;)[22m
+</pre>
+                    </div>
+                  
+                </div>
+              </td>
+            </tr>
+          
+        </tbody>
+      </table>
+    
+        <script>
+          function toggleFailure(id) {
+            const row = document.getElementById(id);
+            if (row) {
+              row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+            }
+          }
+        </script>
+      </section>
+    
             
             <div class="analytics-grid">
               <div class="analytics-card">
@@ -546,50 +1072,6 @@
                 </div>
               </div>
             </div>
-            
-            <h2 class="section-title">Common Failure Patterns</h2>
-            
-            <div class="collapsible">
-              <div class="collapsible-header" onclick="toggleDetails('pattern-locators')">
-                <span><span class="severity high"></span>Element Locator Issues (100%)</span>
-              </div>
-              <div id="pattern-locators" class="collapsible-content">
-                <p><strong>Description:</strong> Failures related to locating elements in the DOM using selectors.</p>
-                <p><strong>Common Causes:</strong></p>
-                <ul>
-                  <li>Selector changes due to UI updates</li>
-                  <li>Dynamic content loading timing issues</li>
-                  <li>Iframe context switching problems</li>
-                </ul>
-                <p><strong>Recommended Solutions:</strong></p>
-                <ul>
-                  <li>Use more resilient selectors (data attributes)</li>
-                  <li>Implement proper waits in test steps</li>
-                  <li>Consider using self-healing selector mechanisms</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div class="collapsible">
-              <div class="collapsible-header" onclick="toggleDetails('pattern-timeouts')">
-                <span><span class="severity medium"></span>Timeout Issues (30%)</span>
-              </div>
-              <div id="pattern-timeouts" class="collapsible-content">
-                <p><strong>Description:</strong> Test failures due to timing and timeout issues.</p>
-                <p><strong>Common Causes:</strong></p>
-                <ul>
-                  <li>Network latency affecting page loads</li>
-                  <li>Insufficient timeout settings</li>
-                  <li>Asynchronous operations completing too late</li>
-                </ul>
-                <p><strong>Recommended Solutions:</strong></p>
-                <ul>
-                  <li>Adjust timeout settings based on environment</li>
-                  <li>Implement proper waiting strategies</li>
-                  <li>Consider environment-specific configurations</li>
-                </ul>
-              </div>
-            </div>
           </main>
           
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -607,9 +1089,9 @@
           new Chart(clusterCtx, {
             type: 'doughnut',
             data: {
-              labels: ["Locator Issue"],
+              labels: ["Timeout","Locator Issue","Assertion Failure"],
               datasets: [{
-                data: [100],
+                data: [33,56,11],
                 backgroundColor: [
                   '#f56565',
                   '#ed8936',
@@ -647,10 +1129,10 @@
           new Chart(trendCtx, {
             type: 'line',
             data: {
-              labels: ["Aug 25","Aug 25","Aug 25","Aug 25","Aug 25","Aug 25","Aug 25"],
+              labels: ["Aug 26","Aug 26","Aug 26","Aug 26"],
               datasets: [{
                 label: 'Number of Failures',
-                data: [2,1,1,1,1,1,1],
+                data: [1,9,9,9],
                 borderColor: '#f56565',
                 backgroundColor: 'rgba(245, 101, 101, 0.1)',
                 tension: 0.4,

@@ -3,33 +3,33 @@ import * as path from "path";
 import axios from "axios";
 import "dotenv/config";
 import { openAIRateLimiter, togetherAIRateLimiter } from "./utils/rate-limiter";
-import { TestContext } from "./reporting/types";
+import { TestContext, AnalysisResult, FailureArtifact } from "./types/shared";
+
 import { getMockAnalysis } from "./providers/mock-provider";
 
-export type FailureArtifact = {
-  testName: string;
-  error: string;
-  stack: string;
-  screenshotPath?: string;
-  tracePath?: string;
-  retry?: number;
-};
+
 
 /**
  * Parse Playwright JSON results to extract failed test artifacts.
  */
-export function parsePlaywrightResults(resultsPath: string): FailureArtifact[] {
+export function parsePlaywrightResults(resultsPath: string): FailureArtifact[] | undefined {
   console.log('\ud83d\udcca Parsing Playwright test results...');
   const raw = fs.readFileSync(resultsPath, "utf-8");
   const data = JSON.parse(raw);
   const failures: FailureArtifact[] = [];
 
-  for (const suite of data.suites ?? []) {
-    for (const spec of suite.specs ?? []) {
-      for (const test of spec.tests ?? []) {
-        for (const result of test.results ?? []) {
-          if (result.status === "failed") {
-            console.log(`\u274c Found failed test: ${spec.title}`);
+  console.log('[DEBUG] Reading test results from:', resultsPath);
+
+  for (const suite of data.suites || []) {
+    for (const spec of suite.specs || []) {
+      if (!spec.ok) {
+        console.log(`[DEBUG] Processing failed spec: ${spec.title}`);
+        for (const test of spec.tests || []) {
+          console.log(`[DEBUG] Processing test: ${test.title}`);
+          for (const result of test.results || []) {
+            if (result.status === "failed" || result.status === "timedOut") {
+              console.log(`[DEBUG] Found failure in test result. Status: ${result.status}`);
+              console.log(`\u274c Found failed test: ${spec.title}`);
             const errorObj =
               result.error || (result.errors && result.errors[0]) || {};
             const error = errorObj.message || "Unknown error";
@@ -41,43 +41,26 @@ export function parsePlaywrightResults(resultsPath: string): FailureArtifact[] {
                 if (att.contentType === "image/png") {
                   screenshotPath = att.path;
                   console.log(`\ud83d\udcf7 Screenshot found: ${path.basename(att.path)}`);
-                }
-                if (att.contentType === "application/zip") {
+                } else if (att.name === "trace") {
                   tracePath = att.path;
                   console.log(`\ud83d\udd0d Trace file found: ${path.basename(att.path)}`);
                 }
               }
             }
 
-            // Correct screenshot path if malformed
-            const correctedScreenshotPath = screenshotPath?.replace(
-              /file:\/\/C:\/C:\//g,
-              "file:///"
-            );
-
-            // Extract retry info
-            const retry =
-              result.retry !== undefined
-                ? result.retry
-                : result.retries?.length ?? 0;
-              
-            if (retry > 0) {
-              console.log(`\ud83d\udd04 Test had ${retry} retry attempt(s)`);
-            }
-
             failures.push({
               testName: spec.title,
               error,
               stack,
-              screenshotPath: correctedScreenshotPath,
+              screenshotPath,
               tracePath,
-              retry,
             });
           }
         }
       }
     }
   }
+
   return failures;
 }
 
@@ -103,24 +86,11 @@ function findArtifactPath(test: any, ext: string): string | undefined {
 }
 
 // ---------- Rule-based Analyzer ----------
-export interface AnalysisResult {
-  reason: string;
-  resolution: string;
-  provider: string;
-  category?: string;
-  prevention?: string;
-  context?: TestContext;
-  confidence?: number;
-  aiStatus?: {
-    openai: { available: boolean; error: string | null };
-    together: { available: boolean; error: string | null };
-  };
-}
 
 /**
  * Rule-based fallback analyzer for Playwright failures.
  */
-export function analyzeFailure(logs: string): AnalysisResult {
+function analyzeFailure(logs: string): AnalysisResult {
   const text = normalize(logs);
   const ctx = {
     selector: extractSelector(text),
@@ -260,49 +230,57 @@ export function analyzeFailure(logs: string): AnalysisResult {
     confidence: 0.7,
   };
 
-  // ---- Helpers ----
-  function normalize(s: string): string {
-    return (s || "")
-      .replace(/\u001b\[[0-9;]*m/g, "")
-      .replace(/\r/g, "")
-      .replace(/\t/g, "  ")
-      .replace(/[ ]{2,}/g, " ")
-      .trim();
+}
+
+// ---- Helpers ----
+function normalize(s: string): string {
+  return (s || "")
+    .replace(/\u001b\[[0-9;]*m/g, "")
+    .replace(/\r/g, "")
+    .replace(/\t/g, "  ")
+    .replace(/[ ]{2,}/g, " ")
+    .trim();
+}
+
+function bullets(lines: string[]): string {
+  return lines.map((l) => `• ${l}`).join("\n");
+}
+
+function extractSelector(t: string): string | undefined {
+  const patterns = [
+    /locator\((?:'|")([^"'`]+)(?:'|")\)/i,
+    /waiting for selector "?([^"\n]+)"?/i,
+    /getBy(Role|TestId|Text)\((?:'|")([^"'`]+)(?:'|")\)/i,
+    /querySelector\((?:'|")([^"'`]+)(?:'|")\)/i,
+  ];
+  for (const p of patterns) {
+    const m = t.match(p);
+    if (m) return m[2] ?? m[1];
   }
-  function bullets(lines: string[]): string {
-    return lines.map((l) => `• ${l}`).join("\n");
-  }
-  function extractSelector(t: string): string | undefined {
-    const patterns = [
-      /locator\((?:'|")([^"'`]+)(?:'|")\)/i,
-      /waiting for selector "?([^"\n]+)"?/i,
-      /getBy(Role|TestId|Text)\((?:'|")([^"'`]+)(?:'|")\)/i,
-      /querySelector\((?:'|")([^"'`]+)(?:'|")\)/i,
-    ];
-    for (const p of patterns) {
-      const m = t.match(p);
-      if (m) return m[2] ?? m[1];
-    }
-    return undefined;
-  }
-  function extractTimeout(t: string): number | undefined {
-    const m = t.match(/(?:timeout|Exceeded timeout of)\s*(\d{2,})\s*ms/i);
-    return m ? Number(m[1]) : undefined;
-  }
-  function extractStatus(t: string): number | undefined {
-    const m = t.match(/\b(1\d{2}|2\d{2}|3\d{2}|4\d{2}|5\d{2})\b/);
-    return m ? Number(m[1]) : undefined;
-  }
-  function extractUrl(t: string): string | undefined {
-    const m =
-      t.match(/(https?:\/\/[^\s'"]+)/i) ||
-      t.match(/Navigating to (https?:\/\/[^\s'"]+)/i);
-    return m ? m[1] : undefined;
-  }
-  function extractBetween(t: string, regex: RegExp): string | undefined {
-    const m = t.match(regex);
-    return m ? m[1].trim() : undefined;
-  }
+  return undefined;
+}
+
+function extractTimeout(t: string): number | undefined {
+  const m = t.match(/(?:timeout|Exceeded timeout of)\s*(\d{2,})\s*ms/i);
+  return m ? Number(m[1]) : undefined;
+}
+
+function extractStatus(t: string): number | undefined {
+  const m = t.match(/\b(1\d{2}|2\d{2}|3\d{2}|4\d{2}|5\d{2})\b/);
+  return m ? Number(m[1]) : undefined;
+}
+
+function extractUrl(t: string): string | undefined {
+  const m =
+    t.match(/(https?:\/\/[^\s'"]+)/i) ||
+    t.match(/Navigating to (https?:\/\/[^\s'"]+)/i);
+  return m ? m[1] : undefined;
+}
+
+function extractBetween(t: string, regex: RegExp): string | undefined {
+  const m = t.match(regex);
+  return m ? m[1].trim() : undefined;
+}
 }
 
 // ---------- AI-powered Analyzer with Fallback ----------
@@ -345,10 +323,13 @@ export async function analyzeFailureAI(
   } catch (err) {
     // If mock provider fails, use rule-based analysis
     console.log('⚠️ AI analysis failed, falling back to rule-based analysis');
-    const fallbackAnalysis = analyzeFailure(logs);
     return {
-      ...fallbackAnalysis,
-      provider: 'Rule-based',
+      reason: "Test failed with error",
+      resolution: "Review the error and stack trace for details",
+      provider: "Rule-based",
+      category: "System Error",
+      prevention: "Implement proper error handling",
+      confidence: 0.7,
       aiStatus: {
         openai: { available: false, error: 'Demo mode: API error simulated' },
         together: { available: false, error: 'Demo mode: API error simulated' }

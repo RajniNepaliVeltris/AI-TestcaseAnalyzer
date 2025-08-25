@@ -6,7 +6,7 @@ import { Page } from '@playwright/test';
  * @param selectors Array of selectors to try in order
  * @param maxRetries Number of retries per selector
  */
-export async function selfHealingClick(page: Page, selectors: string[], maxRetries = 2) {
+export async function selfHealingClick(page: Page, selectors: string[], maxRetries = 1) {
   for (const selector of selectors) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
@@ -30,21 +30,22 @@ export async function selfHealingClick(page: Page, selectors: string[], maxRetri
  * @param value Value to fill
  * @param maxRetries Number of retries per selector
  */
-export async function selfHealingFill(page: Page, selectors: string[], value: string, maxRetries = 2) {
+export async function selfHealingFill(page: Page, selectors: string[], value: string, maxRetries = 1) {
   for (const selector of selectors) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
         await page.fill(selector, value, { timeout: 2000 });
+        console.info(`Successfully filled '${selector}' on attempt ${attempt}`);
         return { success: true, selector, attempt };
       } catch (err) {
         console.warn(`Failed to fill '${selector}' on attempt ${attempt}. Error: ${(err as Error).message}`);
-        if (attempt === selectors.length) {
+        if (attempt === maxRetries) {
           console.error(`Final failure for '${selector}' after ${maxRetries} attempts. Error: ${(err as Error).message}`);
         }
       }
     }
   }
-  throw new Error(`Self-healing fill failed for selectors: ${selectors.join(', ')}`);
+  throw new Error(`Unable to fill any of the provided selectors: ${selectors.join(', ')}`);
 }
 
 /**
@@ -53,7 +54,7 @@ export async function selfHealingFill(page: Page, selectors: string[], value: st
  * @param selectors Array of selectors to try in order
  * @param maxRetries Number of retries per selector
  */
-export async function selfHealingWait(page: Page, selectors: string[], maxRetries = 2, timeout = 2000) {
+export async function selfHealingWait(page: Page, selectors: string[], maxRetries = 1, timeout = 2000) {
   for (const selector of selectors) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {

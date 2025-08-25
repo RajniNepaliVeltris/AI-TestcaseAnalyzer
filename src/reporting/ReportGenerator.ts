@@ -1,10 +1,11 @@
 import * as path from 'path';
-import type { FailureArtifact } from '../ai-failure-analyzer';
+import type { FailureArtifact } from '../types/shared';
 import { StatsTracker } from './StatsTracker';
 import { ProviderManager } from './ProviderManager';
 import { HTMLRenderer } from './HTMLRenderer';
 import { FileManager } from './FileManager';
 import { AnalysisResult, HistoryEntry } from './types';
+import { parsePlaywrightTestResults } from '../utils/result-parser';
 import { clusterFailures } from '../failure-clustering';
 
 export class ReportGenerator {
@@ -77,17 +78,14 @@ export class ReportGenerator {
       this.fileManager.validateResultsFile();
       
       console.log("📑 Reading test results data...");
-      const allResults = this.fileManager.readResultsFile<FailureArtifact[]>();
+      const rawResults = this.fileManager.readResultsFile();
       
-      console.log(`[DEBUG] Found ${allResults.length} total test results`);
-      console.log("=== TEST CASE NAMES (All Results) ===");
-      allResults.forEach((result, index) => {
-        console.log(`[DEBUG] Test #${index + 1}: ${result.testName || '[No test name]'} (${(result as any).status || 'unknown status'})`);
-      });
-      console.log("=====================================");
+      if (!rawResults || typeof rawResults !== 'object') {
+        throw new Error('Test results file is empty or invalid');
+      }
 
-      // Only analyze failed results
-      const failures = allResults.filter((r) => (r as any).status === 'failed' || (r as any).error) as FailureArtifact[];
+      const failures = parsePlaywrightTestResults(rawResults);
+      const allResults = failures; // For now, we only have access to failures
       console.log(`[DEBUG] Found ${failures.length} failed test results`);
       console.log("=== TEST CASE NAMES (Failed Results) ===");
       failures.forEach((failure, index) => {

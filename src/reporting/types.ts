@@ -19,6 +19,10 @@ export interface AnalysisResult {
 }
 
 export interface TestContext {
+  selector?: string;
+  timeoutMs?: number;
+  statusCode?: number;
+  url?: string;
   stack?: string;
   error?: string;
   browser?: string;

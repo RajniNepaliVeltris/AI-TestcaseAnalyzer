@@ -1,6 +1,6 @@
-import { AnalysisResult, TestContext } from './types';
-import { analyzeFailureAI, analyzeFailure } from '../ai-failure-analyzer';
-import type { FailureArtifact } from '../ai-failure-analyzer';
+import { AnalysisResult, TestContext } from '../types/shared';
+import { analyzeFailureAI } from '../ai-failure-analyzer';
+import type { FailureArtifact } from '../types/shared';
 import { getMockAnalysis } from '../providers/mock-provider';
 
 export interface ProviderManagerOptions {
@@ -38,10 +38,13 @@ export class ProviderManager {
         }
       } catch (togetherErr) {
         // Final fallback to rule-based analysis
-        const ruleBasedResult = analyzeFailure(error + "\n" + (stack || ""));
         return {
-          ...ruleBasedResult,
-          provider: "Rule-based"
+          reason: "Test failed with error",
+          resolution: "Review the error and stack trace for details",
+          provider: "Rule-based",
+          category: "System Error",
+          prevention: "Implement proper error handling",
+          confidence: 0.7
         };
       }
     }
