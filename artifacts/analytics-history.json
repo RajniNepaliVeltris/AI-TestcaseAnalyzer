@@ -376,5 +376,71 @@
     "total": 2,
     "failed": 1,
     "passed": 1
+  },
+  {
+    "date": "2025-08-25T14:11:34.130Z",
+    "total": 3,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T14:19:23.420Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T14:26:37.736Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T14:29:28.164Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 10
+  },
+  {
+    "date": "2025-08-25T14:35:24.774Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 10
+  },
+  {
+    "date": "2025-08-25T14:40:09.792Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 10
+  },
+  {
+    "date": "2025-08-25T14:43:03.805Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 10
+  },
+  {
+    "date": "2025-08-25T14:47:51.588Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 10
+  },
+  {
+    "date": "2025-08-25T14:52:45.164Z",
+    "total": 4,
+    "failed": 2,
+    "passed": 9
+  },
+  {
+    "date": "2025-08-25T14:56:34.969Z",
+    "total": 4,
+    "failed": 2,
+    "passed": 9
+  },
+  {
+    "date": "2025-08-25T14:59:30.614Z",
+    "total": 4,
+    "failed": 2,
+    "passed": 9
   }
 ]

@@ -2,8 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProviderManager = void 0;
 const ai_failure_analyzer_1 = require("../ai-failure-analyzer");
+const mock_provider_1 = require("../providers/mock-provider");
 class ProviderManager {
     async analyzeWithProviders(error, stack) {
+        // Check for demo mode
+        if (process.env.AI_DEMO === 'true') {
+            return (0, mock_provider_1.getMockAnalysis)(error, stack);
+        }
         // Try OpenAI first
         try {
             const aiResult = await (0, ai_failure_analyzer_1.analyzeFailureAI)(error + "\n" + (stack || ""));

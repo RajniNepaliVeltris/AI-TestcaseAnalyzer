@@ -47,7 +47,8 @@ async function generateReport() {
       }
     );
 
-  console.log(" Generating consolidated report...");
+  console.log("🔄 Generating consolidated report...");
+  console.log("[DEBUG] Starting report generation process with results from: " + (foundResults || "No results file found"));
   // ReportGenerator handles reading results, updating history and writing output itself
   await reportGenerator.generateReport();
 

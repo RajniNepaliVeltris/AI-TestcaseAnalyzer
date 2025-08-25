@@ -67,15 +67,17 @@ function parseTestResults(output) {
         skipped: 0
     };
     try {
-        // Parse test results from reporter output
-        if (output.includes('failed'))
-            stats.failed++;
-        if (output.includes('passed'))
-            stats.passed++;
-        if (output.includes('skipped'))
-            stats.skipped++;
-        if (output.includes('retried'))
-            stats.retried++;
+        const lines = output.split('\n');
+        for (const line of lines) {
+            if (line.includes('failed'))
+                stats.failed++;
+            if (line.includes('passed'))
+                stats.passed++;
+            if (line.includes('skipped'))
+                stats.skipped++;
+            if (line.includes('retried'))
+                stats.retried++;
+        }
         stats.total = stats.passed + stats.failed;
     }
     catch (error) {
@@ -89,11 +91,11 @@ async function runPlaywrightTests(options = {}) {
         const command = buildPlaywrightCommand(options);
         console.log(`\nExecuting command: ${command}\n`);
         let output = '';
-        const proc = (0, child_process_1.exec)(command, (error, stdout, stderr) => {
+        const proc = (0, child_process_1.exec)(command, { maxBuffer: 20 * 1024 * 1024 }, (error, stdout, stderr) => {
+            output += stdout + stderr;
             const stats = parseTestResults(output);
             stats.duration = (perf_hooks_1.performance.now() - startTime) / 1000;
             if (error) {
-                // If it's a test failure but not a command execution error
                 if (stderr.includes('Test failed')) {
                     resolve(stats);
                 }
@@ -121,7 +123,7 @@ function runReportGenerator() {
         console.log('Running report generator...');
         const reportProcess = (0, child_process_1.exec)('npx ts-node src/report-generator.ts', {
             env: process.env,
-            maxBuffer: 10 * 1024 * 1024 // 10MB buffer
+            maxBuffer: 20 * 1024 * 1024 // Increased buffer size for large reports
         });
         let output = '';
         let errorOutput = '';
@@ -205,7 +207,6 @@ async function runAll(options = {}) {
         console.log('3. Ensure playwright.config.ts is properly configured');
         process.exit(1);
     }
-    // Removed duplicate report generation block
     // Generate report regardless of test outcome
     try {
         console.log('\nGenerating AI Failure Analysis Report...');

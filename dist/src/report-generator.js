@@ -41,20 +41,36 @@ const ProviderManager_1 = require("./reporting/ProviderManager");
 const StatsTracker_1 = require("./reporting/StatsTracker");
 const HTMLRenderer_1 = require("./reporting/HTMLRenderer");
 // Paths (can be made configurable via env)
-const RESULTS_PATH = path.resolve("results/test-results.json");
-const HISTORY_PATH = path.resolve("results/failure-history.json");
-const REPORT_PATH = path.resolve("results/consolidated-report.html");
+const RESULTS_PATHS = [
+    process.env.PLAYWRIGHT_RESULTS_PATH || '',
+    path.resolve('results/test-results.json'),
+    path.resolve('artifacts/results.json'),
+    path.resolve('artifacts/analytics-history.json') // fallback placeholder
+].filter(Boolean);
+const HISTORY_PATH = path.resolve('artifacts/analytics-history.json');
+const REPORT_PATH = path.resolve('artifacts/html-report/ai-analysis-report.html');
 async function generateReport() {
     try {
-        console.log("🔎 Validating test results path...");
-        if (!fs.existsSync(RESULTS_PATH)) {
-            throw new Error(`Test results file not found: ${RESULTS_PATH}`);
+        console.log("🔎 Locating test results file...");
+        let foundResults = null;
+        for (const p of RESULTS_PATHS) {
+            if (fs.existsSync(p)) {
+                foundResults = p;
+                break;
+            }
+        }
+        if (!foundResults) {
+            console.warn('⚠️ No test-results file found in expected locations. Please set PLAYWRIGHT_RESULTS_PATH or place results under results/ or artifacts/.');
         }
         console.log("📊 Initializing components...");
         const providerManager = new ProviderManager_1.ProviderManager();
         const statsTracker = new StatsTracker_1.StatsTracker();
         const htmlRenderer = new HTMLRenderer_1.HTMLRenderer();
-        const reportGenerator = new ReportGenerator_1.ReportGenerator(providerManager, statsTracker, htmlRenderer);
+        const reportGenerator = new ReportGenerator_1.ReportGenerator(providerManager, statsTracker, htmlRenderer, {
+            resultsPath: foundResults || path.resolve('artifacts/results.json'),
+            historyPath: HISTORY_PATH,
+            outputHtml: REPORT_PATH
+        });
         console.log(" Generating consolidated report...");
         // ReportGenerator handles reading results, updating history and writing output itself
         await reportGenerator.generateReport();

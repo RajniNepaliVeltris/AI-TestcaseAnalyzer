@@ -71,17 +71,43 @@ export class ReportGenerator {
 
   public async generateReport(): Promise<void> {
     try {
+      console.log("🔍 Validating test results file...");
       this.fileManager.validateResultsFile();
+      
+      console.log("📑 Reading test results data...");
       const allResults = this.fileManager.readResultsFile<FailureArtifact[]>();
+      
+      console.log(`[DEBUG] Found ${allResults.length} total test results`);
+      console.log("=== TEST CASE NAMES (All Results) ===");
+      allResults.forEach((result, index) => {
+        console.log(`[DEBUG] Test #${index + 1}: ${result.testName || '[No test name]'} (${(result as any).status || 'unknown status'})`);
+      });
+      console.log("=====================================");
 
       // Only analyze failed results
       const failures = allResults.filter((r) => (r as any).status === 'failed' || (r as any).error) as FailureArtifact[];
+      console.log(`[DEBUG] Found ${failures.length} failed test results`);
+      console.log("=== TEST CASE NAMES (Failed Results) ===");
+      failures.forEach((failure, index) => {
+        console.log(`[DEBUG] Failed Test #${index + 1}: ${failure.testName || '[No test name]'}`);
+        console.log(`[DEBUG] - Error: ${failure.error ? failure.error.substring(0, 100) + (failure.error.length > 100 ? '...' : '') : 'No error message'}`);
+      });
+      console.log("========================================");
+      
       const clusters = clusterFailures(failures);
+      console.log(`[DEBUG] Clustered failures into ${Object.keys(clusters).length} groups`);
 
       const uniqueFailures = new Set(failures.filter((f) => f.error).map((f) => f.testName));
       const uniquePasses = new Set(allResults.filter((f) => !f.error).map((f) => f.testName));
       const failedCount = uniqueFailures.size;
       const passedCount = uniquePasses.size;
+      
+      console.log(`[DEBUG] Unique test names - Failed: ${failedCount}, Passed: ${passedCount}`);
+      console.log("=== UNIQUE FAILED TEST NAMES ===");
+      uniqueFailures.forEach(testName => {
+        console.log(`[DEBUG] - ${testName}`);
+      });
+      console.log("===============================");
 
       const perFailureResults: { failure: FailureArtifact; analysis: AnalysisResult }[] = [];
 

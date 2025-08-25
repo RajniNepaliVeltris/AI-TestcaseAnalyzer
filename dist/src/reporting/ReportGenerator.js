@@ -87,20 +87,67 @@ class ReportGenerator {
     async generateReport() {
         try {
             this.fileManager.validateResultsFile();
-            const failures = this.fileManager.readResultsFile();
+            const allResults = this.fileManager.readResultsFile();
+            // Only analyze failed results
+            const failures = allResults.filter((r) => r.status === 'failed' || r.error);
             const clusters = (0, failure_clustering_1.clusterFailures)(failures);
             const uniqueFailures = new Set(failures.filter((f) => f.error).map((f) => f.testName));
-            const uniquePasses = new Set(failures.filter((f) => !f.error).map((f) => f.testName));
+            const uniquePasses = new Set(allResults.filter((f) => !f.error).map((f) => f.testName));
             const failedCount = uniqueFailures.size;
             const passedCount = uniquePasses.size;
+            const perFailureResults = [];
+            // Analyze failures and collect per-failure results
             for (const failure of failures) {
                 const result = await this.analyzeFailure(failure);
+                perFailureResults.push({ failure, analysis: result });
+                const aiStatus = result.aiStatus;
+                if (aiStatus) {
+                    if (aiStatus.openai) {
+                        this.statsTracker.incrementAttempts('openai');
+                        if (aiStatus.openai.available) {
+                            this.statsTracker.incrementSuccesses('openai');
+                            this.statsTracker.setSuccess('openai');
+                        }
+                        else {
+                            this.statsTracker.setError('openai', aiStatus.openai.error || 'OpenAI unavailable');
+                        }
+                    }
+                    if (aiStatus.together) {
+                        this.statsTracker.incrementAttempts('together');
+                        if (aiStatus.together.available) {
+                            this.statsTracker.incrementSuccesses('together');
+                            this.statsTracker.setSuccess('together');
+                        }
+                        else {
+                            this.statsTracker.setError('together', aiStatus.together.error || 'TogetherAI unavailable');
+                        }
+                    }
+                }
+                else {
+                    // rule-based
+                    this.statsTracker.incrementAttempts('ruleBased');
+                    this.statsTracker.incrementSuccesses('ruleBased');
+                    this.statsTracker.setSuccess('ruleBased');
+                }
                 this.updateStats(result);
             }
+            // Build provider HTML snippets
+            const openaiStats = this.statsTracker.getStats().openai;
+            this.statsTracker.updateProviderStats('openai', {
+                html: this.htmlRenderer.generateProviderHTML('OpenAI', 'gpt-3.5-turbo', 'LLM', openaiStats.attempts, openaiStats.successes, openaiStats.error),
+            });
+            const togetherStats = this.statsTracker.getStats().together;
+            this.statsTracker.updateProviderStats('together', {
+                html: this.htmlRenderer.generateProviderHTML('TogetherAI', 'togethercomputer/llama-2-70b-chat', 'LLM', togetherStats.attempts, togetherStats.successes, togetherStats.error),
+            });
+            const ruleStats = this.statsTracker.getStats().ruleBased;
+            this.statsTracker.updateProviderStats('ruleBased', {
+                html: this.htmlRenderer.generateProviderHTML('Rule-based', 'heuristic-rules', 'Fallback', ruleStats.attempts, ruleStats.successes, ruleStats.error),
+            });
             const history = this.fileManager.loadHistory();
             history.push({ date: new Date().toISOString(), total: failures.length, failed: failedCount, passed: passedCount });
             this.fileManager.saveHistory(history);
-            const html = this.htmlRenderer.generateFullReport(this.statsTracker.getStats(), clusters, history, failures.length, failedCount, passedCount);
+            const html = this.htmlRenderer.generateFullReport(this.statsTracker.getStats(), clusters, history, failures.length, failedCount, passedCount, perFailureResults);
             this.fileManager.writeReport(html);
             console.log('✅ AI Failure Analysis Report generated successfully');
         }
