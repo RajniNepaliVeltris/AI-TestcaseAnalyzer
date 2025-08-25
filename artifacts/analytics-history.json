@@ -1,0 +1,380 @@
+[
+  {
+    "date": "2025-08-19T19:59:46.661Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T20:27:35.646Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T20:34:22.698Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T20:41:31.203Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T20:49:21.178Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T20:56:20.004Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T21:02:58.379Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T21:09:40.719Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T21:16:42.556Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T21:25:27.660Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-19T21:34:48.936Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T05:34:56.199Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T05:46:37.321Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T06:16:00.417Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T06:20:43.716Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T06:25:33.201Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T06:34:46.208Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T06:38:19.255Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T06:44:36.599Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T06:51:10.113Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T07:26:03.855Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-20T10:29:20.119Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-21T18:49:17.154Z",
+    "total": 20,
+    "failed": 20,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-21T18:56:51.231Z",
+    "total": 14,
+    "failed": 14,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T19:02:03.180Z",
+    "total": 16,
+    "failed": 16,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T19:07:07.470Z",
+    "total": 16,
+    "failed": 8,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T19:09:51.638Z",
+    "total": 16,
+    "failed": 8,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T19:14:01.179Z",
+    "total": 16,
+    "failed": 8,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T19:29:55.127Z",
+    "total": 16,
+    "failed": 8,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T19:36:05.928Z",
+    "total": 16,
+    "failed": 8,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T19:48:50.532Z",
+    "total": 16,
+    "failed": 8,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T19:53:01.396Z",
+    "total": 16,
+    "failed": 8,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T20:22:18.103Z",
+    "total": 6,
+    "failed": 3,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T20:30:12.933Z",
+    "total": 6,
+    "failed": 3,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T20:30:54.856Z",
+    "total": 6,
+    "failed": 3,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T20:31:43.815Z",
+    "total": 6,
+    "failed": 3,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T21:12:57.604Z",
+    "total": 6,
+    "failed": 3,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T21:23:51.376Z",
+    "total": 6,
+    "failed": 3,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T21:31:55.383Z",
+    "total": 6,
+    "failed": 3,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T21:37:43.324Z",
+    "total": 6,
+    "failed": 3,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T22:48:38.413Z",
+    "total": 0,
+    "failed": 0,
+    "passed": 0
+  },
+  {
+    "date": "2025-08-24T22:58:27.306Z",
+    "total": 26,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:03:09.130Z",
+    "total": 12,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:10:08.390Z",
+    "total": 12,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:15:38.360Z",
+    "total": 6,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:17:35.056Z",
+    "total": 6,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:22:57.419Z",
+    "total": 6,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:29:05.791Z",
+    "total": 6,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:35:43.406Z",
+    "total": 6,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:36:49.740Z",
+    "total": 6,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:42:29.849Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:50:20.577Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:52:12.905Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:55:11.953Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-24T23:58:06.328Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T00:00:52.678Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T00:02:38.185Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T00:07:11.407Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T00:33:37.357Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T00:36:01.880Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T00:38:38.978Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T00:40:01.045Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  },
+  {
+    "date": "2025-08-25T00:43:47.075Z",
+    "total": 2,
+    "failed": 1,
+    "passed": 1
+  }
+]

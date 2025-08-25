@@ -1,0 +1,692 @@
+{
+  "config": {
+    "configFile": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\playwright.config.ts",
+    "rootDir": "C:/AITestCaseAnalyzer/AI-TestcaseAnalyzer/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "artifacts/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "artifacts/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/AITestCaseAnalyzer/AI-TestcaseAnalyzer/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/AITestCaseAnalyzer/AI-TestcaseAnalyzer/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.54.2",
+    "workers": 8,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "consolidated-tests.spec.ts",
+      "file": "consolidated-tests.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "@smoke Playwright home page loads",
+          "ok": true,
+          "tags": [
+            "smoke"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1465,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:38:57.834Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "27842fa59cd63744fdbc-10199ee8386511b891c0",
+          "file": "consolidated-tests.spec.ts",
+          "line": 8,
+          "column": 5
+        },
+        {
+          "title": "@smoke GitHub Users Search home page loads",
+          "ok": true,
+          "tags": [
+            "smoke"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1632,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:38:59.607Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "27842fa59cd63744fdbc-096b1237a599ab32552f",
+          "file": "consolidated-tests.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "@regression Search for a valid user",
+          "ok": true,
+          "tags": [
+            "regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1721,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Successfully waited for 'article:has-text(\"nik\")' on attempt 1. Elapsed time: 13ms\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:39:01.243Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "27842fa59cd63744fdbc-e466c8e8095d5dfc41d1",
+          "file": "consolidated-tests.spec.ts",
+          "line": 19,
+          "column": 5
+        },
+        {
+          "title": "@regression Search for an invalid user",
+          "ok": false,
+          "tags": [
+            "regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 24552,
+                  "error": {
+                    "message": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")",
+                    "stack": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")\n    at selfHealingWait (C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:74:9)\n    at C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts:36:3",
+                    "location": {
+                      "file": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                      "column": 9,
+                      "line": 74
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m     }\n \u001b[90m 73 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing wait failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 74
+                      },
+                      "message": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")\n\n   at ..\\src\\selfHealing.ts:74\n\n  72 |     }\n  73 |   }\n> 74 |   throw new Error(`Self-healing wait failed for selectors: ${selectors.join(', ')}`);\n     |         ^\n  75 | }\n  76 |\n  77 | /**\n    at selfHealingWait (C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:74:9)\n    at C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts:36:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 1. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 2. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 3. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 4. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for 'input[type=\"search\"]' after 5 attempts. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 5. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.no-results' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.no-results') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for '.no-results' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.no-results') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.results-list' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.results-list') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for '.results-list' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.results-list') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for 'div:has-text(\"No users found\")' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div:has-text(\"No users found\")') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for 'div:has-text(\"No users found\")' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div:has-text(\"No users found\")') to be visible\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:39:02.969Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\test-results\\consolidated-tests--regression-Search-for-an-invalid-user-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\test-results\\consolidated-tests--regression-Search-for-an-invalid-user-chromium\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                    "column": 9,
+                    "line": 74
+                  }
+                },
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 24427,
+                  "error": {
+                    "message": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")",
+                    "stack": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")\n    at selfHealingWait (C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:74:9)\n    at C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts:36:3",
+                    "location": {
+                      "file": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                      "column": 9,
+                      "line": 74
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:74\n\n\u001b[0m \u001b[90m 72 |\u001b[39m     }\n \u001b[90m 73 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing wait failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 |\u001b[39m }\n \u001b[90m 76 |\u001b[39m\n \u001b[90m 77 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 74
+                      },
+                      "message": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")\n\n   at ..\\src\\selfHealing.ts:74\n\n  72 |     }\n  73 |   }\n> 74 |   throw new Error(`Self-healing wait failed for selectors: ${selectors.join(', ')}`);\n     |         ^\n  75 | }\n  76 |\n  77 | /**\n    at selfHealingWait (C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:74:9)\n    at C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts:36:3"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 1. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 2. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 3. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 4. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for 'input[type=\"search\"]' after 5 attempts. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to fill 'input[type=\"search\"]' on attempt 5. Error: page.fill: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"search\"]')\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.no-results' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.no-results') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for '.no-results' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.no-results') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.results-list' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.results-list') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for '.results-list' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.results-list') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for 'div:has-text(\"No users found\")' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div:has-text(\"No users found\")') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for 'div:has-text(\"No users found\")' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div:has-text(\"No users found\")') to be visible\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 1,
+                  "startTime": "2025-08-25T00:39:28.588Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\test-results\\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\test-results\\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\test-results\\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\AITestCaseAnalyzer\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                    "column": 9,
+                    "line": 74
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "27842fa59cd63744fdbc-f9bc279fcd2efb6290dd",
+          "file": "consolidated-tests.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "@selfHealing Wait demo",
+          "ok": true,
+          "tags": [
+            "selfHealing"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5107,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Successfully waited for '.navbar__inner' on attempt 1. Elapsed time: 13ms\n"
+                    }
+                  ],
+                  "stderr": [
+                    {
+                      "text": "Failed to wait for '#nonexistent-header' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#nonexistent-header') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Final failure for '#nonexistent-header' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#nonexistent-header') to be visible\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:39:54.336Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "27842fa59cd63744fdbc-035b7770d8a0fa9cf6f1",
+          "file": "consolidated-tests.spec.ts",
+          "line": 88,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "ui-playground-tests.spec.ts",
+      "file": "ui-playground-tests.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "@dynamic Test dynamic ID handling",
+          "ok": true,
+          "tags": [
+            "dynamic"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2087,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:38:57.843Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "545275d7306617311e3a-1f5a06cac0dd721b165c",
+          "file": "ui-playground-tests.spec.ts",
+          "line": 7,
+          "column": 5
+        },
+        {
+          "title": "@async Test AJAX data loading",
+          "ok": true,
+          "tags": [
+            "async"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 17103,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Successfully waited for '.bg-success' on attempt 8. Elapsed time: 1384ms\n"
+                    }
+                  ],
+                  "stderr": [
+                    {
+                      "text": "Failed to wait for '.bg-success' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.bg-success') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.bg-success' on attempt 2. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.bg-success') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.bg-success' on attempt 3. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.bg-success') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.bg-success' on attempt 4. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.bg-success') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.bg-success' on attempt 5. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.bg-success') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.bg-success' on attempt 6. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.bg-success') to be visible\u001b[22m\n\n"
+                    },
+                    {
+                      "text": "Failed to wait for '.bg-success' on attempt 7. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.bg-success') to be visible\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:39:00.224Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "545275d7306617311e3a-90d46731ed727ebec81b",
+          "file": "ui-playground-tests.spec.ts",
+          "line": 18,
+          "column": 5
+        },
+        {
+          "title": "@loading Test progress bar",
+          "ok": true,
+          "tags": [
+            "loading"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 14260,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:39:17.333Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "545275d7306617311e3a-b656ffd35a5a1d903278",
+          "file": "ui-playground-tests.spec.ts",
+          "line": 37,
+          "column": 5
+        },
+        {
+          "title": "@visibility Test element visibility",
+          "ok": true,
+          "tags": [
+            "visibility"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1611,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:39:31.600Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "545275d7306617311e3a-6f181d272f045fdb78e8",
+          "file": "ui-playground-tests.spec.ts",
+          "line": 55,
+          "column": 5
+        },
+        {
+          "title": "@input Test text input with delay",
+          "ok": true,
+          "tags": [
+            "input"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1729,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:39:33.217Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "545275d7306617311e3a-f1e2d3040f1977040e03",
+          "file": "ui-playground-tests.spec.ts",
+          "line": 64,
+          "column": 5
+        },
+        {
+          "title": "@performance Test load delay",
+          "ok": true,
+          "tags": [
+            "performance"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6400,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Successfully waited for '.btn-primary' on attempt 1. Elapsed time: 24ms\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-25T00:39:34.952Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "545275d7306617311e3a-510e61c42ff70c215de6",
+          "file": "ui-playground-tests.spec.ts",
+          "line": 135,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-25T00:38:57.157Z",
+    "duration": 62773.753,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

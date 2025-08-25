@@ -1,0 +1,24 @@
+AI Report Generation Error
+========================
+Time: 2025-08-24T22:45:29.545Z
+Severity: Critical
+Component: Report Generator
+Error: failures is not iterable
+
+Stack Trace:
+TypeError: failures is not iterable
+    at clusterFailures (C:\AITestCaseAnalyzer\AI-TestcaseAnalyzer\src\failure-clustering.ts:6:22)
+    at ReportGenerator.generateReport (C:\AITestCaseAnalyzer\AI-TestcaseAnalyzer\src\reporting\ReportGenerator.ts:76:39)
+    at generateReport (C:\AITestCaseAnalyzer\AI-TestcaseAnalyzer\src\report-generator.ts:52:25)
+    at Object.<anonymous> (C:\AITestCaseAnalyzer\AI-TestcaseAnalyzer\src\report-generator.ts:61:1)
+    at Module._compile (node:internal/modules/cjs/loader:1688:14)
+    at Module.m._compile (C:\AITestCaseAnalyzer\AI-TestcaseAnalyzer\node_modules\ts-node\src\index.ts:1618:23)
+    at node:internal/modules/cjs/loader:1820:10
+    at Object.require.extensions.<computed> [as .ts] (C:\AITestCaseAnalyzer\AI-TestcaseAnalyzer\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1423:32)
+    at Function._load (node:internal/modules/cjs/loader:1246:12)
+
+Context:
+- Results Path: artifacts/results.json
+- Output Path: C:\AITestCaseAnalyzer\AI-TestcaseAnalyzer\artifacts\html-report\ai-analysis-report.html
+- History Path: C:\AITestCaseAnalyzer\AI-TestcaseAnalyzer\artifacts\analytics-history.json

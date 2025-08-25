@@ -1,0 +1,13 @@
+{
+  "resultsPath": "artifacts/results.json",
+  "outputHtml": "artifacts/html-report/ai-failure-report.html",
+  "aiProviders": [
+    "OpenAI",
+    "TogetherAI"
+  ],
+  "fallback": "Rule-based",
+  "reportSettings": {
+    "includeCharts": true,
+    "includeHistory": true
+  }
+}
