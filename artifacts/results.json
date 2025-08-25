@@ -68,7 +68,7 @@
       "specs": [
         {
           "title": "@smoke Playwright home page loads",
-          "ok": false,
+          "ok": true,
           "tags": [
             "smoke"
           ],
@@ -83,80 +83,18 @@
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
-                  "status": "timedOut",
-                  "duration": 35083,
-                  "error": {
-                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                  },
-                  "errors": [
-                    {
-                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                    },
-                    {
-                      "location": {
-                        "file": "C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts",
-                        "column": 14,
-                        "line": 9
-                      },
-                      "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://playwright.dev/\", waiting until \"load\"\u001b[22m\n\n\n   7 | // Smoke Tests\n   8 | test('@smoke Playwright home page loads', async ({ page }) => {\n>  9 |   await page.goto(PLAYWRIGHT_URL);\n     |              ^\n  10 |   await expect(page).toHaveTitle(/Playwright/);\n  11 | });\n  12 |\n    at C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts:9:14"
-                    }
-                  ],
+                  "status": "passed",
+                  "duration": 2436,
+                  "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:50:27.342Z",
+                  "startTime": "2025-08-25T15:59:14.796Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\test-results\\consolidated-tests--smoke-Playwright-home-page-loads-chromium\\error-context.md"
-                    }
-                  ]
-                },
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 0,
-                  "status": "timedOut",
-                  "duration": 35206,
-                  "error": {
-                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                  },
-                  "errors": [
-                    {
-                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                    },
-                    {
-                      "location": {
-                        "file": "C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts",
-                        "column": 14,
-                        "line": 9
-                      },
-                      "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://playwright.dev/\", waiting until \"load\"\u001b[22m\n\n\n   7 | // Smoke Tests\n   8 | test('@smoke Playwright home page loads', async ({ page }) => {\n>  9 |   await page.goto(PLAYWRIGHT_URL);\n     |              ^\n  10 |   await expect(page).toHaveTitle(/Playwright/);\n  11 | });\n  12 |\n    at C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts:9:14"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 1,
-                  "startTime": "2025-08-25T14:51:03.750Z",
-                  "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\test-results\\consolidated-tests--smoke-Playwright-home-page-loads-chromium-retry1\\error-context.md"
-                    },
-                    {
-                      "name": "trace",
-                      "contentType": "application/zip",
-                      "path": "C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\test-results\\consolidated-tests--smoke-Playwright-home-page-loads-chromium-retry1\\trace.zip"
-                    }
-                  ]
+                  "attachments": []
                 }
               ],
-              "status": "unexpected"
+              "status": "expected"
             }
           ],
           "id": "27842fa59cd63744fdbc-10199ee8386511b891c0",
@@ -179,15 +117,15 @@
               "projectName": "chromium",
               "results": [
                 {
-                  "workerIndex": 3,
+                  "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3321,
+                  "duration": 3261,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:51:40.254Z",
+                  "startTime": "2025-08-25T15:59:17.488Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -215,19 +153,19 @@
               "projectName": "chromium",
               "results": [
                 {
-                  "workerIndex": 3,
+                  "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2283,
+                  "duration": 3475,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "Successfully waited for 'article:has-text(\"nik\")' on attempt 1. Elapsed time: 9ms\n"
+                      "text": "Successfully waited for 'article:has-text(\"nik\")' on attempt 1. Elapsed time: 15ms\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:51:43.850Z",
+                  "startTime": "2025-08-25T15:59:20.753Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -255,10 +193,10 @@
               "projectName": "chromium",
               "results": [
                 {
-                  "workerIndex": 3,
+                  "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 25305,
+                  "duration": 24709,
                   "error": {
                     "message": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")",
                     "stack": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")\n    at selfHealingWait (C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\src\\selfHealing.ts:74:9)\n    at C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts:36:3",
@@ -319,7 +257,7 @@
                     }
                   ],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:51:46.138Z",
+                  "startTime": "2025-08-25T15:59:24.231Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -340,10 +278,10 @@
                   }
                 },
                 {
-                  "workerIndex": 4,
+                  "workerIndex": 2,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 24334,
+                  "duration": 25093,
                   "error": {
                     "message": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")",
                     "stack": "Error: Self-healing wait failed for selectors: .no-results, .results-list, div:has-text(\"No users found\")\n    at selfHealingWait (C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\src\\selfHealing.ts:74:9)\n    at C:\\AITestCaseAnalyzer\\VeltrisAI-TestcaseAnalyzer\\tests\\consolidated-tests.spec.ts:36:3",
@@ -404,7 +342,7 @@
                     }
                   ],
                   "retry": 1,
-                  "startTime": "2025-08-25T14:52:12.395Z",
+                  "startTime": "2025-08-25T15:59:49.827Z",
                   "annotations": [],
                   "attachments": [
                     {
@@ -453,14 +391,14 @@
               "projectName": "chromium",
               "results": [
                 {
-                  "workerIndex": 5,
+                  "workerIndex": 3,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5391,
+                  "duration": 6028,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "Successfully waited for '.navbar__inner' on attempt 1. Elapsed time: 18ms\n"
+                      "text": "Successfully waited for '.navbar__inner' on attempt 1. Elapsed time: 16ms\n"
                     }
                   ],
                   "stderr": [
@@ -472,7 +410,7 @@
                     }
                   ],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:52:38.123Z",
+                  "startTime": "2025-08-25T16:00:16.241Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -511,12 +449,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 2652,
+                  "duration": 3539,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:50:27.336Z",
+                  "startTime": "2025-08-25T15:59:14.783Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -547,11 +485,11 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 17603,
+                  "duration": 18290,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "Successfully waited for '.bg-success' on attempt 8. Elapsed time: 1384ms\n"
+                      "text": "Successfully waited for '.bg-success' on attempt 8. Elapsed time: 1396ms\n"
                     }
                   ],
                   "stderr": [
@@ -578,7 +516,7 @@
                     }
                   ],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:50:30.287Z",
+                  "startTime": "2025-08-25T15:59:18.593Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -609,12 +547,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 10169,
+                  "duration": 6453,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:50:47.894Z",
+                  "startTime": "2025-08-25T15:59:36.887Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -645,12 +583,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 2214,
+                  "duration": 1610,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:50:58.070Z",
+                  "startTime": "2025-08-25T15:59:43.344Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -681,12 +619,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 3122,
+                  "duration": 1630,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:51:00.289Z",
+                  "startTime": "2025-08-25T15:59:44.959Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -717,16 +655,16 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 6473,
+                  "duration": 6623,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "Successfully waited for '.btn-primary' on attempt 1. Elapsed time: 21ms\n"
+                      "text": "Successfully waited for '.btn-primary' on attempt 1. Elapsed time: 34ms\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-08-25T14:51:03.416Z",
+                  "startTime": "2025-08-25T15:59:46.595Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -744,11 +682,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-25T14:50:26.692Z",
-    "duration": 137334.617,
-    "expected": 9,
+    "startTime": "2025-08-25T15:59:14.109Z",
+    "duration": 68662.341,
+    "expected": 10,
     "skipped": 0,
-    "unexpected": 2,
+    "unexpected": 1,
     "flaky": 0
   }
 }

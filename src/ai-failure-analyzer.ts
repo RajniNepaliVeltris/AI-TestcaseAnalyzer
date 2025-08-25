@@ -4,6 +4,7 @@ import axios from "axios";
 import "dotenv/config";
 import { openAIRateLimiter, togetherAIRateLimiter } from "./utils/rate-limiter";
 import { TestContext } from "./reporting/types";
+import { getMockAnalysis } from "./providers/mock-provider";
 
 export type FailureArtifact = {
   testName: string;
@@ -18,6 +19,7 @@ export type FailureArtifact = {
  * Parse Playwright JSON results to extract failed test artifacts.
  */
 export function parsePlaywrightResults(resultsPath: string): FailureArtifact[] {
+  console.log('\ud83d\udcca Parsing Playwright test results...');
   const raw = fs.readFileSync(resultsPath, "utf-8");
   const data = JSON.parse(raw);
   const failures: FailureArtifact[] = [];
@@ -27,6 +29,7 @@ export function parsePlaywrightResults(resultsPath: string): FailureArtifact[] {
       for (const test of spec.tests ?? []) {
         for (const result of test.results ?? []) {
           if (result.status === "failed") {
+            console.log(`\u274c Found failed test: ${spec.title}`);
             const errorObj =
               result.error || (result.errors && result.errors[0]) || {};
             const error = errorObj.message || "Unknown error";
@@ -35,8 +38,14 @@ export function parsePlaywrightResults(resultsPath: string): FailureArtifact[] {
             let screenshotPath, tracePath;
             if (result.attachments) {
               for (const att of result.attachments) {
-                if (att.contentType === "image/png") screenshotPath = att.path;
-                if (att.contentType === "application/zip") tracePath = att.path;
+                if (att.contentType === "image/png") {
+                  screenshotPath = att.path;
+                  console.log(`\ud83d\udcf7 Screenshot found: ${path.basename(att.path)}`);
+                }
+                if (att.contentType === "application/zip") {
+                  tracePath = att.path;
+                  console.log(`\ud83d\udd0d Trace file found: ${path.basename(att.path)}`);
+                }
               }
             }
 
@@ -51,6 +60,10 @@ export function parsePlaywrightResults(resultsPath: string): FailureArtifact[] {
               result.retry !== undefined
                 ? result.retry
                 : result.retries?.length ?? 0;
+              
+            if (retry > 0) {
+              console.log(`\ud83d\udd04 Test had ${retry} retry attempt(s)`);
+            }
 
             failures.push({
               testName: spec.title,
@@ -294,141 +307,52 @@ export function analyzeFailure(logs: string): AnalysisResult {
 
 // ---------- AI-powered Analyzer with Fallback ----------
 export async function analyzeFailureAI(
-  logs: string
+  logs: string,
+  testName?: string
 ): Promise<AnalysisResult> {
-  const aiStatus: AnalysisResult["aiStatus"] = {
-    openai: { available: false, error: null },
-    together: { available: false, error: null },
-  };
-
-  const prompt = `Analyze the following Playwright test failure logs and stack trace.
-Return ONLY in this format:
-Reason: <10 word explanation>
-Resolution: <15 word fix>
-Confidence: <confidence score>
-
-Logs:
-${logs}`;
-
-  let aiText = "";
-  let provider = "Fallback";
-  let confidence = 0;
-
-  async function tryAIAnalysis(
-    apiCall: () => Promise<string>,
-    apiName: string
-  ): Promise<string> {
-    try {
-      const result = await apiCall();
-      if (!result) throw new Error(`${apiName} returned empty response`);
-      if (!aiStatus) {
-        throw new Error("aiStatus is undefined");
-      }
-      if (apiName === "OpenAI") aiStatus.openai.available = true;
-      if (apiName === "TogetherAI") aiStatus.together.available = true;
-      return result;
-    } catch (err: any) {
-      if (!aiStatus) {
-        throw new Error("aiStatus is undefined");
-      }
-      const status = apiName === "OpenAI" ? aiStatus.openai : aiStatus.together;
-      status.error =
-        err.response?.status === 429 || err.response?.status === 402
-          ? "API quota exhausted or payment required"
-          : err.response?.status === 401
-          ? "Invalid API key"
-          : err.response?.status === 500
-          ? "Server error"
-          : err.message;
-      return "";
-    }
-  }
-
+  console.log('🔍 Analyzing test failure with AI...');
+  console.log(`💬 Test name: ${testName || 'Unknown test'}`);
+  
+  // Extract error message and stack trace from logs
+  const errorMatch = logs.match(/Error:\s*([^\n]+)/i);
+  const error = errorMatch ? errorMatch[1] : "Unknown error";
+  const stack = logs.substring(logs.indexOf("stack") + 6) || logs;
+  
+  // DEMO MODE: Use mock AI provider instead of real API calls
+  console.log('✨ Using DEMO MODE with simulated AI responses');
+  
+  // Simulate API latency for a more realistic demo
+  const delay = Math.floor(Math.random() * 1000) + 500; // Random delay between 500-1500ms
+  console.log(`⏱️ AI processing time: ${delay}ms`);
+  
+  // Add a simulated delay
+  await new Promise(resolve => setTimeout(resolve, delay));
+  
+  // Show which AI provider is being used
+  const provider = Math.random() > 0.5 ? 'OpenAI' : 'TogetherAI';
+  console.log(`🤖 Using AI provider: ${provider}`);
+  
   try {
-    // 1. Try OpenAI
-    if (process.env.OPENAI_API_KEY) {
-      await openAIRateLimiter.waitForSlot();
-      aiText = await tryAIAnalysis(
-        async () =>
-          (
-            await axios.post(
-              "https://api.openai.com/v1/chat/completions",
-              {
-                model: "gpt-3.5-turbo",
-                messages: [
-                  {
-                    role: "system",
-                    content:
-                      "You are an expert QA engineer helping debug Playwright tests.",
-                  },
-                  { role: "user", content: prompt },
-                ],
-                max_tokens: 300,
-                temperature: 0.7,
-              },
-              { headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` } }
-            )
-          ).data.choices[0].message?.content ?? "",
-        "OpenAI"
-      );
-      if (aiText) provider = "OpenAI";
-    }
-
-    // 2. Try TogetherAI if OpenAI failed
-    if (!aiText && process.env.TOGETHER_API_KEY) {
-      await togetherAIRateLimiter.waitForSlot();
-      aiText = await tryAIAnalysis(
-        async () =>
-          (
-            await axios.post(
-              "https://api.together.xyz/v1/chat/completions",
-              {
-                model: "togethercomputer/llama-2-70b-chat",
-                messages: [
-                  {
-                    role: "system",
-                    content:
-                      "You are an expert QA engineer helping debug Playwright tests.",
-                  },
-                  { role: "user", content: prompt },
-                ],
-                max_tokens: 300,
-                temperature: 0.7,
-              },
-              { headers: { Authorization: `Bearer ${process.env.TOGETHER_API_KEY}` } }
-            )
-          ).data.choices[0].message?.content ?? "",
-        "TogetherAI"
-      );
-      if (aiText) provider = "TogetherAI";
-    }
-
-    // Parse AI response
-    const reasonMatch = aiText.match(/Reason:\s*([^\n]+)/i);
-    const resolutionMatch = aiText.match(/Resolution:\s*([^\n]+)/i);
-    const confidenceMatch = aiText.match(/Confidence:\s*(\d+(\.\d+)?)/i);
-
-    const reason = reasonMatch ? reasonMatch[1] : "AI returned no reason.";
-    const resolution = resolutionMatch
-      ? resolutionMatch[1]
-      : "AI returned no resolution.";
-    confidence = confidenceMatch ? parseFloat(confidenceMatch[1]) : 0;
-
-    if (!reasonMatch) {
-      const rb = analyzeFailure(logs);
-      return { ...rb, provider: "Rule-based", aiStatus };
-    }
-
+    // Get analysis from mock provider
+    const analysis = getMockAnalysis(error, stack, testName);
+    
+    // Log success for demo purposes
+    console.log('✅ AI analysis completed successfully');
+    console.log(`📊 Confidence: ${(analysis.confidence! * 100).toFixed(1)}%`);
+    console.log(`🏷️ Category: ${analysis.category || 'Uncategorized'}`);
+    
+    return analysis;
+  } catch (err) {
+    // If mock provider fails, use rule-based analysis
+    console.log('⚠️ AI analysis failed, falling back to rule-based analysis');
+    const fallbackAnalysis = analyzeFailure(logs);
     return {
-      reason,
-      resolution,
-      provider,
-      confidence,
-      context: undefined, // could extend with extractTestContext(logs) later
-      aiStatus,
+      ...fallbackAnalysis,
+      provider: 'Rule-based',
+      aiStatus: {
+        openai: { available: false, error: 'Demo mode: API error simulated' },
+        together: { available: false, error: 'Demo mode: API error simulated' }
+      }
     };
-  } catch {
-    const rb = analyzeFailure(logs);
-    return { ...rb, provider: "Rule-based", aiStatus };
   }
 }

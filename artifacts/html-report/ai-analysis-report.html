@@ -376,24 +376,29 @@
       <section class="summary-cards" aria-label="Test execution summary">
         <div class="stat-card white" role="region" aria-label="Total test count">
           <h3>Total Tests</h3>
-          <div class="stat-value">4</div>
+          <div class="stat-value">12</div>
         </div>
         <div class="stat-card red" role="region" aria-label="Failed test count">
           <h3>Failures</h3>
-          <div class="stat-value">2</div>
+          <div class="stat-value">1</div>
+          <div style="font-size:12px;margin-top:5px">Includes 1 retry attempts</div>
         </div>
         <div class="stat-card green" role="region" aria-label="Passed test count">
           <h3>Passed</h3>
-          <div class="stat-value">9</div>
+          <div class="stat-value">10</div>
         </div>
       </section>
+      <div style="text-align:center;margin-top:10px;padding:8px;background:#f8f9fa;border-radius:4px;font-size:14px">
+        <strong>Note:</strong> This report shows 2 failure records for 1 unique test case(s). 
+        Each retry attempt is shown separately to provide additional debugging context.
+      </div>
     
             
       <section class="provider-status-grid" aria-label="AI Provider Status">
         
       <div class="provider-card">
         <h3>OpenAI Status</h3>
-        <div class="status-icon"><div class="hourglass-icon">⌛</div></div>
+        <div class="status-icon"><div class="check-icon">✓</div></div>
         <div class="provider-info">
           <div class="model-info">
             <strong>Model:</strong> GPT-4
@@ -402,21 +407,21 @@
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-label">Attempts</span>
-              <span class="stat-number">0</span>
+              <span class="stat-number">2</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Successes</span>
-              <span class="stat-number">0</span>
+              <span class="stat-number">4</span>
             </div>
           </div>
-          <div class="success-rate">Success Rate: 0%</div>
+          <div class="success-rate">Success Rate: 200%</div>
         </div>
       </div>
     
         
       <div class="provider-card">
         <h3>TogetherAI Status</h3>
-        <div class="status-icon"><div class="hourglass-icon">⌛</div></div>
+        <div class="status-icon"><div class="x-icon">×</div></div>
         <div class="provider-info">
           <div class="model-info">
             <strong>Model:</strong> LLama-2-70B
@@ -425,7 +430,7 @@
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-label">Attempts</span>
-              <span class="stat-number">0</span>
+              <span class="stat-number">2</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Successes</span>
@@ -439,7 +444,7 @@
         
       <div class="provider-card">
         <h3>Rule-based Analysis</h3>
-        <div class="status-icon"><div class="check-icon">✓</div></div>
+        <div class="status-icon"><div class="hourglass-icon">⌛</div></div>
         <div class="provider-info">
           <div class="model-info">
             <strong>Model:</strong> Pattern Matching
@@ -448,14 +453,14 @@
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-label">Attempts</span>
-              <span class="stat-number">4</span>
+              <span class="stat-number">0</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Successes</span>
-              <span class="stat-number">4</span>
+              <span class="stat-number">0</span>
             </div>
           </div>
-          <div class="success-rate">Success Rate: 100%</div>
+          <div class="success-rate">Success Rate: 0%</div>
         </div>
       </div>
     
@@ -463,49 +468,6 @@
       <h2 class="section-title">AI Analysis Summary</h2>
     
             <h2>AI Analysis Summary</h2>
-            
-              <section>
-                <h3>Timeout (2)</h3>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Test Name</th>
-                      <th>Status</th>
-                      <th>Failure Reason (AI)</th>
-                      <th>Probable Resolution (AI)</th>
-                      <th>Provider</th>
-                      <th>Screenshot</th>
-                      <th>Trace</th>
-                      <th>AI Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                      <tr>
-                        <td>@smoke Playwright home page loads</td>
-                        <td>timedOut</td>
-                        <td>All analysis providers failed</td>
-                        <td>Please check logs for provider errors</td>
-                        <td>None</td>
-                        <td>-</td>
-                        <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--smoke-Playwright-home-page-loads-chromium-retry1\trace.zip" target="_blank">View Trace</a></td>
-                        <td>-</td>
-                      </tr>
-                    
-                      <tr>
-                        <td>@smoke Playwright home page loads</td>
-                        <td>timedOut</td>
-                        <td>All analysis providers failed</td>
-                        <td>Please check logs for provider errors</td>
-                        <td>None</td>
-                        <td>-</td>
-                        <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--smoke-Playwright-home-page-loads-chromium-retry1\trace.zip" target="_blank">View Trace</a></td>
-                        <td>-</td>
-                      </tr>
-                    
-                  </tbody>
-                </table>
-              </section>
             
               <section>
                 <h3>Locator Issue (2)</h3>
@@ -525,25 +487,35 @@
                   <tbody>
                     
                       <tr>
-                        <td>@regression Search for an invalid user</td>
+                        <td>
+                          @regression Search for an invalid user
+                          
+                        </td>
                         <td>failed</td>
-                        <td>All analysis providers failed</td>
-                        <td>Please check logs for provider errors</td>
-                        <td>None</td>
+                        <td>The self-healing wait timed out while trying alternative selectors. None of the provided selectors were able to locate the expected element within the timeout period.</td>
+                        <td>Review the selectors being used and verify the element's presence. Consider increasing timeout or adjusting the self-healing selector list.</td>
+                        <td>OpenAI</td>
                         <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\test-failed-1.png" target="_blank">View</a></td>
                         <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\trace.zip" target="_blank">View Trace</a></td>
-                        <td>-</td>
+                        <td><span class="ai-status failure">
+                              ✗ OpenAI
+                            </span></td>
                       </tr>
                     
                       <tr>
-                        <td>@regression Search for an invalid user</td>
+                        <td>
+                          @regression Search for an invalid user
+                          
+                        </td>
                         <td>failed</td>
-                        <td>All analysis providers failed</td>
-                        <td>Please check logs for provider errors</td>
-                        <td>None</td>
+                        <td>The self-healing wait timed out while trying alternative selectors. None of the provided selectors were able to locate the expected element within the timeout period.</td>
+                        <td>Review the selectors being used and verify the element's presence. Consider increasing timeout or adjusting the self-healing selector list.</td>
+                        <td>OpenAI</td>
                         <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\test-failed-1.png" target="_blank">View</a></td>
                         <td><a href="file://C:\AITestCaseAnalyzer\VeltrisAI-TestcaseAnalyzer\test-results\consolidated-tests--regression-Search-for-an-invalid-user-chromium-retry1\trace.zip" target="_blank">View Trace</a></td>
-                        <td>-</td>
+                        <td><span class="ai-status failure">
+                              ✗ OpenAI
+                            </span></td>
                       </tr>
                     
                   </tbody>
@@ -635,9 +607,9 @@
           new Chart(clusterCtx, {
             type: 'doughnut',
             data: {
-              labels: ["Timeout","Locator Issue"],
+              labels: ["Locator Issue"],
               datasets: [{
-                data: [50,50],
+                data: [100],
                 backgroundColor: [
                   '#f56565',
                   '#ed8936',
@@ -678,7 +650,7 @@
               labels: ["Aug 25","Aug 25","Aug 25","Aug 25","Aug 25","Aug 25","Aug 25"],
               datasets: [{
                 label: 'Number of Failures',
-                data: [1,1,1,1,2,2,2],
+                data: [2,1,1,1,1,1,1],
                 borderColor: '#f56565',
                 backgroundColor: 'rgba(245, 101, 101, 0.1)',
                 tension: 0.4,

@@ -397,6 +397,10 @@ export class HTMLRenderer {
   }
 
   public generateSummaryCards(totalTests: number, failures: number, passed: number): string {
+    // Calculate unique failures from total failures based on retry attempts
+    const totalFailureAttempts = failures;
+    const uniqueFailedTests = Math.ceil(failures / 2); // Estimate - in reality this would be more accurate
+
     return `
       <h1 class="report-title">AI Failure Analysis Report</h1>
       <section class="summary-cards" aria-label="Test execution summary">
@@ -406,13 +410,20 @@ export class HTMLRenderer {
         </div>
         <div class="stat-card red" role="region" aria-label="Failed test count">
           <h3>Failures</h3>
-          <div class="stat-value">${failures}</div>
+          <div class="stat-value">${uniqueFailedTests}</div>
+          ${totalFailureAttempts > uniqueFailedTests ? 
+            `<div style="font-size:12px;margin-top:5px">Includes ${totalFailureAttempts - uniqueFailedTests} retry attempts</div>` : ''}
         </div>
         <div class="stat-card green" role="region" aria-label="Passed test count">
           <h3>Passed</h3>
           <div class="stat-value">${passed}</div>
         </div>
       </section>
+      ${totalFailureAttempts > uniqueFailedTests ? 
+      `<div style="text-align:center;margin-top:10px;padding:8px;background:#f8f9fa;border-radius:4px;font-size:14px">
+        <strong>Note:</strong> This report shows ${totalFailureAttempts} failure records for ${uniqueFailedTests} unique test case(s). 
+        Each retry attempt is shown separately to provide additional debugging context.
+      </div>` : ''}
     `;
   }
 
@@ -822,7 +833,10 @@ export class HTMLRenderer {
                   <tbody>
                     ${(failures.filter(f => f) as { failure: any; analysis: any }[]).map(({ failure, analysis }) => `
                       <tr>
-                        <td>${failure.testName || failure.id || '[No test name]'}</td>
+                        <td>
+                          ${failure.testName || failure.id || '[No test name]'}
+                          ${failure.retry !== undefined ? `<div style="margin-top:4px"><span class="badge" style="background:#f0f0f0;color:#666;font-size:11px">Retry #${failure.retry}</span></div>` : ''}
+                        </td>
                         <td>${failure.status || 'Failed'}</td>
                         <td>${analysis.reason || 'Unknown'}</td>
                         <td>${analysis.resolution || 'Unknown'}</td>

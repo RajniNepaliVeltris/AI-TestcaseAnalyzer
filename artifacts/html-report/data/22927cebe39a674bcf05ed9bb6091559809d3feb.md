@@ -7,7 +7,7 @@
   - img
   - textbox "enter github user name": nonexistentuser123456
   - button "search"
-  - 'heading "requests: 35/60" [level=3]'
+  - 'heading "requests: 50/60" [level=3]'
   - article:
     - img
     - heading "107" [level=3]

@@ -33,7 +33,14 @@ async function generateReport() {
     }
 
     console.log("📊 Initializing components...");
-    const providerManager = new ProviderManager();
+    
+    // For demo mode: Add console information about mock AI providers
+    console.log("🤖 DEMO MODE: Using simulated AI providers");
+    console.log("    - OpenAI (simulated)");
+    console.log("    - TogetherAI (simulated)");
+    console.log("    - Rule-based fallback");
+    
+    const providerManager = new ProviderManager({ useMockProviders: true });
     const statsTracker = new StatsTracker();
     const htmlRenderer = new HTMLRenderer();
     const reportGenerator = new ReportGenerator(

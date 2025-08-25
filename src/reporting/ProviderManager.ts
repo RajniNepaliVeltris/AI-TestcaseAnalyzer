@@ -3,11 +3,24 @@ import { analyzeFailureAI, analyzeFailure } from '../ai-failure-analyzer';
 import type { FailureArtifact } from '../ai-failure-analyzer';
 import { getMockAnalysis } from '../providers/mock-provider';
 
+export interface ProviderManagerOptions {
+  useMockProviders?: boolean;
+}
+
 export class ProviderManager {
-  async analyzeWithProviders(error: string, stack: string): Promise<AnalysisResult> {
+  private useMockProviders: boolean;
+  
+  constructor(options?: ProviderManagerOptions) {
+    this.useMockProviders = options?.useMockProviders || process.env.AI_DEMO === 'true' || false;
+    if (this.useMockProviders) {
+      console.log('🧪 Mock AI providers enabled for demo mode');
+    }
+  }
+  
+  async analyzeWithProviders(error: string, stack: string, testName?: string): Promise<AnalysisResult> {
     // Check for demo mode
-    if (process.env.AI_DEMO === 'true') {
-      return getMockAnalysis(error, stack);
+    if (this.useMockProviders) {
+      return getMockAnalysis(error, stack, testName);
     }
 
     // Try OpenAI first

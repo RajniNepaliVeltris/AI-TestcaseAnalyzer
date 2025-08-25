@@ -63,7 +63,12 @@ async function generateReport() {
             console.warn('⚠️ No test-results file found in expected locations. Please set PLAYWRIGHT_RESULTS_PATH or place results under results/ or artifacts/.');
         }
         console.log("📊 Initializing components...");
-        const providerManager = new ProviderManager_1.ProviderManager();
+        // For demo mode: Add console information about mock AI providers
+        console.log("🤖 DEMO MODE: Using simulated AI providers");
+        console.log("    - OpenAI (simulated)");
+        console.log("    - TogetherAI (simulated)");
+        console.log("    - Rule-based fallback");
+        const providerManager = new ProviderManager_1.ProviderManager({ useMockProviders: true });
         const statsTracker = new StatsTracker_1.StatsTracker();
         const htmlRenderer = new HTMLRenderer_1.HTMLRenderer();
         const reportGenerator = new ReportGenerator_1.ReportGenerator(providerManager, statsTracker, htmlRenderer, {
@@ -71,7 +76,8 @@ async function generateReport() {
             historyPath: HISTORY_PATH,
             outputHtml: REPORT_PATH
         });
-        console.log(" Generating consolidated report...");
+        console.log("🔄 Generating consolidated report...");
+        console.log("[DEBUG] Starting report generation process with results from: " + (foundResults || "No results file found"));
         // ReportGenerator handles reading results, updating history and writing output itself
         await reportGenerator.generateReport();
         console.log(`✅ Report successfully generated at: ${REPORT_PATH}`);

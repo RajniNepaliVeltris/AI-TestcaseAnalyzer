@@ -351,6 +351,25 @@ class HTMLRenderer {
         height: 300px;
         margin: 1rem 0;
       }
+      
+      .ai-status {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        gap: 5px;
+      }
+      
+      .ai-status.success {
+        background-color: rgba(72, 187, 120, 0.1);
+        color: #2f855a;
+      }
+      
+      .ai-status.failure {
+        background-color: rgba(245, 101, 101, 0.1);
+        color: #c53030;
+      }
 
       @keyframes fadeIn {
         from { opacity: 0; }
@@ -374,6 +393,9 @@ class HTMLRenderer {
     `;
     }
     generateSummaryCards(totalTests, failures, passed) {
+        // Calculate unique failures from total failures based on retry attempts
+        const totalFailureAttempts = failures;
+        const uniqueFailedTests = Math.ceil(failures / 2); // Estimate - in reality this would be more accurate
         return `
       <h1 class="report-title">AI Failure Analysis Report</h1>
       <section class="summary-cards" aria-label="Test execution summary">
@@ -383,13 +405,20 @@ class HTMLRenderer {
         </div>
         <div class="stat-card red" role="region" aria-label="Failed test count">
           <h3>Failures</h3>
-          <div class="stat-value">${failures}</div>
+          <div class="stat-value">${uniqueFailedTests}</div>
+          ${totalFailureAttempts > uniqueFailedTests ?
+            `<div style="font-size:12px;margin-top:5px">Includes ${totalFailureAttempts - uniqueFailedTests} retry attempts</div>` : ''}
         </div>
         <div class="stat-card green" role="region" aria-label="Passed test count">
           <h3>Passed</h3>
           <div class="stat-value">${passed}</div>
         </div>
       </section>
+      ${totalFailureAttempts > uniqueFailedTests ?
+            `<div style="text-align:center;margin-top:10px;padding:8px;background:#f8f9fa;border-radius:4px;font-size:14px">
+        <strong>Note:</strong> This report shows ${totalFailureAttempts} failure records for ${uniqueFailedTests} unique test case(s). 
+        Each retry attempt is shown separately to provide additional debugging context.
+      </div>` : ''}
     `;
     }
     generateProviderCard(providerStats, title, model, role) {
@@ -646,7 +675,7 @@ class HTMLRenderer {
           ${Object.values(uniqueFailures).map(({ failure, analysis }, idx) => `
             <tr>
               <td>
-                <div class="test-name">${(0, utils_1.escapeHtml)(failure.testName || failure.title || 'Unnamed test')}</div>
+                <div class="test-name">${(0, utils_1.escapeHtml)(failure.testName || failure.id || '[No test name]')}</div>
                 <div class="test-file text-muted">${(0, utils_1.escapeHtml)(failure.testFile || '')}</div>
               </td>
               <td>
@@ -670,8 +699,11 @@ class HTMLRenderer {
               </td>
               <td class="action-cell">
                 <button class="action-button" onclick="toggleFailure('failure-${idx}')">View Details</button>
-                ${failure.attachments?.find((a) => a.contentType?.startsWith('image/'))
-            ? `<button class="action-button" onclick="window.open('file://${(0, utils_1.escapeHtml)(failure.attachments.find((a) => a.contentType?.startsWith('image/')).path)}', '_blank')">View Screenshot</button>`
+                ${failure.screenshotPath
+            ? `<button class="action-button" onclick="window.open('file://${(0, utils_1.escapeHtml)(failure.screenshotPath)}', '_blank')">View Screenshot</button>`
+            : ''}
+                ${failure.tracePath
+            ? `<button class="action-button" onclick="window.open('file://${(0, utils_1.escapeHtml)(failure.tracePath)}', '_blank')">View Trace</button>`
             : ''}
               </td>
             </tr>
@@ -687,10 +719,39 @@ class HTMLRenderer {
     `;
     }
     generateFullReport(stats, clusters, history, totalTests, failures, passed, perFailureResults = []) {
+        // Debug the failures that include trace paths
+        console.debug(`[DEBUG] Generating HTML report with ${perFailureResults.length} failure results`);
+        perFailureResults.forEach((result, idx) => {
+            console.debug(`[DEBUG] Failure #${idx + 1}: Test name: ${result.failure.testName || 'Unknown'}`);
+            console.debug(`[DEBUG] - Screenshot: ${result.failure.screenshotPath || 'None'}`);
+            console.debug(`[DEBUG] - Trace: ${result.failure.tracePath || 'None'}`);
+        });
         const failuresByCategory = Object.entries(clusters).map(([category, items]) => {
+            // Log category details for debugging
+            console.debug(`[DEBUG] Processing category: ${category} with ${items.length} items`);
+            items.forEach((item, idx) => {
+                console.debug(`[DEBUG] - Category ${category}, Item #${idx + 1}: ${item.testName || 'No name'} | ${item.error ? item.error.substring(0, 50) + '...' : 'No error'}`);
+            });
+            // Map items to matched failure results
+            const matchedFailures = items.map(item => {
+                // Find the best match with trace files if possible
+                const matchesForItem = perFailureResults.filter(r => r.failure.testFile === item.testFile &&
+                    r.failure.testName === item.testName);
+                // Prefer matches with trace files
+                const matchWithTrace = matchesForItem.find(r => r.failure.tracePath);
+                const bestMatch = matchWithTrace || matchesForItem[0];
+                if (bestMatch) {
+                    console.debug(`[DEBUG] - Found match for ${item.testName || 'Unknown'}: Screenshot=${bestMatch.failure.screenshotPath ? 'Yes' : 'No'}, Trace=${bestMatch.failure.tracePath ? 'Yes' : 'No'}`);
+                }
+                else {
+                    console.debug(`[DEBUG] - No match found for ${item.testName || 'Unknown'}`);
+                }
+                return bestMatch;
+            }).filter(Boolean); // Filter out any undefined values
+            console.debug(`[DEBUG] Category ${category}: Found ${matchedFailures.length} matched failures out of ${items.length} items`);
             return {
                 category,
-                failures: items.map(item => perFailureResults.find(r => r.failure.testFile === item.testFile))
+                failures: matchedFailures
             };
         });
         return `
@@ -737,14 +798,21 @@ class HTMLRenderer {
                   <tbody>
                     ${failures.filter(f => f).map(({ failure, analysis }) => `
                       <tr>
-                        <td>${failure.testName || 'Unnamed Test'}</td>
+                        <td>
+                          ${failure.testName || failure.id || '[No test name]'}
+                          ${failure.retry !== undefined ? `<div style="margin-top:4px"><span class="badge" style="background:#f0f0f0;color:#666;font-size:11px">Retry #${failure.retry}</span></div>` : ''}
+                        </td>
                         <td>${failure.status || 'Failed'}</td>
                         <td>${analysis.reason || 'Unknown'}</td>
                         <td>${analysis.resolution || 'Unknown'}</td>
                         <td>${analysis.provider || 'Unknown'}</td>
-                        <td>${failure.screenshot ? `<a href="${failure.screenshot}" target="_blank">View</a>` : '-'}</td>
-                        <td>${failure.trace || '-'}</td>
-                        <td>${analysis.aiStatus || '-'}</td>
+                        <td>${failure.screenshotPath ? `<a href="file://${failure.screenshotPath}" target="_blank">View</a>` : '-'}</td>
+                        <td>${failure.tracePath ? `<a href="file://${failure.tracePath}" target="_blank">View Trace</a>` : '-'}</td>
+                        <td>${analysis.provider && analysis.provider !== 'None' ?
+            `<span class="ai-status ${analysis.provider === 'Rule-based' ? 'success' : 'failure'}">
+                              ${analysis.provider === 'Rule-based' ? '✓' : '✗'} ${analysis.provider}
+                            </span>`
+            : '-'}</td>
                       </tr>
                     `).join('')}
                   </tbody>

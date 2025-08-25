@@ -41,8 +41,10 @@ export class ReportGenerator {
     }
 
     try {
-      return await this.providerManager.analyzeWithProviders(failure.error, failure.stack || '');
+      console.log(`🧠 Analyzing test: ${failure.testName}`);
+      return await this.providerManager.analyzeWithProviders(failure.error, failure.stack || '', failure.testName);
     } catch (error) {
+      console.error(`❌ Analysis failed for test: ${failure.testName}`);
       return {
         reason: 'Analysis failed',
         resolution: 'Check system logs for details',
@@ -97,9 +99,17 @@ export class ReportGenerator {
       const clusters = clusterFailures(failures);
       console.log(`[DEBUG] Clustered failures into ${Object.keys(clusters).length} groups`);
 
+      // Group failures by test name to identify unique tests vs retry attempts
+      const failuresByTest = failures.reduce((acc: Record<string, FailureArtifact[]>, failure) => {
+        if (!acc[failure.testName]) acc[failure.testName] = [];
+        acc[failure.testName].push(failure);
+        return acc;
+      }, {});
+      
       const uniqueFailures = new Set(failures.filter((f) => f.error).map((f) => f.testName));
       const uniquePasses = new Set(allResults.filter((f) => !f.error).map((f) => f.testName));
-      const failedCount = uniqueFailures.size;
+      const failedCount = uniqueFailures.size; // Number of unique failed tests
+      const totalFailureAttempts = failures.length; // Total number of failure records (including retries)
       const passedCount = uniquePasses.size;
       
       console.log(`[DEBUG] Unique test names - Failed: ${failedCount}, Passed: ${passedCount}`);
@@ -166,7 +176,15 @@ export class ReportGenerator {
       history.push({ date: new Date().toISOString(), total: failures.length, failed: failedCount, passed: passedCount });
       this.fileManager.saveHistory(history);
 
-      const html = this.htmlRenderer.generateFullReport(this.statsTracker.getStats(), clusters, history, failures.length, failedCount, passedCount, perFailureResults);
+      const html = this.htmlRenderer.generateFullReport(
+        this.statsTracker.getStats(), 
+        clusters, 
+        history, 
+        allResults.length,  // Total tests
+        failures.length,     // Total failures including retries
+        passedCount,        // Passed tests
+        perFailureResults
+      );
       this.fileManager.writeReport(html);
 
       console.log('✅ AI Failure Analysis Report generated successfully');
