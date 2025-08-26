@@ -7,6 +7,7 @@ import { FileManager } from './FileManager';
 import { AnalysisResult, HistoryEntry } from './types';
 import { parsePlaywrightTestResults } from '../utils/result-parser';
 import { clusterFailures } from '../failure-clustering';
+import { getFixedTestTitle } from '../utils/test-title-fixer';
 
 export class ReportGenerator {
   private readonly fileManager: FileManager;
@@ -41,11 +42,15 @@ export class ReportGenerator {
       };
     }
 
+    // Fix the test title
+    const fixedTestName = getFixedTestTitle(failure.testName);
+    failure.testName = fixedTestName;
+
     try {
-      console.log(`🧠 Analyzing test: ${failure.testName}`);
-      return await this.providerManager.analyzeWithProviders(failure.error, failure.stack || '', failure.testName);
+      console.log(`🧠 Analyzing test: ${fixedTestName}`);
+      return await this.providerManager.analyzeWithProviders(failure.error, failure.stack || '', fixedTestName);
     } catch (error) {
-      console.error(`❌ Analysis failed for test: ${failure.testName}`);
+      console.error(`❌ Analysis failed for test: ${fixedTestName}`);
       return {
         reason: 'Analysis failed',
         resolution: 'Check system logs for details',
@@ -78,13 +83,14 @@ export class ReportGenerator {
       this.fileManager.validateResultsFile();
       
       console.log("📑 Reading test results data...");
-      const rawResults = this.fileManager.readResultsFile();
+      const rawResults = this.fileManager.readResultsFile<{failed: FailureArtifact[]; passed: any[]; total: number}>();
       
       if (!rawResults || typeof rawResults !== 'object') {
         throw new Error('Test results file is empty or invalid');
       }
 
-      const failures = parsePlaywrightTestResults(rawResults);
+      const failures = rawResults.failed || [];
+      console.log(`Found ${failures.length} failed tests in results`);
       const allResults = failures; // For now, we only have access to failures
       console.log(`[DEBUG] Found ${failures.length} failed test results`);
       console.log("=== TEST CASE NAMES (Failed Results) ===");

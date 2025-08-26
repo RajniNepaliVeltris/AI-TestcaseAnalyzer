@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import { StatsTracking, HistoryEntry, ClusteredFailures } from './types';
 import { escapeHtml } from './utils';
 
@@ -10,10 +12,42 @@ interface ClusterDetails {
 
 export class HTMLRenderer {
   private styles: string;
+  private reportDir: string;
+  private screenshotDir: string;
 
-  constructor() {
+  constructor(reportDir?: string) {
     this.styles = this.loadStyles();
     this.addFailureDetailStyles();
+    this.reportDir = reportDir || path.resolve('artifacts/html-report');
+    this.screenshotDir = path.join(this.reportDir, 'screenshots');
+    
+    // Create the screenshot directory if it doesn't exist
+    if (!fs.existsSync(this.screenshotDir)) {
+      fs.mkdirSync(this.screenshotDir, { recursive: true });
+    }
+  }
+
+  // Function to copy screenshots to the report directory and return relative paths
+  private processScreenshot(screenshotPath?: string): string | null {
+    if (!screenshotPath || !fs.existsSync(screenshotPath)) {
+      return null;
+    }
+
+    try {
+      // Generate a unique filename based on the original path
+      const filename = path.basename(screenshotPath);
+      const uniqueFilename = `${Date.now()}-${filename}`;
+      const destination = path.join(this.screenshotDir, uniqueFilename);
+      
+      // Copy the screenshot to the report directory
+      fs.copyFileSync(screenshotPath, destination);
+      
+      // Return a relative path from the report HTML to the screenshot
+      return `screenshots/${uniqueFilename}`;
+    } catch (error) {
+      console.error(`Failed to copy screenshot: ${error}`);
+      return null;
+    }
   }
 
   private addFailureDetailStyles() {
@@ -762,7 +796,7 @@ export class HTMLRenderer {
               <td class="action-cell">
                 <button class="action-button" onclick="toggleFailure('failure-${idx}')">View Details</button>
                 ${failure.screenshotPath
-                  ? `<button class="action-button" onclick="window.open('file://${escapeHtml(failure.screenshotPath)}', '_blank')">View Screenshot</button>`
+                  ? `<button class="action-button" onclick="window.open('${failure.screenshotPath.startsWith('screenshots/') ? failure.screenshotPath : `file://${escapeHtml(failure.screenshotPath)}`}', '_blank')">View Screenshot</button>`
                   : ''}
                 ${failure.tracePath
                   ? `<button class="action-button" onclick="window.open('file://${escapeHtml(failure.tracePath)}', '_blank')">View Trace</button>`
@@ -819,6 +853,17 @@ export class HTMLRenderer {
     passed: number,
     perFailureResults: { failure: any; analysis: any }[] = []
   ): string {
+    // Process screenshots for each failure
+    perFailureResults = perFailureResults.map(result => {
+      if (result.failure.screenshotPath) {
+        const processedPath = this.processScreenshot(result.failure.screenshotPath);
+        if (processedPath) {
+          result.failure.screenshotPath = processedPath;
+        }
+      }
+      return result;
+    });
+
     const failurePatterns = Object.keys(clusters).map((pattern) => {
       const percentage = Math.round((clusters[pattern].length / Math.max(failures, 1)) * 100);
       return `

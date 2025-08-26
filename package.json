@@ -6,26 +6,37 @@
   "scripts": {
     "test": "npx playwright test",
     "build": "tsc -p tsconfig.json",
+    "playwright:install": "npx playwright install --with-deps",
+    "analyze": "ts-node src/report-generator.ts --ai-analysis",
 
-    "demo": "ts-node src/run-all.ts --demo && ts-node src/report-generator.ts --ai-analysis --demo",
-    "demo:headed": "ts-node src/run-all.ts --demo --headed && ts-node src/failure-clustering.ts --advanced --demo && ts-node src/report-generator.ts --ai-analysis --demo",
+    "run:trace": "npm run playwright:install && npm run build && npm run test",
+    "report:ai": "ts-node src/report-generator.ts --ai-analysis",
+    "demo": "cross-env NODE_ENV=demo dotenv -e .env.demo -- npm run run:trace && cross-env NODE_ENV=demo npm run report:ai",
+    "prod": "cross-env NODE_ENV=prod dotenv -e .env.prod -- npm run run:trace && cross-env NODE_ENV=prod npm run report:ai",
+
+
+    "demo:legacy": "powershell -Command \"ts-node src/run-all.ts --demo; if ($LASTEXITCODE) { $true }; ts-node src/report-generator.ts --ai-analysis --demo\"",
+    "demo:headed": "powershell -Command \"ts-node src/run-all.ts --demo --headed; if ($LASTEXITCODE) { $true }; ts-node src/report-generator.ts --ai-analysis --demo\"",
     "demo:report": "ts-node src/report-generator.ts --ai-analysis --demo",
+    "demo:full": "powershell -Command \"ts-node src/run-all.ts --demo --headed; if ($LASTEXITCODE) { $true }; ts-node src/report-generator.ts --ai-analysis --demo; if ($?) { start artifacts/html-report/ai-analysis-report.html }\"",
     
-    "prod": "ts-node src/run-all.ts && ts-node src/failure-clustering.ts --advanced && ts-node src/report-generator.ts --ai-analysis",
+    "prod:legacy": "powershell -Command \"if (Test-Path artifacts/html-report) { Remove-Item -Recurse -Force artifacts/html-report }; ts-node src/run-all.ts; if ($LASTEXITCODE) { $true }; ts-node src/failure-clustering.ts --advanced; ts-node src/report-generator.ts --ai-analysis; if ($?) { start artifacts/html-report/ai-analysis-report.html }\"",
     "prod:report": "ts-node src/report-generator.ts --ai-analysis",
 
-    "analyze": "ts-node src/ai-failure-analyzer.ts",
+    "analyze:ts": "ts-node src/ai-failure-analyzer.ts",
     "cluster": "ts-node src/failure-clustering.ts --advanced",
     "report": "ts-node src/report-generator.ts",
-    "test-and-report": "npx playwright test && ts-node src/report-generator.ts --ai-analysis",
+    "test-and-report": "powershell -Command \"npx playwright test; if ($LASTEXITCODE) { $true }; ts-node src/report-generator.ts --ai-analysis; if ($?) { start artifacts/html-report/ai-analysis-report.html }\"",
 
     "setup": "ts-node src/setup-test.ts",
-    "ci": "npm run prod && npm run notify",
+    "ci": "powershell -Command \"npm run prod; if ($LASTEXITCODE) { $true }; npm run notify\"",
     "notify": "ts-node src/slack-notifier.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.0",
     "axios": "^1.11.0",
+    "cross-env": "^10.0.0",
+    "dotenv-cli": "^10.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.4.0"
   },
