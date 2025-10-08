@@ -81,13 +81,15 @@ export class ReportGenerator {
     try {
       console.log("🔍 Validating test results file...");
       this.fileManager.validateResultsFile();
-      
+
       console.log("📑 Reading test results data...");
       const rawResults = this.fileManager.readResultsFile<{failed: FailureArtifact[]; passed: any[]; total: number}>();
-      
+
       if (!rawResults || typeof rawResults !== 'object') {
         throw new Error('Test results file is empty or invalid');
       }
+
+      const startTime = Date.now();
 
       const failures = rawResults.failed || [];
       console.log(`Found ${failures.length} failed tests in results`);
@@ -125,39 +127,115 @@ export class ReportGenerator {
 
       const perFailureResults: { failure: FailureArtifact; analysis: AnalysisResult }[] = [];
 
-      // Analyze failures and collect per-failure results
-      for (const failure of failures) {
-        const result = await this.analyzeFailure(failure);
-        perFailureResults.push({ failure, analysis: result });
+      // Analyze failures using batch processing for better performance
+      if (failures.length > 0) {
+        console.log(`🧠 Batch analyzing ${failures.length} test failures...`);
 
-        const aiStatus = (result as any).aiStatus;
-        if (aiStatus) {
-          if (aiStatus.openai) {
-            this.statsTracker.incrementAttempts('openai');
-            if (aiStatus.openai.available) {
-              this.statsTracker.incrementSuccesses('openai');
-              this.statsTracker.setSuccess('openai');
+        // Fix test titles for all failures
+        const failuresWithFixedTitles = failures.map(failure => ({
+          ...failure,
+          testName: getFixedTestTitle(failure.testName)
+        }));
+
+        try {
+          // Use batch analysis for better performance
+          const batchResults = await this.providerManager.analyzeBatchWithProviders(failuresWithFixedTitles);
+
+          // Map results back to perFailureResults format
+          perFailureResults.push(...batchResults.map((result, index) => ({
+            failure: failuresWithFixedTitles[index],
+            analysis: {
+              reason: result.reason,
+              resolution: result.resolution,
+              provider: result.provider,
+              category: result.category,
+              prevention: result.prevention,
+              confidence: result.confidence
+            }
+          })));
+
+          // Update stats for batch results
+          batchResults.forEach(result => {
+            const aiStatus = (result as any).aiStatus;
+            if (aiStatus) {
+              if (aiStatus.openai) {
+                this.statsTracker.incrementAttempts('openai');
+                if (aiStatus.openai.available) {
+                  this.statsTracker.incrementSuccesses('openai');
+                  this.statsTracker.setSuccess('openai');
+                } else {
+                  this.statsTracker.setError('openai', aiStatus.openai.error || 'OpenAI unavailable');
+                }
+              }
+              if (aiStatus.together) {
+                this.statsTracker.incrementAttempts('together');
+                if (aiStatus.together.available) {
+                  this.statsTracker.incrementSuccesses('together');
+                  this.statsTracker.setSuccess('together');
+                } else {
+                  this.statsTracker.setError('together', aiStatus.together.error || 'TogetherAI unavailable');
+                }
+              }
             } else {
-              this.statsTracker.setError('openai', aiStatus.openai.error || 'OpenAI unavailable');
+              // rule-based or batch processing
+              this.statsTracker.incrementAttempts('ruleBased');
+              this.statsTracker.incrementSuccesses('ruleBased');
+              this.statsTracker.setSuccess('ruleBased');
+            }
+
+            this.updateStats(result);
+          });
+
+        } catch (error) {
+          console.error('❌ Batch analysis failed, falling back to individual analysis...');
+
+          // Fallback to individual analysis if batch fails
+          for (const failure of failuresWithFixedTitles) {
+            try {
+              const result = await this.analyzeFailure(failure);
+              perFailureResults.push({ failure, analysis: result });
+
+              const aiStatus = (result as any).aiStatus;
+              if (aiStatus) {
+                if (aiStatus.openai) {
+                  this.statsTracker.incrementAttempts('openai');
+                  if (aiStatus.openai.available) {
+                    this.statsTracker.incrementSuccesses('openai');
+                    this.statsTracker.setSuccess('openai');
+                  } else {
+                    this.statsTracker.setError('openai', aiStatus.openai.error || 'OpenAI unavailable');
+                  }
+                }
+                if (aiStatus.together) {
+                  this.statsTracker.incrementAttempts('together');
+                  if (aiStatus.together.available) {
+                    this.statsTracker.incrementSuccesses('together');
+                    this.statsTracker.setSuccess('together');
+                  } else {
+                    this.statsTracker.setError('together', aiStatus.together.error || 'TogetherAI unavailable');
+                  }
+                }
+              } else {
+                this.statsTracker.incrementAttempts('ruleBased');
+                this.statsTracker.incrementSuccesses('ruleBased');
+                this.statsTracker.setSuccess('ruleBased');
+              }
+
+              this.updateStats(result);
+            } catch (individualError) {
+              console.error(`❌ Analysis failed for test: ${failure.testName}`);
+              perFailureResults.push({
+                failure,
+                analysis: {
+                  reason: 'Analysis failed',
+                  resolution: 'Check system logs for details',
+                  provider: 'Error',
+                  category: 'System Error'
+                }
+              });
             }
           }
-          if (aiStatus.together) {
-            this.statsTracker.incrementAttempts('together');
-            if (aiStatus.together.available) {
-              this.statsTracker.incrementSuccesses('together');
-              this.statsTracker.setSuccess('together');
-            } else {
-              this.statsTracker.setError('together', aiStatus.together.error || 'TogetherAI unavailable');
-            }
-          }
-        } else {
-          // rule-based
-          this.statsTracker.incrementAttempts('ruleBased');
-          this.statsTracker.incrementSuccesses('ruleBased');
-          this.statsTracker.setSuccess('ruleBased');
         }
-
-        this.updateStats(result);
       }
 
       // Build provider HTML snippets
@@ -181,9 +259,9 @@ export class ReportGenerator {
       this.fileManager.saveHistory(history);
 
       const html = this.htmlRenderer.generateFullReport(
-        this.statsTracker.getStats(), 
-        clusters, 
-        history, 
+        this.statsTracker.getStats(),
+        clusters,
+        history,
         allResults.length,  // Total tests
         failures.length,     // Total failures including retries
         passedCount,        // Passed tests

@@ -1,8 +1,5 @@
 import OpenAI from 'openai';
 import natural from 'natural';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export interface TestFailure {
     testName: string;
@@ -19,74 +16,323 @@ export interface AnalysisResult {
     confidence: number;
 }
 
+interface CircuitBreakerState {
+    failures: number;
+    lastFailureTime: number;
+    state: 'CLOSED' | 'OPEN' | 'HALF_OPEN';
+}
+
+interface RetryConfig {
+    maxRetries: number;
+    baseDelay: number;
+    maxDelay: number;
+    backoffMultiplier: number;
+}
+
+interface CacheEntry {
+    result: AnalysisResult;
+    timestamp: number;
+    ttl: number;
+}
+
 export class AIService {
     private openai: OpenAI;
     private tokenizer: natural.WordTokenizer;
     private tfidf: natural.TfIdf;
 
-    constructor() {
+    // Error handling and performance enhancements
+    private circuitBreakers: Map<string, CircuitBreakerState> = new Map();
+    private cache: Map<string, CacheEntry> = new Map();
+    private retryConfig: RetryConfig;
+    private cacheTTL: number = 3600000; // 1 hour in milliseconds
+
+    constructor(retryConfig: Partial<RetryConfig> = {}) {
         const apiKey = process.env.OPENAI_API_KEY;
         if (!apiKey) {
             console.warn('OpenAI API key not found, falling back to local analysis');
         }
-        
+
         this.openai = new OpenAI({
-            apiKey: apiKey || 'dummy-key'  // Provide a dummy key, we'll handle the error in analyzeFailure
+            apiKey: apiKey || 'dummy-key'
         });
+
         this.tokenizer = new natural.WordTokenizer();
         this.tfidf = new natural.TfIdf();
+
+        // Default retry configuration
+        this.retryConfig = {
+            maxRetries: 3,
+            baseDelay: 1000,
+            maxDelay: 10000,
+            backoffMultiplier: 2,
+            ...retryConfig
+        };
+
+        // Initialize circuit breakers
+        this.initializeCircuitBreakers();
+    }
+
+    private initializeCircuitBreakers(): void {
+        this.circuitBreakers.set('openai', { failures: 0, lastFailureTime: 0, state: 'CLOSED' });
+        this.circuitBreakers.set('together', { failures: 0, lastFailureTime: 0, state: 'CLOSED' });
     }
 
     async analyzeFailure(failure: TestFailure): Promise<AnalysisResult> {
-        if (process.env.OPENAI_API_KEY) {
+        // Check cache first
+        const cacheKey = this.generateCacheKey(failure);
+        const cachedResult = this.getCachedResult(cacheKey);
+        if (cachedResult) {
+            console.log(`Using cached result for failure: ${failure.testName}`);
+            return cachedResult;
+        }
+
+        let result: AnalysisResult | null = null;
+        let lastError: Error | null = null;
+
+        // Try OpenAI first
+        if (process.env.OPENAI_API_KEY && this.isCircuitBreakerClosed('openai')) {
             try {
-                // First attempt: OpenAI analysis
-                return await this.analyzeWithOpenAI(failure);
+                result = await this.withRetry(
+                    () => this.analyzeWithOpenAI(failure),
+                    'openai'
+                );
+                this.recordSuccess('openai');
             } catch (error) {
-                console.log('OpenAI analysis failed:', (error as Error).message || 'Unknown error');
+                lastError = error as Error;
+                this.recordFailure('openai');
+                console.log('OpenAI analysis failed:', lastError.message);
             }
         }
 
-        if (process.env.TOGETHER_API_KEY) {
+        // Try TogetherAI if OpenAI failed
+        if (!result && process.env.TOGETHER_API_KEY && this.isCircuitBreakerClosed('together')) {
             try {
-                // Second attempt: Together AI
-                return await this.analyzeWithTogetherAI(failure);
+                result = await this.withRetry(
+                    () => this.analyzeWithTogetherAI(failure),
+                    'together'
+                );
+                this.recordSuccess('together');
             } catch (error) {
-                console.log('Together AI failed:', (error as Error).message || 'Unknown error');
+                lastError = error as Error;
+                this.recordFailure('together');
+                console.log('TogetherAI analysis failed:', lastError.message);
             }
         }
 
-        console.log('Using local rule-based analysis');
         // Final fallback: Local rule-based analysis
-        return this.localRuleBasedAnalysis(failure);
+        if (!result) {
+            console.log('Using local rule-based analysis as fallback');
+            result = this.localRuleBasedAnalysis(failure);
+        }
+
+        // Cache the result
+        this.setCachedResult(cacheKey, result);
+
+        return result;
+    }
+
+    private async withRetry<T>(
+        operation: () => Promise<T>,
+        provider: string,
+        attempt: number = 1
+    ): Promise<T> {
+        try {
+            return await operation();
+        } catch (error) {
+            if (attempt >= this.retryConfig.maxRetries) {
+                throw error;
+            }
+
+            const delay = Math.min(
+                this.retryConfig.baseDelay * Math.pow(this.retryConfig.backoffMultiplier, attempt - 1),
+                this.retryConfig.maxDelay
+            );
+
+            console.log(`Retrying ${provider} analysis in ${delay}ms (attempt ${attempt + 1}/${this.retryConfig.maxRetries})`);
+            await this.delay(delay);
+            return this.withRetry(operation, provider, attempt + 1);
+        }
+    }
+
+    private delay(ms: number): Promise<void> {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    private isCircuitBreakerClosed(provider: string): boolean {
+        const breaker = this.circuitBreakers.get(provider);
+        if (!breaker) return true;
+
+        const now = Date.now();
+        const timeSinceLastFailure = now - breaker.lastFailureTime;
+
+        // Reset circuit breaker after timeout (30 seconds)
+        if (breaker.state === 'OPEN' && timeSinceLastFailure > 30000) {
+            breaker.state = 'HALF_OPEN';
+            breaker.failures = 0;
+        }
+
+        return breaker.state !== 'OPEN';
+    }
+
+    private recordSuccess(provider: string): void {
+        const breaker = this.circuitBreakers.get(provider);
+        if (breaker) {
+            breaker.failures = 0;
+            breaker.state = 'CLOSED';
+        }
+    }
+
+    private recordFailure(provider: string): void {
+        const breaker = this.circuitBreakers.get(provider);
+        if (breaker) {
+            breaker.failures++;
+            breaker.lastFailureTime = Date.now();
+
+            // Open circuit breaker after 5 consecutive failures
+            if (breaker.failures >= 5) {
+                breaker.state = 'OPEN';
+                console.warn(`Circuit breaker opened for ${provider} after ${breaker.failures} failures`);
+            }
+        }
+    }
+
+    private generateCacheKey(failure: TestFailure): string {
+        // Create a hash of the failure content for caching
+        const content = `${failure.testName}:${failure.error}:${failure.stackTrace}`;
+        let hash = 0;
+        for (let i = 0; i < content.length; i++) {
+            const char = content.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convert to 32-bit integer
+        }
+        return hash.toString();
+    }
+
+    private getCachedResult(cacheKey: string): AnalysisResult | null {
+        const entry = this.cache.get(cacheKey);
+        if (!entry) return null;
+
+        const now = Date.now();
+        if (now - entry.timestamp > entry.ttl) {
+            this.cache.delete(cacheKey);
+            return null;
+        }
+
+        return entry.result;
+    }
+
+    private setCachedResult(cacheKey: string, result: AnalysisResult): void {
+        this.cache.set(cacheKey, {
+            result,
+            timestamp: Date.now(),
+            ttl: this.cacheTTL
+        });
+
+        // Clean up old cache entries periodically
+        if (this.cache.size > 1000) {
+            this.cleanupCache();
+        }
+    }
+
+    private cleanupCache(): void {
+        const now = Date.now();
+        for (const [key, entry] of this.cache.entries()) {
+            if (now - entry.timestamp > entry.ttl) {
+                this.cache.delete(key);
+            }
+        }
     }
 
     private async analyzeWithOpenAI(failure: TestFailure): Promise<AnalysisResult> {
         const prompt = this.constructAnalysisPrompt(failure);
-        
-        const response = await this.openai.chat.completions.create({
-            model: process.env.OPENAI_MODEL || 'gpt-4',
-            messages: [{
-                role: 'system',
-                content: 'You are an expert test failure analyzer. Analyze the test failure and provide the root cause, category, and suggested fix.'
-            }, {
-                role: 'user',
-                content: prompt
-            }],
-            temperature: 0.3
-        });
 
-        const analysis = response.choices[0].message.content;
-        if (!analysis) {
-            throw new Error('No analysis received from OpenAI');
+        try {
+            const response = await this.openai.chat.completions.create({
+                model: process.env.OPENAI_MODEL || 'gpt-4',
+                messages: [{
+                    role: 'system',
+                    content: 'You are an expert test failure analyzer. Analyze the test failure and provide the root cause, category, and suggested fix.'
+                }, {
+                    role: 'user',
+                    content: prompt
+                }],
+                temperature: 0.3,
+                max_tokens: 1000
+            }, {
+                timeout: 30000 // 30 second timeout
+            });
+
+            const analysis = response.choices[0]?.message?.content;
+            if (!analysis) {
+                throw new Error('No analysis received from OpenAI');
+            }
+
+            return this.parseAIResponse(analysis);
+        } catch (error) {
+            // Enhanced error handling with specific error types
+            if ((error as any).code === 'rate_limit_exceeded') {
+                throw new Error('OpenAI rate limit exceeded. Please try again later.');
+            }
+            if ((error as any).code === 'insufficient_quota') {
+                throw new Error('OpenAI quota exceeded. Please check your billing.');
+            }
+            if ((error as any).status === 429) {
+                throw new Error('OpenAI rate limited. Please wait before retrying.');
+            }
+            throw error;
         }
-        return this.parseAIResponse(analysis);
     }
 
     private async analyzeWithTogetherAI(failure: TestFailure): Promise<AnalysisResult> {
         // Implementation for Together AI analysis
-        // This would be similar to OpenAI but using Together AI's API
-        throw new Error('Together AI implementation pending');
+        const prompt = this.constructAnalysisPrompt(failure);
+
+        try {
+            // TogetherAI API call (placeholder - would need actual implementation)
+            // This is a mock implementation for now
+            const response = await fetch('https://api.together.xyz/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${process.env.TOGETHER_AI_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
+                    messages: [{
+                        role: 'system',
+                        content: 'You are an expert test failure analyzer. Analyze the test failure and provide the root cause, category, and suggested fix.'
+                    }, {
+                        role: 'user',
+                        content: prompt
+                    }],
+                    temperature: 0.3,
+                    max_tokens: 1000
+                }),
+                signal: AbortSignal.timeout(30000) // 30 second timeout
+            });
+
+            if (!response.ok) {
+                throw new Error(`TogetherAI API error: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            const analysis = data.choices?.[0]?.message?.content;
+
+            if (!analysis) {
+                throw new Error('No analysis received from TogetherAI');
+            }
+
+            return this.parseAIResponse(analysis);
+        } catch (error) {
+            // Enhanced error handling for TogetherAI
+            if ((error as any).name === 'AbortError') {
+                throw new Error('TogetherAI request timed out');
+            }
+            if ((error as any).code === 'ECONNREFUSED') {
+                throw new Error('Unable to connect to TogetherAI API');
+            }
+            throw error;
+        }
     }
 
     private localRuleBasedAnalysis(failure: TestFailure): AnalysisResult {

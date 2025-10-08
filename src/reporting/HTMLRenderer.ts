@@ -85,6 +85,566 @@ export class HTMLRenderer {
       .failure-details td {
         background: #f8f9fa;
       }
+
+      /* Enhanced Failure Analysis Styles */
+      .failure-analysis-section {
+        margin: 2rem 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        overflow: hidden;
+      }
+
+      .section-header {
+        background: linear-gradient(135deg, var(--primary-color), #2d3748);
+        color: white;
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .section-header h2 {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 600;
+      }
+
+      .analysis-stats {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .analysis-stats .stat-item {
+        text-align: center;
+      }
+
+      .analysis-stats .stat-label {
+        display: block;
+        font-size: 0.875rem;
+        opacity: 0.9;
+        margin-bottom: 0.25rem;
+      }
+
+      .analysis-stats .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .category-tabs {
+        background: #f7fafc;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: thin;
+      }
+
+      .tab-button {
+        background: none;
+        border: none;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        font-weight: 500;
+        color: var(--muted-color);
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .tab-button:hover {
+        background: rgba(0,0,0,0.05);
+        color: var(--primary-color);
+      }
+
+      .tab-button.active {
+        color: var(--primary-color);
+        border-bottom-color: var(--primary-color);
+        background: white;
+      }
+
+      .category-container {
+        padding: 2rem;
+      }
+
+      .failure-card {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .failure-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .failure-header {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .failure-meta {
+        flex: 1;
+      }
+
+      .failure-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0 0 0.75rem 0;
+        flex-wrap: wrap;
+      }
+
+      .test-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      .confidence-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .confidence-high {
+        background: rgba(72, 187, 120, 0.1);
+        color: #2f855a;
+      }
+
+      .confidence-medium {
+        background: rgba(237, 137, 54, 0.1);
+        color: #c05621;
+      }
+
+      .confidence-low {
+        background: rgba(245, 101, 101, 0.1);
+        color: #c53030;
+      }
+
+      .failure-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .provider-tag {
+        background: #e6fffa;
+        color: #065f46;
+      }
+
+      .category-tag {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .severity-tag {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .severity-high {
+        background: #dc2626 !important;
+        color: white !important;
+      }
+
+      .severity-medium {
+        background: #ea580c !important;
+        color: white !important;
+      }
+
+      .failure-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .action-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: white;
+        color: var(--primary-color);
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .action-btn:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .action-btn.primary {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .action-btn.primary:hover {
+        background: #2d3748;
+      }
+
+      .action-btn.secondary {
+        background: #f7fafc;
+      }
+
+      .action-btn.expanded {
+        background: #2d3748;
+        color: white;
+      }
+
+      .action-btn.copied {
+        background: #48bb78;
+        color: white;
+      }
+
+      .failure-details {
+        border-top: 1px solid var(--border-color);
+        padding: 1.5rem;
+        background: #fafafa;
+      }
+
+      .analysis-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .analysis-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .analysis-section {
+        background: white;
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+      }
+
+      .analysis-section h5 {
+        margin: 0 0 0.75rem 0;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .analysis-content {
+        margin-bottom: 1rem;
+      }
+
+      .analysis-text {
+        margin: 0;
+        line-height: 1.6;
+        color: #374151;
+      }
+
+      .confidence-meter {
+        margin-top: 0.75rem;
+      }
+
+      .confidence-bar {
+        background: #e5e7eb;
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.25rem;
+      }
+
+      .confidence-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      .confidence-fill.confidence-high {
+        background: #48bb78;
+      }
+
+      .confidence-fill.confidence-medium {
+        background: #f59e0b;
+      }
+
+      .confidence-fill.confidence-low {
+        background: #ef4444;
+      }
+
+      .confidence-label {
+        font-size: 0.75rem;
+        color: var(--muted-color);
+        font-weight: 500;
+      }
+
+      .solution-steps {
+        margin-bottom: 1rem;
+      }
+
+      .solution-list {
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      .solution-list li {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }
+
+      .prevention-tips {
+        background: #f0f9ff;
+        padding: 0.75rem;
+        border-radius: 4px;
+        border-left: 3px solid #3b82f6;
+      }
+
+      .prevention-tips h6 {
+        margin: 0 0 0.5rem 0;
+        color: #1e40af;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .prevention-tips ul {
+        margin: 0;
+        padding-left: 1rem;
+      }
+
+      .prevention-tips li {
+        color: #374151;
+        font-size: 0.875rem;
+      }
+
+      .error-details {
+        background: white;
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+      }
+
+      .error-details h5 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .error-content {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .error-message, .error-stack {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 4px;
+        padding: 0.75rem;
+      }
+
+      .error-label {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .error-text, .stack-text {
+        background: #f1f3f4;
+        padding: 0.75rem;
+        border-radius: 4px;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        white-space: pre-wrap;
+        word-break: break-all;
+        margin: 0;
+        border: 1px solid #dee2e6;
+      }
+
+      .copy-btn {
+        margin-top: 0.5rem;
+        padding: 0.375rem 0.75rem;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        font-weight: 500;
+        transition: background 0.2s ease;
+      }
+
+      .copy-btn:hover {
+        background: #2d3748;
+      }
+
+      .ai-insights {
+        background: white;
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+      }
+
+      .ai-insights h5 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .insight-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .insight-label {
+        font-size: 0.75rem;
+        color: var(--muted-color);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .insight-value {
+        font-size: 0.875rem;
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      /* Performance Summary Styles */
+      .performance-summary {
+        margin: 3rem 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        overflow: hidden;
+      }
+
+      .performance-summary h2 {
+        background: linear-gradient(135deg, var(--primary-color), #2d3748);
+        color: white;
+        margin: 0;
+        padding: 2rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+      }
+
+      .metric-card {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .metric-card h3 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+
+      .metric-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .metric-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .metric-item:last-child {
+        border-bottom: none;
+      }
+
+      .metric-label {
+        font-weight: 500;
+        color: var(--muted-color);
+        font-size: 0.875rem;
+      }
+
+      .metric-value {
+        font-weight: 600;
+        color: var(--primary-color);
+        font-size: 0.875rem;
+      }
+
+      .recommendation-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .recommendation-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .recommendation-item:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .recommendation-icon {
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .recommendation-content h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .recommendation-content p {
+        margin: 0;
+        color: #374151;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
     `;
   }
 
@@ -747,101 +1307,348 @@ export class HTMLRenderer {
 
     // De-duplicate failures based on testFile and error message
     const uniqueFailures = perFailureResults.reduce((acc: { [key: string]: { failure: any; analysis: any } }, curr) => {
-      const key = `${curr.failure.testFile}-${curr.failure.error}`;
+      const key = `${curr.failure.testName}-${curr.failure.error}`;
       if (!acc[key]) {
         acc[key] = curr;
       }
       return acc;
     }, {});
 
-    // Add tabular view first
-    const tableView = `
-      <table class="results-table">
-        <thead>
-          <tr>
-            <th>Test</th>
-            <th>Status</th>
-            <th>Provider</th>
-            <th>Category</th>
-            <th>Severity</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${Object.values(uniqueFailures).map(({ failure, analysis }, idx) => `
-            <tr>
-              <td>
-                <div class="test-name">${escapeHtml(failure.testName || failure.id || '[No test name]')}</div>
-                <div class="test-file text-muted">${escapeHtml(failure.testFile || '')}</div>
-              </td>
-              <td>
-                <span class="status-cell status-failed">
-                  <svg width="12" height="12" viewBox="0 0 12 12">
-                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
-                  </svg>
-                  Failed
-                </span>
-              </td>
-              <td>
-                <span class="provider-cell">
-                  ${escapeHtml(analysis.provider)}
-                </span>
-              </td>
-              <td>${escapeHtml(analysis.category || 'Unknown')}</td>
-              <td>
-                <span class="severity-${this.calculateSeverity(failure)}">
-                  ${this.calculateSeverity(failure).toUpperCase()}
-                </span>
-              </td>
-              <td class="action-cell">
-                <button class="action-button" onclick="toggleFailure('failure-${idx}')">View Details</button>
-                ${failure.screenshotPath
-                  ? `<button class="action-button" onclick="window.open('${failure.screenshotPath.startsWith('screenshots/') ? failure.screenshotPath : `file://${escapeHtml(failure.screenshotPath)}`}', '_blank')">View Screenshot</button>`
-                  : ''}
-                ${failure.tracePath
-                  ? `<button class="action-button" onclick="window.open('file://${escapeHtml(failure.tracePath)}', '_blank')">View Trace</button>`
-                  : ''}
-              </td>
-            </tr>
-            <tr class="failure-details" id="failure-${idx}" style="display: none;">
-              <td colspan="6">
-                <div class="failure-analysis-details">
-                  <div class="failure-section">
-                    <h4>Failure Reason:</h4>
-                    <p>${escapeHtml(analysis.reason || 'No reason provided')}</p>
-                  </div>
-                  <div class="failure-section">
-                    <h4>Resolution Steps:</h4>
-                    <p>${escapeHtml(analysis.resolution || 'No resolution provided')}</p>
-                  </div>
-                  ${failure.error ? `
-                    <div class="failure-section">
-                      <h4>Error Message:</h4>
-                      <pre class="error-message">${escapeHtml(failure.error)}</pre>
-                    </div>
-                  ` : ''}
-                </div>
-              </td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    `;
+    // Group failures by category for better organization
+    const failuresByCategory = Object.values(uniqueFailures).reduce((acc: { [key: string]: any[] }, item) => {
+      const category = item.analysis.category || 'Unknown';
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(item);
+      return acc;
+    }, {});
+
+    // Create category tabs
+    const categoryTabs = Object.keys(failuresByCategory).map(category => `
+      <button class="tab-button ${category === 'Unknown' ? 'active' : ''}" onclick="showCategory('${category}')">
+        ${category} (${failuresByCategory[category].length})
+      </button>
+    `).join('');
+
+    // Create category content
+    const categoryContent = Object.keys(failuresByCategory).map(category => `
+      <div id="category-${category}" class="category-content" style="display: ${category === 'Unknown' ? 'block' : 'none'}">
+        ${this.renderCategoryFailures(failuresByCategory[category], category)}
+      </div>
+    `).join('');
 
     return `
-      <section class="failure-details">
-        <h3>Failure Analysis Details</h3>
-        ${tableView}
+      <section class="failure-analysis-section">
+        <div class="section-header">
+          <h2>🔍 AI Failure Analysis Details</h2>
+          <div class="analysis-stats">
+            <div class="stat-item">
+              <span class="stat-label">Total Failures</span>
+              <span class="stat-value">${Object.values(uniqueFailures).length}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Categories</span>
+              <span class="stat-value">${Object.keys(failuresByCategory).length}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">AI Analyzed</span>
+              <span class="stat-value">${Object.values(uniqueFailures).filter(f => f.analysis.provider !== 'Rule-based').length}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-tabs">
+          ${categoryTabs}
+        </div>
+
+        <div class="category-container">
+          ${categoryContent}
+        </div>
+
         <script>
-          function toggleFailure(id) {
-            const row = document.getElementById(id);
-            if (row) {
-              row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+          function showCategory(categoryName) {
+            // Hide all category content
+            document.querySelectorAll('.category-content').forEach(el => {
+              el.style.display = 'none';
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-button').forEach(el => {
+              el.classList.remove('active');
+            });
+
+            // Show selected category
+            document.getElementById('category-' + categoryName).style.display = 'block';
+
+            // Add active class to selected tab
+            event.target.classList.add('active');
+          }
+
+          function toggleFailureDetails(id) {
+            const details = document.getElementById('details-' + id);
+            const button = document.getElementById('btn-' + id);
+
+            if (details.style.display === 'none') {
+              details.style.display = 'block';
+              button.textContent = 'Hide Details';
+              button.classList.add('expanded');
+            } else {
+              details.style.display = 'none';
+              button.textContent = 'Show Details';
+              button.classList.remove('expanded');
             }
+          }
+
+          function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+              // Show temporary feedback
+              const btn = event.target;
+              const originalText = btn.textContent;
+              btn.textContent = 'Copied!';
+              btn.classList.add('copied');
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.remove('copied');
+              }, 2000);
+            });
           }
         </script>
       </section>
     `;
+  }
+
+  private renderCategoryFailures(failures: any[], category: string): string {
+    return failures.map((item, index) => {
+      const { failure, analysis } = item;
+      const failureId = `${category}-${index}`;
+      const confidence = analysis.confidence || 0.5;
+      const confidenceLevel = confidence > 0.8 ? 'high' : confidence > 0.6 ? 'medium' : 'low';
+
+      return `
+        <div class="failure-card" data-category="${category}">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">${escapeHtml(failure.testName || 'Unknown Test')}</span>
+                <span class="confidence-badge confidence-${confidenceLevel}">
+                  ${Math.round(confidence * 100)}% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">${escapeHtml(analysis.provider || 'Unknown')}</span>
+                <span class="tag category-tag">${escapeHtml(category)}</span>
+                <span class="tag severity-tag severity-${this.calculateSeverity(failure)}">
+                  ${this.calculateSeverity(failure).toUpperCase()}
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-${failureId}" class="action-btn primary" onclick="toggleFailureDetails('${failureId}')">
+                Show Details
+              </button>
+              ${failure.screenshotPath ? `
+                <button class="action-btn secondary" onclick="window.open('${failure.screenshotPath}', '_blank')">
+                  📸 Screenshot
+                </button>
+              ` : ''}
+              ${failure.tracePath ? `
+                <button class="action-btn secondary" onclick="window.open('${failure.tracePath}', '_blank')">
+                  🔍 Trace
+                </button>
+              ` : ''}
+            </div>
+          </div>
+
+          <div id="details-${failureId}" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">${escapeHtml(analysis.reason || 'No analysis available')}</p>
+                  ${analysis.confidence ? `
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-${confidenceLevel}" style="width: ${confidence * 100}%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: ${Math.round(confidence * 100)}%</span>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    ${this.formatSolutionSteps(analysis.resolution || 'No solution provided')}
+                  </div>
+                  ${analysis.prevention ? `
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        ${analysis.prevention.split('\n').filter((line: string) => line.trim()).map((tip: string) =>
+                          `<li>${escapeHtml(tip.trim())}</li>`
+                        ).join('')}
+                      </ul>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                ${failure.error ? `
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">${escapeHtml(failure.error)}</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('${escapeHtml(failure.error)}')">
+                      📋 Copy
+                    </button>
+                  </div>
+                ` : ''}
+
+                ${failure.stack ? `
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">${escapeHtml(failure.stack)}</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('${escapeHtml(failure.stack)}')">
+                      📋 Copy
+                    </button>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">${escapeHtml(analysis.provider || 'Unknown')}</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">${escapeHtml(analysis.category || 'Unknown')}</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~${this.estimateAnalysisTime(analysis)}ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">${this.getPatternMatchInfo(analysis)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  private formatSolutionSteps(solution: string): string {
+    const steps = solution.split('\n').filter(step => step.trim());
+    if (steps.length <= 1) {
+      return `<p>${escapeHtml(solution)}</p>`;
+    }
+
+    return `
+      <ol class="solution-list">
+        ${steps.map(step => `<li>${escapeHtml(step.trim())}</li>`).join('')}
+      </ol>
+    `;
+  }
+
+  private estimateAnalysisTime(analysis: any): number {
+    // Estimate based on provider and complexity
+    const baseTime = analysis.provider === 'OpenAI' ? 1500 :
+                     analysis.provider === 'TogetherAI' ? 1200 : 200;
+    const complexityMultiplier = (analysis.reason?.length || 0) > 100 ? 1.5 : 1;
+    return Math.round(baseTime * complexityMultiplier);
+  }
+
+  private getPatternMatchInfo(analysis: any): string {
+    // This would be enhanced with actual pattern matching data
+    const patterns = {
+      'Authentication': 'Login/Credential patterns detected',
+      'Timing': 'Wait/Timeout patterns detected',
+      'Selector': 'Element selection patterns detected',
+      'Network': 'API/Network patterns detected',
+      'UI Interaction': 'User interface patterns detected'
+    };
+
+    return patterns[analysis.category as keyof typeof patterns] || 'General failure patterns';
+  }
+
+  private generateRecommendations(clusters: ClusteredFailures, perFailureResults: any[]): string {
+    const recommendations = [];
+
+    // Analyze failure patterns and generate recommendations
+    const totalFailures = perFailureResults.length;
+    const categoryCounts = Object.keys(clusters).reduce((acc, category) => {
+      acc[category] = clusters[category].length;
+      return acc;
+    }, {} as Record<string, number>);
+
+    // Most common failure category
+    const mostCommonCategory = Object.keys(categoryCounts).reduce((a, b) =>
+      categoryCounts[a] > categoryCounts[b] ? a : b, '');
+
+    if (mostCommonCategory) {
+      const percentage = Math.round((categoryCounts[mostCommonCategory] / totalFailures) * 100);
+      recommendations.push(`
+        <div class="recommendation-item">
+          <div class="recommendation-icon">🎯</div>
+          <div class="recommendation-content">
+            <h4>Address ${mostCommonCategory} Issues</h4>
+            <p>${percentage}% of failures are ${mostCommonCategory.toLowerCase()}-related. Focus testing efforts on this area.</p>
+          </div>
+        </div>
+      `);
+    }
+
+    // AI confidence analysis
+    const avgConfidence = perFailureResults.reduce((sum, r) => sum + (r.analysis.confidence || 0), 0) / totalFailures;
+    if (avgConfidence < 0.7) {
+      recommendations.push(`
+        <div class="recommendation-item">
+          <div class="recommendation-icon">🧠</div>
+          <div class="recommendation-content">
+            <h4>Improve AI Analysis Quality</h4>
+            <p>AI confidence is below optimal (${Math.round(avgConfidence * 100)}%). Consider providing more context or using different AI providers.</p>
+          </div>
+        </div>
+      `);
+    }
+
+    // Test stability
+    if (totalFailures > 0) {
+      recommendations.push(`
+        <div class="recommendation-item">
+          <div class="recommendation-icon">📈</div>
+          <div class="recommendation-content">
+            <h4>Enhance Test Stability</h4>
+          <p>Implement self-healing mechanisms and improve element selectors to reduce ${totalFailures} failure instances.</p>
+        </div>
+      </div>
+      `);
+    }
+
+    // Default recommendations if none generated
+    if (recommendations.length === 0) {
+      recommendations.push(`
+        <div class="recommendation-item">
+          <div class="recommendation-icon">✅</div>
+          <div class="recommendation-content">
+            <h4>Tests Performing Well</h4>
+            <p>No major issues detected. Continue monitoring and maintaining current test quality standards.</p>
+          </div>
+        </div>
+      `);
+    }
+
+    return recommendations.join('');
   }
 
   public generateFullReport(
@@ -909,7 +1716,57 @@ export class HTMLRenderer {
             ${failurePatterns}
             <h2 class="section-title">Test Failure Analysis</h2>
             ${this.renderFailureDetails(perFailureResults)}
-            
+
+            <div class="performance-summary">
+              <h2>📊 Performance & Quality Metrics</h2>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h3>Analysis Performance</h3>
+                  <div class="metric-content">
+                    <div class="metric-item">
+                      <span class="metric-label">Processing Method:</span>
+                      <span class="metric-value">Batch Processing</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">AI Providers:</span>
+                      <span class="metric-value">${[stats.openai.attempts > 0 ? 'OpenAI' : null, stats.together.attempts > 0 ? 'TogetherAI' : null, stats.ruleBased.attempts > 0 ? 'Rule-based' : null].filter(Boolean).join(', ') || 'None'}</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Average Confidence:</span>
+                      <span class="metric-value">${perFailureResults.length > 0 ? Math.round((perFailureResults.reduce((sum, r) => sum + (r.analysis.confidence || 0), 0) / perFailureResults.length) * 100) : 0}%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="metric-card">
+                  <h3>Test Quality Insights</h3>
+                  <div class="metric-content">
+                    <div class="metric-item">
+                      <span class="metric-label">Failure Categories:</span>
+                      <span class="metric-value">${Object.keys(clusters).length}</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Most Common Issue:</span>
+                      <span class="metric-value">${Object.keys(clusters).length > 0 ? Object.keys(clusters).reduce((a, b) => clusters[a].length > clusters[b].length ? a : b) : 'None'}</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Test Stability:</span>
+                      <span class="metric-value">${passed > 0 ? Math.round((passed / (passed + failures)) * 100) : 0}% Pass Rate</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="metric-card">
+                  <h3>Recommendations</h3>
+                  <div class="metric-content">
+                    <div class="recommendation-list">
+                      ${this.generateRecommendations(clusters, perFailureResults)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="analytics-grid">
               <div class="analytics-card">
                 <h3>Failure Cluster Distribution</h3>

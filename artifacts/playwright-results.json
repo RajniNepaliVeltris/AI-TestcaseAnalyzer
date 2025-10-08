@@ -1,0 +1,1679 @@
+{
+  "config": {
+    "configFile": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\playwright.config.ts",
+    "rootDir": "C:/workingProject/VeltrisAIBasedMiniProject/AI-TestcaseAnalyzer/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "artifacts/playwright-results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "artifacts/html-report",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/workingProject/VeltrisAIBasedMiniProject/AI-TestcaseAnalyzer/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/workingProject/VeltrisAIBasedMiniProject/AI-TestcaseAnalyzer/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.54.2",
+    "workers": 8,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "ai-analysis-demo.spec.ts",
+      "file": "ai-analysis-demo.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Self-Healing Automation",
+          "file": "ai-analysis-demo.spec.ts",
+          "line": 102,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@selfheal-success Basic form interaction with self-healing",
+              "ok": true,
+              "tags": [
+                "selfheal-success"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4846,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Successfully filled '#username' on attempt 1\n"
+                        },
+                        {
+                          "text": "Successfully filled '#password' on attempt 1\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:45:47.225Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-bc610aceac27a2307c2a",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 103,
+              "column": 9
+            },
+            {
+              "title": "@selfheal-success Dynamic element interaction",
+              "ok": true,
+              "tags": [
+                "selfheal-success"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4096,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:45:52.335Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-b95c71997e30515d634f",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 112,
+              "column": 16
+            },
+            {
+              "title": "@selfheal-success Checkbox state management",
+              "ok": true,
+              "tags": [
+                "selfheal-success"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3769,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:45:56.436Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-1ab5e1c84314fdf282a5",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 127,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "AI Failure Analysis",
+          "file": "ai-analysis-demo.spec.ts",
+          "line": 146,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@ai-analysis Authentication failure analysis",
+              "ok": false,
+              "tags": [
+                "ai-analysis"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 30236,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 67,
+                            "line": 155
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('.flash.success')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.flash.success')\u001b[22m\n\n\n\u001b[0m \u001b[90m 153 |\u001b[39m\n \u001b[90m 154 |\u001b[39m         \u001b[90m// This will fail, triggering AI analysis of authentication patterns\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 155 |\u001b[39m         \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mLOGIN\u001b[39m\u001b[33m.\u001b[39m\u001b[33mSUCCESS_FLASH\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({\n \u001b[90m     |\u001b[39m                                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 156 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[33mCONFIG\u001b[39m\u001b[33m.\u001b[39m\u001b[33mTIMEOUTS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mDEFAULT\u001b[39m\n \u001b[90m 157 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 158 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:155:67\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Successfully filled '#username' on attempt 1\n"
+                        },
+                        {
+                          "text": "Successfully filled '#password' on attempt 1\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:46:00.217Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-75d76-entication-failure-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-75d76-entication-failure-analysis-chromium\\error-context.md"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 30541,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 67,
+                            "line": 155
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('.flash.success')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.flash.success')\u001b[22m\n\n\n\u001b[0m \u001b[90m 153 |\u001b[39m\n \u001b[90m 154 |\u001b[39m         \u001b[90m// This will fail, triggering AI analysis of authentication patterns\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 155 |\u001b[39m         \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mLOGIN\u001b[39m\u001b[33m.\u001b[39m\u001b[33mSUCCESS_FLASH\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({\n \u001b[90m     |\u001b[39m                                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 156 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[33mCONFIG\u001b[39m\u001b[33m.\u001b[39m\u001b[33mTIMEOUTS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mDEFAULT\u001b[39m\n \u001b[90m 157 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 158 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:155:67\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Successfully filled '#username' on attempt 1\n"
+                        },
+                        {
+                          "text": "Successfully filled '#password' on attempt 1\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:46:31.297Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-75d76-entication-failure-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-75d76-entication-failure-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-75d76-entication-failure-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-3d6f9dfb78c940df9440",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 147,
+              "column": 9
+            },
+            {
+              "title": "@ai-analysis Dynamic content timing analysis",
+              "ok": false,
+              "tags": [
+                "ai-analysis"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 12309,
+                      "error": {
+                        "message": "Error: Self-healing wait failed for selectors: #finish, .finish",
+                        "stack": "Error: Self-healing wait failed for selectors: #finish, .finish\n    at selfHealingWait (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:75:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:167:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 75
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:75\n\n\u001b[0m \u001b[90m 73 |\u001b[39m     }\n \u001b[90m 74 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 75 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing wait failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 76 |\u001b[39m }\n \u001b[90m 77 |\u001b[39m\n \u001b[90m 78 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 75
+                          },
+                          "message": "Error: Self-healing wait failed for selectors: #finish, .finish\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:75\n\n\u001b[0m \u001b[90m 73 |\u001b[39m     }\n \u001b[90m 74 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 75 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing wait failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 76 |\u001b[39m }\n \u001b[90m 77 |\u001b[39m\n \u001b[90m 78 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingWait (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:75:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:167:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to wait for '#finish' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#finish') to be visible\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '#finish' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#finish') to be visible\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Failed to wait for '.finish' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.finish') to be visible\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '.finish' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.finish') to be visible\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:47:03.440Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-17d3e-mic-content-timing-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-17d3e-mic-content-timing-analysis-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 75
+                      }
+                    },
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 12214,
+                      "error": {
+                        "message": "Error: Self-healing wait failed for selectors: #finish, .finish",
+                        "stack": "Error: Self-healing wait failed for selectors: #finish, .finish\n    at selfHealingWait (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:75:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:167:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 75
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:75\n\n\u001b[0m \u001b[90m 73 |\u001b[39m     }\n \u001b[90m 74 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 75 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing wait failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 76 |\u001b[39m }\n \u001b[90m 77 |\u001b[39m\n \u001b[90m 78 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 75
+                          },
+                          "message": "Error: Self-healing wait failed for selectors: #finish, .finish\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:75\n\n\u001b[0m \u001b[90m 73 |\u001b[39m     }\n \u001b[90m 74 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 75 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing wait failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 76 |\u001b[39m }\n \u001b[90m 77 |\u001b[39m\n \u001b[90m 78 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingWait (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:75:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:167:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to wait for '#finish' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#finish') to be visible\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '#finish' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#finish') to be visible\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Failed to wait for '.finish' on attempt 1. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.finish') to be visible\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '.finish' after 2 attempts. Error: page.waitForSelector: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.finish') to be visible\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:47:17.192Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-17d3e-mic-content-timing-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-17d3e-mic-content-timing-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-17d3e-mic-content-timing-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 75
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-8706678126b38eecb8c4",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 160,
+              "column": 9
+            },
+            {
+              "title": "@ai-analysis DOM mutation analysis",
+              "ok": false,
+              "tags": [
+                "ai-analysis"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 8472,
+                      "error": {
+                        "message": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete",
+                        "stack": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:183:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 23
+                          },
+                          "message": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:183:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to click '.wrong-delete-button' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.wrong-delete-button')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '.wrong-delete-button' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.wrong-delete-button')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Failed to click '.delete' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.delete')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '.delete' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.delete')\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:47:30.972Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-8dce8-lysis-DOM-mutation-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-8dce8-lysis-DOM-mutation-analysis-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 23
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 8658,
+                      "error": {
+                        "message": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete",
+                        "stack": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:183:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 23
+                          },
+                          "message": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:183:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to click '.wrong-delete-button' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.wrong-delete-button')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '.wrong-delete-button' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.wrong-delete-button')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Failed to click '.delete' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.delete')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '.delete' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.delete')\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:47:40.728Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-8dce8-lysis-DOM-mutation-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-8dce8-lysis-DOM-mutation-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-8dce8-lysis-DOM-mutation-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-c79effa8815381e909f1",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 175,
+              "column": 9
+            },
+            {
+              "title": "@ai-analysis Network resilience analysis",
+              "ok": false,
+              "tags": [
+                "ai-analysis"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7998,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('img').first()\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived string: \u001b[31m\"\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('img').first()\u001b[22m\n\u001b[2m    6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>\u001b[22m\n\u001b[2m      - unexpected value \"null\"\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('img').first()\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived string: \u001b[31m\"\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('img').first()\u001b[22m\n\u001b[2m    6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>\u001b[22m\n\u001b[2m      - unexpected value \"null\"\u001b[22m\n\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:202:38",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                          "column": 38,
+                          "line": 202
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 200 |\u001b[39m         \u001b[90m// This will fail due to network timing, triggering AI analysis\u001b[39m\n \u001b[90m 201 |\u001b[39m         \u001b[36mconst\u001b[39m images \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'img'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 202 |\u001b[39m         \u001b[36mawait\u001b[39m expect(images\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'naturalWidth'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'0'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 203 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[35m2000\u001b[39m\n \u001b[90m 204 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 205 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 38,
+                            "line": 202
+                          },
+                          "message": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('img').first()\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived string: \u001b[31m\"\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('img').first()\u001b[22m\n\u001b[2m    6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>\u001b[22m\n\u001b[2m      - unexpected value \"null\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 200 |\u001b[39m         \u001b[90m// This will fail due to network timing, triggering AI analysis\u001b[39m\n \u001b[90m 201 |\u001b[39m         \u001b[36mconst\u001b[39m images \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'img'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 202 |\u001b[39m         \u001b[36mawait\u001b[39m expect(images\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'naturalWidth'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'0'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 203 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[35m2000\u001b[39m\n \u001b[90m 204 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 205 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:202:38\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:47:50.563Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-12648-Network-resilience-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-12648-Network-resilience-analysis-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                        "column": 38,
+                        "line": 202
+                      }
+                    },
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 8363,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('img').first()\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived string: \u001b[31m\"\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('img').first()\u001b[22m\n\u001b[2m    6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>\u001b[22m\n\u001b[2m      - unexpected value \"null\"\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('img').first()\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived string: \u001b[31m\"\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('img').first()\u001b[22m\n\u001b[2m    6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>\u001b[22m\n\u001b[2m      - unexpected value \"null\"\u001b[22m\n\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:202:38",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                          "column": 38,
+                          "line": 202
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 200 |\u001b[39m         \u001b[90m// This will fail due to network timing, triggering AI analysis\u001b[39m\n \u001b[90m 201 |\u001b[39m         \u001b[36mconst\u001b[39m images \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'img'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 202 |\u001b[39m         \u001b[36mawait\u001b[39m expect(images\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'naturalWidth'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'0'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 203 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[35m2000\u001b[39m\n \u001b[90m 204 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 205 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 38,
+                            "line": 202
+                          },
+                          "message": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('img').first()\nExpected string: \u001b[32m\"0\"\u001b[39m\nReceived string: \u001b[31m\"\"\u001b[39m\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('img').first()\u001b[22m\n\u001b[2m    6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>\u001b[22m\n\u001b[2m      - unexpected value \"null\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 200 |\u001b[39m         \u001b[90m// This will fail due to network timing, triggering AI analysis\u001b[39m\n \u001b[90m 201 |\u001b[39m         \u001b[36mconst\u001b[39m images \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'img'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 202 |\u001b[39m         \u001b[36mawait\u001b[39m expect(images\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m'naturalWidth'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'0'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 203 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[35m2000\u001b[39m\n \u001b[90m 204 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 205 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:202:38\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:47:59.692Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-12648-Network-resilience-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-12648-Network-resilience-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-AI-Failur-12648-Network-resilience-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                        "column": 38,
+                        "line": 202
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-46297ed409570ce81727",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 190,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Batch Processing Performance",
+          "file": "ai-analysis-demo.spec.ts",
+          "line": 212,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@batch Form validation analysis",
+              "ok": false,
+              "tags": [
+                "batch"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3304,
+                      "error": {
+                        "message": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]",
+                        "stack": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]\n    at selfHealingFill (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:48:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:218:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 48
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m     }\n \u001b[90m 47 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Unable to fill any of the provided selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m }\n \u001b[90m 50 |\u001b[39m\n \u001b[90m 51 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 48
+                          },
+                          "message": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m     }\n \u001b[90m 47 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Unable to fill any of the provided selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m }\n \u001b[90m 50 |\u001b[39m\n \u001b[90m 51 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingFill (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:48:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:218:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to fill 'input[type=\"number\"]' on attempt 1. Error: page.fill: Error: Cannot type text into input[type=number]\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"number\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"number\"/>\u001b[22m\n\u001b[2m    - fill(\"abc\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for 'input[type=\"number\"]' after 1 attempts. Error: page.fill: Error: Cannot type text into input[type=number]\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"number\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"number\"/>\u001b[22m\n\u001b[2m    - fill(\"abc\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:48:09.241Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-f2e64-ch-Form-validation-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-f2e64-ch-Form-validation-analysis-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 48
+                      }
+                    },
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5126,
+                      "error": {
+                        "message": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]",
+                        "stack": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]\n    at selfHealingFill (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:48:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:218:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 48
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m     }\n \u001b[90m 47 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Unable to fill any of the provided selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m }\n \u001b[90m 50 |\u001b[39m\n \u001b[90m 51 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 48
+                          },
+                          "message": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m     }\n \u001b[90m 47 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Unable to fill any of the provided selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m }\n \u001b[90m 50 |\u001b[39m\n \u001b[90m 51 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingFill (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:48:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:218:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to fill 'input[type=\"number\"]' on attempt 1. Error: page.fill: Error: Cannot type text into input[type=number]\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"number\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"number\"/>\u001b[22m\n\u001b[2m    - fill(\"abc\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for 'input[type=\"number\"]' after 1 attempts. Error: page.fill: Error: Cannot type text into input[type=number]\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"number\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"number\"/>\u001b[22m\n\u001b[2m    - fill(\"abc\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:48:13.597Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-f2e64-ch-Form-validation-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-f2e64-ch-Form-validation-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-f2e64-ch-Form-validation-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 48
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-21c150530a6c502a89a5",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 213,
+              "column": 9
+            },
+            {
+              "title": "@batch State management analysis",
+              "ok": false,
+              "tags": [
+                "batch"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3615,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:235:30",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                          "column": 30,
+                          "line": 235
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 233 |\u001b[39m         \u001b[90m// Intentionally wrong expectation to trigger analysis\u001b[39m\n \u001b[90m 234 |\u001b[39m         \u001b[36mconst\u001b[39m checkedBoxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCHECKBOXES\u001b[39m \u001b[33m+\u001b[39m \u001b[32m':checked'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 235 |\u001b[39m         expect(checkedBoxes)\u001b[33m.\u001b[39mtoBe(\u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 236 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 237 |\u001b[39m\n \u001b[90m 238 |\u001b[39m     test(\u001b[32m'@batch Shadow DOM analysis'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 30,
+                            "line": 235
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n\u001b[0m \u001b[90m 233 |\u001b[39m         \u001b[90m// Intentionally wrong expectation to trigger analysis\u001b[39m\n \u001b[90m 234 |\u001b[39m         \u001b[36mconst\u001b[39m checkedBoxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCHECKBOXES\u001b[39m \u001b[33m+\u001b[39m \u001b[32m':checked'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 235 |\u001b[39m         expect(checkedBoxes)\u001b[33m.\u001b[39mtoBe(\u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 236 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 237 |\u001b[39m\n \u001b[90m 238 |\u001b[39m     test(\u001b[32m'@batch Shadow DOM analysis'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:235:30\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:48:19.915Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-1451f-h-State-management-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-1451f-h-State-management-analysis-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                        "column": 30,
+                        "line": 235
+                      }
+                    },
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4457,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:235:30",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                          "column": 30,
+                          "line": 235
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 233 |\u001b[39m         \u001b[90m// Intentionally wrong expectation to trigger analysis\u001b[39m\n \u001b[90m 234 |\u001b[39m         \u001b[36mconst\u001b[39m checkedBoxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCHECKBOXES\u001b[39m \u001b[33m+\u001b[39m \u001b[32m':checked'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 235 |\u001b[39m         expect(checkedBoxes)\u001b[33m.\u001b[39mtoBe(\u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 236 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 237 |\u001b[39m\n \u001b[90m 238 |\u001b[39m     test(\u001b[32m'@batch Shadow DOM analysis'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 30,
+                            "line": 235
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n\u001b[0m \u001b[90m 233 |\u001b[39m         \u001b[90m// Intentionally wrong expectation to trigger analysis\u001b[39m\n \u001b[90m 234 |\u001b[39m         \u001b[36mconst\u001b[39m checkedBoxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCHECKBOXES\u001b[39m \u001b[33m+\u001b[39m \u001b[32m':checked'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 235 |\u001b[39m         expect(checkedBoxes)\u001b[33m.\u001b[39mtoBe(\u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 236 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 237 |\u001b[39m\n \u001b[90m 238 |\u001b[39m     test(\u001b[32m'@batch Shadow DOM analysis'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:235:30\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:48:24.658Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-1451f-h-State-management-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-1451f-h-State-management-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-1451f-h-State-management-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                        "column": 30,
+                        "line": 235
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-fd07d2357e28cada641a",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 225,
+              "column": 9
+            },
+            {
+              "title": "@batch Shadow DOM analysis",
+              "ok": false,
+              "tags": [
+                "batch"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 8123,
+                      "error": {
+                        "message": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text",
+                        "stack": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:243:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 23
+                          },
+                          "message": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:243:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to click '#shadow_content' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#shadow_content')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '#shadow_content' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#shadow_content')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Failed to click '::shadow span' on attempt 1. Error: page.click: Unexpected token \":\" while parsing css selector \"::shadow span\". Did you mean to CSS.escape it?\nCall log:\n\u001b[2m  - waiting for ::shadow span\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '::shadow span' after 1 attempts. Error: page.click: Unexpected token \":\" while parsing css selector \"::shadow span\". Did you mean to CSS.escape it?\nCall log:\n\u001b[2m  - waiting for ::shadow span\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Failed to click 'text=My default text' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=My default text')\u001b[22m\n\u001b[2m    - locator resolved to 2 elements. Proceeding with the first one: <slot name=\"my-text\">My default text</slot>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    4 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for 'text=My default text' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=My default text')\u001b[22m\n\u001b[2m    - locator resolved to 2 elements. Proceeding with the first one: <slot name=\"my-text\">My default text</slot>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    4 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:48:30.312Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-6a48c-e-batch-Shadow-DOM-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-6a48c-e-batch-Shadow-DOM-analysis-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 23
+                      }
+                    },
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7722,
+                      "error": {
+                        "message": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text",
+                        "stack": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:243:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 23
+                          },
+                          "message": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:243:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to click '#shadow_content' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#shadow_content')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '#shadow_content' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#shadow_content')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Failed to click '::shadow span' on attempt 1. Error: page.click: Unexpected token \":\" while parsing css selector \"::shadow span\". Did you mean to CSS.escape it?\nCall log:\n\u001b[2m  - waiting for ::shadow span\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '::shadow span' after 1 attempts. Error: page.click: Unexpected token \":\" while parsing css selector \"::shadow span\". Did you mean to CSS.escape it?\nCall log:\n\u001b[2m  - waiting for ::shadow span\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Failed to click 'text=My default text' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=My default text')\u001b[22m\n\u001b[2m    - locator resolved to 2 elements. Proceeding with the first one: <slot name=\"my-text\">My default text</slot>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    4 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for 'text=My default text' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=My default text')\u001b[22m\n\u001b[2m    - locator resolved to 2 elements. Proceeding with the first one: <slot name=\"my-text\">My default text</slot>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    4 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:48:39.557Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-6a48c-e-batch-Shadow-DOM-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-6a48c-e-batch-Shadow-DOM-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Batch-Pro-6a48c-e-batch-Shadow-DOM-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-7c35a553b99e4d2ac4e0",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 238,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Enhanced Reporting Features",
+          "file": "ai-analysis-demo.spec.ts",
+          "line": 258,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@reporting Iframe interaction analysis",
+              "ok": false,
+              "tags": [
+                "reporting"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6642,
+                      "error": {
+                        "message": "Error: Self-healing click failed for selectors: #mce_0_ifr",
+                        "stack": "Error: Self-healing click failed for selectors: #mce_0_ifr\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:264:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 23
+                          },
+                          "message": "Error: Self-healing click failed for selectors: #mce_0_ifr\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:264:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to click '#mce_0_ifr' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#mce_0_ifr')\u001b[22m\n\u001b[2m    - locator resolved to <iframe id=\"mce_0_ifr\" frameborder=\"0\" title=\"Rich Text Area\" allowtransparency=\"true\" class=\"tox-edit-area__iframe\"></iframe>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    3 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '#mce_0_ifr' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#mce_0_ifr')\u001b[22m\n\u001b[2m    - locator resolved to <iframe id=\"mce_0_ifr\" frameborder=\"0\" title=\"Rich Text Area\" allowtransparency=\"true\" class=\"tox-edit-area__iframe\"></iframe>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    3 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:48:48.407Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--bdaf9-Iframe-interaction-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--bdaf9-Iframe-interaction-analysis-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 23
+                      }
+                    },
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6288,
+                      "error": {
+                        "message": "Error: Self-healing click failed for selectors: #mce_0_ifr",
+                        "stack": "Error: Self-healing click failed for selectors: #mce_0_ifr\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:264:9",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                          "column": 9,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                            "column": 9,
+                            "line": 23
+                          },
+                          "message": "Error: Self-healing click failed for selectors: #mce_0_ifr\n\n\u001b[90m   at \u001b[39m..\\src\\selfHealing.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m     }\n \u001b[90m 22 |\u001b[39m   }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m   \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m`Self-healing click failed for selectors: ${selectors.join(', ')}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m }\n \u001b[90m 25 |\u001b[39m\n \u001b[90m 26 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\u001b[22m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:264:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to click '#mce_0_ifr' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#mce_0_ifr')\u001b[22m\n\u001b[2m    - locator resolved to <iframe id=\"mce_0_ifr\" frameborder=\"0\" title=\"Rich Text Area\" allowtransparency=\"true\" class=\"tox-edit-area__iframe\"></iframe>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    3 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '#mce_0_ifr' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#mce_0_ifr')\u001b[22m\n\u001b[2m    - locator resolved to <iframe id=\"mce_0_ifr\" frameborder=\"0\" title=\"Rich Text Area\" allowtransparency=\"true\" class=\"tox-edit-area__iframe\"></iframe>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    3 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>…</span> from <div class=\"tox tox-silver-sink tox-tinymce-aux\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:48:56.203Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--bdaf9-Iframe-interaction-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--bdaf9-Iframe-interaction-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--bdaf9-Iframe-interaction-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts",
+                        "column": 9,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-e16b85a8af0a7521810b",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 259,
+              "column": 9
+            },
+            {
+              "title": "@reporting Race condition analysis",
+              "ok": true,
+              "tags": [
+                "reporting"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7417,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Failed to click '#flash-messages a' on attempt 1. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#flash-messages a')\u001b[22m\n\u001b[2m    - waiting for\" https://the-internet.herokuapp.com/notification_message_rendered\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://the-internet.herokuapp.com/notification_message_rendered\"\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Final failure for '#flash-messages a' after 1 attempts. Error: page.click: Timeout 2000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#flash-messages a')\u001b[22m\n\u001b[2m    - waiting for\" https://the-internet.herokuapp.com/notification_message_rendered\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://the-internet.herokuapp.com/notification_message_rendered\"\u001b[22m\n\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:49:03.733Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-cfa8f27777f8572fa555",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 272,
+              "column": 9
+            },
+            {
+              "title": "@reporting Error recovery analysis",
+              "ok": false,
+              "tags": [
+                "reporting"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6172,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h2')\nExpected string: \u001b[32m\"Welcome to the-internet\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('h2')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h2')\nExpected string: \u001b[32m\"Welcome to the-internet\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('h2')\u001b[22m\n\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:296:57",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                          "column": 57,
+                          "line": 296
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 294 |\u001b[39m\n \u001b[90m 295 |\u001b[39m         \u001b[90m// This will fail, triggering enhanced error recovery analysis\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 296 |\u001b[39m         \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mH2\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'Welcome to the-internet'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m     |\u001b[39m                                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 297 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[35m2000\u001b[39m\n \u001b[90m 298 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 299 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 57,
+                            "line": 296
+                          },
+                          "message": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h2')\nExpected string: \u001b[32m\"Welcome to the-internet\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('h2')\u001b[22m\n\n\n\u001b[0m \u001b[90m 294 |\u001b[39m\n \u001b[90m 295 |\u001b[39m         \u001b[90m// This will fail, triggering enhanced error recovery analysis\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 296 |\u001b[39m         \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mH2\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'Welcome to the-internet'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m     |\u001b[39m                                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 297 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[35m2000\u001b[39m\n \u001b[90m 298 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 299 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:296:57\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:49:11.483Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--7675e-ing-Error-recovery-analysis-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--7675e-ing-Error-recovery-analysis-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                        "column": 57,
+                        "line": 296
+                      }
+                    },
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6147,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h2')\nExpected string: \u001b[32m\"Welcome to the-internet\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('h2')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h2')\nExpected string: \u001b[32m\"Welcome to the-internet\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('h2')\u001b[22m\n\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:296:57",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                          "column": 57,
+                          "line": 296
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 294 |\u001b[39m\n \u001b[90m 295 |\u001b[39m         \u001b[90m// This will fail, triggering enhanced error recovery analysis\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 296 |\u001b[39m         \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mH2\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'Welcome to the-internet'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m     |\u001b[39m                                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 297 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[35m2000\u001b[39m\n \u001b[90m 298 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 299 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 57,
+                            "line": 296
+                          },
+                          "message": "Error: \u001b[31mTimed out 2000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h2')\nExpected string: \u001b[32m\"Welcome to the-internet\"\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 2000ms\u001b[22m\n\u001b[2m  - waiting for locator('h2')\u001b[22m\n\n\n\u001b[0m \u001b[90m 294 |\u001b[39m\n \u001b[90m 295 |\u001b[39m         \u001b[90m// This will fail, triggering enhanced error recovery analysis\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 296 |\u001b[39m         \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mH2\u001b[39m))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'Welcome to the-internet'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m     |\u001b[39m                                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 297 |\u001b[39m             timeout\u001b[33m:\u001b[39m \u001b[35m2000\u001b[39m\n \u001b[90m 298 |\u001b[39m         })\u001b[33m;\u001b[39m\n \u001b[90m 299 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:296:57\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:49:18.514Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--7675e-ing-Error-recovery-analysis-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--7675e-ing-Error-recovery-analysis-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Enhanced--7675e-ing-Error-recovery-analysis-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                        "column": 57,
+                        "line": 296
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-69667e48272ca7650d0c",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 288,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Integration Tests",
+          "file": "ai-analysis-demo.spec.ts",
+          "line": 306,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@integration Complete user journey with self-healing",
+              "ok": true,
+              "tags": [
+                "integration"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5354,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Successfully filled '#username' on attempt 1\n"
+                        },
+                        {
+                          "text": "Successfully filled '#password' on attempt 1\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:49:25.742Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-593750c13923180e9ca9",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 307,
+              "column": 9
+            },
+            {
+              "title": "@integration Mixed success and failure scenarios",
+              "ok": false,
+              "tags": [
+                "integration"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3627,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m2\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m2\u001b[39m\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:331:31",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                          "column": 31,
+                          "line": 331
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 329 |\u001b[39m         \u001b[90m// This will create a failure for analysis\u001b[39m\n \u001b[90m 330 |\u001b[39m         \u001b[36mconst\u001b[39m allCheckboxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCHECKBOXES\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 331 |\u001b[39m         expect(allCheckboxes)\u001b[33m.\u001b[39mtoBe(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Intentionally wrong to trigger analysis\u001b[39m\n \u001b[90m     |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 332 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 333 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 334 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 31,
+                            "line": 331
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m2\u001b[39m\n\n\u001b[0m \u001b[90m 329 |\u001b[39m         \u001b[90m// This will create a failure for analysis\u001b[39m\n \u001b[90m 330 |\u001b[39m         \u001b[36mconst\u001b[39m allCheckboxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCHECKBOXES\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 331 |\u001b[39m         expect(allCheckboxes)\u001b[33m.\u001b[39mtoBe(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Intentionally wrong to trigger analysis\u001b[39m\n \u001b[90m     |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 332 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 333 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 334 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:331:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-08T11:49:31.399Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Integrati-45c42-ccess-and-failure-scenarios-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Integrati-45c42-ccess-and-failure-scenarios-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                        "column": 31,
+                        "line": 331
+                      }
+                    },
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4001,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m2\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m2\u001b[39m\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:331:31",
+                        "location": {
+                          "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                          "column": 31,
+                          "line": 331
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 329 |\u001b[39m         \u001b[90m// This will create a failure for analysis\u001b[39m\n \u001b[90m 330 |\u001b[39m         \u001b[36mconst\u001b[39m allCheckboxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCHECKBOXES\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 331 |\u001b[39m         expect(allCheckboxes)\u001b[33m.\u001b[39mtoBe(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Intentionally wrong to trigger analysis\u001b[39m\n \u001b[90m     |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 332 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 333 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 334 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                            "column": 31,
+                            "line": 331
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m2\u001b[39m\n\n\u001b[0m \u001b[90m 329 |\u001b[39m         \u001b[90m// This will create a failure for analysis\u001b[39m\n \u001b[90m 330 |\u001b[39m         \u001b[36mconst\u001b[39m allCheckboxes \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[33mSELECTORS\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCOMMON\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCHECKBOXES\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 331 |\u001b[39m         expect(allCheckboxes)\u001b[33m.\u001b[39mtoBe(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Intentionally wrong to trigger analysis\u001b[39m\n \u001b[90m     |\u001b[39m                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 332 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 333 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 334 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:331:31\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-10-08T11:49:35.969Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Integrati-45c42-ccess-and-failure-scenarios-chromium-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Integrati-45c42-ccess-and-failure-scenarios-chromium-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\test-results\\ai-analysis-demo-Integrati-45c42-ccess-and-failure-scenarios-chromium-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts",
+                        "column": 31,
+                        "line": 331
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "07e6e3782117f3a960c1-4c83f43cf02ca6169b9e",
+              "file": "ai-analysis-demo.spec.ts",
+              "line": 321,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-08T11:45:46.546Z",
+    "duration": 233943.767,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 10,
+    "flaky": 0
+  }
+}

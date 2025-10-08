@@ -389,6 +389,566 @@
       .failure-details td {
         background: #f8f9fa;
       }
+
+      /* Enhanced Failure Analysis Styles */
+      .failure-analysis-section {
+        margin: 2rem 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        overflow: hidden;
+      }
+
+      .section-header {
+        background: linear-gradient(135deg, var(--primary-color), #2d3748);
+        color: white;
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .section-header h2 {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 600;
+      }
+
+      .analysis-stats {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .analysis-stats .stat-item {
+        text-align: center;
+      }
+
+      .analysis-stats .stat-label {
+        display: block;
+        font-size: 0.875rem;
+        opacity: 0.9;
+        margin-bottom: 0.25rem;
+      }
+
+      .analysis-stats .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .category-tabs {
+        background: #f7fafc;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: thin;
+      }
+
+      .tab-button {
+        background: none;
+        border: none;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        font-weight: 500;
+        color: var(--muted-color);
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .tab-button:hover {
+        background: rgba(0,0,0,0.05);
+        color: var(--primary-color);
+      }
+
+      .tab-button.active {
+        color: var(--primary-color);
+        border-bottom-color: var(--primary-color);
+        background: white;
+      }
+
+      .category-container {
+        padding: 2rem;
+      }
+
+      .failure-card {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .failure-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .failure-header {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .failure-meta {
+        flex: 1;
+      }
+
+      .failure-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0 0 0.75rem 0;
+        flex-wrap: wrap;
+      }
+
+      .test-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      .confidence-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .confidence-high {
+        background: rgba(72, 187, 120, 0.1);
+        color: #2f855a;
+      }
+
+      .confidence-medium {
+        background: rgba(237, 137, 54, 0.1);
+        color: #c05621;
+      }
+
+      .confidence-low {
+        background: rgba(245, 101, 101, 0.1);
+        color: #c53030;
+      }
+
+      .failure-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .provider-tag {
+        background: #e6fffa;
+        color: #065f46;
+      }
+
+      .category-tag {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .severity-tag {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .severity-high {
+        background: #dc2626 !important;
+        color: white !important;
+      }
+
+      .severity-medium {
+        background: #ea580c !important;
+        color: white !important;
+      }
+
+      .failure-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .action-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: white;
+        color: var(--primary-color);
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .action-btn:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .action-btn.primary {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .action-btn.primary:hover {
+        background: #2d3748;
+      }
+
+      .action-btn.secondary {
+        background: #f7fafc;
+      }
+
+      .action-btn.expanded {
+        background: #2d3748;
+        color: white;
+      }
+
+      .action-btn.copied {
+        background: #48bb78;
+        color: white;
+      }
+
+      .failure-details {
+        border-top: 1px solid var(--border-color);
+        padding: 1.5rem;
+        background: #fafafa;
+      }
+
+      .analysis-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .analysis-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .analysis-section {
+        background: white;
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+      }
+
+      .analysis-section h5 {
+        margin: 0 0 0.75rem 0;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .analysis-content {
+        margin-bottom: 1rem;
+      }
+
+      .analysis-text {
+        margin: 0;
+        line-height: 1.6;
+        color: #374151;
+      }
+
+      .confidence-meter {
+        margin-top: 0.75rem;
+      }
+
+      .confidence-bar {
+        background: #e5e7eb;
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.25rem;
+      }
+
+      .confidence-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      .confidence-fill.confidence-high {
+        background: #48bb78;
+      }
+
+      .confidence-fill.confidence-medium {
+        background: #f59e0b;
+      }
+
+      .confidence-fill.confidence-low {
+        background: #ef4444;
+      }
+
+      .confidence-label {
+        font-size: 0.75rem;
+        color: var(--muted-color);
+        font-weight: 500;
+      }
+
+      .solution-steps {
+        margin-bottom: 1rem;
+      }
+
+      .solution-list {
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      .solution-list li {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }
+
+      .prevention-tips {
+        background: #f0f9ff;
+        padding: 0.75rem;
+        border-radius: 4px;
+        border-left: 3px solid #3b82f6;
+      }
+
+      .prevention-tips h6 {
+        margin: 0 0 0.5rem 0;
+        color: #1e40af;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .prevention-tips ul {
+        margin: 0;
+        padding-left: 1rem;
+      }
+
+      .prevention-tips li {
+        color: #374151;
+        font-size: 0.875rem;
+      }
+
+      .error-details {
+        background: white;
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+      }
+
+      .error-details h5 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .error-content {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .error-message, .error-stack {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 4px;
+        padding: 0.75rem;
+      }
+
+      .error-label {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .error-text, .stack-text {
+        background: #f1f3f4;
+        padding: 0.75rem;
+        border-radius: 4px;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        white-space: pre-wrap;
+        word-break: break-all;
+        margin: 0;
+        border: 1px solid #dee2e6;
+      }
+
+      .copy-btn {
+        margin-top: 0.5rem;
+        padding: 0.375rem 0.75rem;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        font-weight: 500;
+        transition: background 0.2s ease;
+      }
+
+      .copy-btn:hover {
+        background: #2d3748;
+      }
+
+      .ai-insights {
+        background: white;
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+      }
+
+      .ai-insights h5 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .insight-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .insight-label {
+        font-size: 0.75rem;
+        color: var(--muted-color);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .insight-value {
+        font-size: 0.875rem;
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      /* Performance Summary Styles */
+      .performance-summary {
+        margin: 3rem 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        overflow: hidden;
+      }
+
+      .performance-summary h2 {
+        background: linear-gradient(135deg, var(--primary-color), #2d3748);
+        color: white;
+        margin: 0;
+        padding: 2rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+      }
+
+      .metric-card {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .metric-card h3 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+
+      .metric-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .metric-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .metric-item:last-child {
+        border-bottom: none;
+      }
+
+      .metric-label {
+        font-weight: 500;
+        color: var(--muted-color);
+        font-size: 0.875rem;
+      }
+
+      .metric-value {
+        font-weight: 600;
+        color: var(--primary-color);
+        font-size: 0.875rem;
+      }
+
+      .recommendation-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .recommendation-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .recommendation-item:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .recommendation-icon {
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .recommendation-content h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .recommendation-content p {
+        margin: 0;
+        color: #374151;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
     </style>
           <script>
             function toggleDetails(id) {
@@ -409,19 +969,22 @@
       <section class="summary-cards" aria-label="Test execution summary">
         <div class="stat-card white" role="region" aria-label="Total test count">
           <h3>Total Tests</h3>
-          <div class="stat-value">1</div>
+          <div class="stat-value">18</div>
         </div>
         <div class="stat-card red" role="region" aria-label="Failed test count">
           <h3>Failures</h3>
-          <div class="stat-value">1</div>
-          
+          <div class="stat-value">9</div>
+          <div style="font-size:12px;margin-top:5px">Includes 9 retry attempts</div>
         </div>
         <div class="stat-card green" role="region" aria-label="Passed test count">
           <h3>Passed</h3>
           <div class="stat-value">0</div>
         </div>
       </section>
-      
+      <div style="text-align:center;margin-top:10px;padding:8px;background:#f8f9fa;border-radius:4px;font-size:14px">
+        <strong>Note:</strong> This report shows 18 failure records for 9 unique test case(s). 
+        Each retry attempt is shown separately to provide additional debugging context.
+      </div>
     
             
       <section class="provider-status-grid" aria-label="AI Provider Status">
@@ -483,11 +1046,11 @@
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-label">Attempts</span>
-              <span class="stat-number">1</span>
+              <span class="stat-number">18</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Successes</span>
-              <span class="stat-number">1</span>
+              <span class="stat-number">18</span>
             </div>
           </div>
           <div class="success-rate">Success Rate: 100%</div>
@@ -500,10 +1063,34 @@
             <h2>AI Analysis Summary</h2>
             
         <div class="collapsible">
-          <div class="collapsible-header" onclick="toggleDetails('Other')">
-            <span><span class="severity medium"></span>Other (100%)</span>
+          <div class="collapsible-header" onclick="toggleDetails('Timeout Issues')">
+            <span><span class="severity medium"></span>Timeout Issues (33%)</span>
           </div>
-          <div id="Other" class="collapsible-content">
+          <div id="Timeout Issues" class="collapsible-content">
+            <p><strong>Description:</strong> No description available</p>
+            <p><strong>Common Causes:</strong></p>
+            <ul></ul>
+            <p><strong>Recommended Solutions:</strong></p>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="collapsible">
+          <div class="collapsible-header" onclick="toggleDetails('Element Interaction')">
+            <span><span class="severity medium"></span>Element Interaction (44%)</span>
+          </div>
+          <div id="Element Interaction" class="collapsible-content">
+            <p><strong>Description:</strong> No description available</p>
+            <p><strong>Common Causes:</strong></p>
+            <ul></ul>
+            <p><strong>Recommended Solutions:</strong></p>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="collapsible">
+          <div class="collapsible-header" onclick="toggleDetails('Assertion Failures')">
+            <span><span class="severity medium"></span>Assertion Failures (22%)</span>
+          </div>
+          <div id="Assertion Failures" class="collapsible-content">
             <p><strong>Description:</strong> No description available</p>
             <p><strong>Common Causes:</strong></p>
             <ul></ul>
@@ -513,87 +1100,1958 @@
         </div>
             <h2 class="section-title">Test Failure Analysis</h2>
             
-      <section class="failure-details">
-        <h3>Failure Analysis Details</h3>
-        
-      <table class="results-table">
-        <thead>
-          <tr>
-            <th>Test</th>
-            <th>Status</th>
-            <th>Provider</th>
-            <th>Category</th>
-            <th>Severity</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
+      <section class="failure-analysis-section">
+        <div class="section-header">
+          <h2>🔍 AI Failure Analysis Details</h2>
+          <div class="analysis-stats">
+            <div class="stat-item">
+              <span class="stat-label">Total Failures</span>
+              <span class="stat-value">15</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Categories</span>
+              <span class="stat-value">3</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">AI Analyzed</span>
+              <span class="stat-value">15</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-tabs">
           
-            <tr>
-              <td>
-                <div class="test-name">Test intelligent authentication analysis (Chromium)</div>
-                <div class="test-file text-muted"></div>
-              </td>
-              <td>
-                <span class="status-cell status-failed">
-                  <svg width="12" height="12" viewBox="0 0 12 12">
-                    <path fill="currentColor" d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm2.5 7.5a.5.5 0 0 1-.7.7L6 6.7l-1.8 1.8a.5.5 0 0 1-.7-.7L5.3 6 3.5 4.2a.5.5 0 0 1 .7-.7L6 5.3l1.8-1.8a.5.5 0 0 1 .7.7L6.7 6l1.8 1.8z"/>
-                  </svg>
-                  Failed
+      <button class="tab-button " onclick="showCategory('timeout')">
+        timeout (4)
+      </button>
+    
+      <button class="tab-button " onclick="showCategory('unknown')">
+        unknown (7)
+      </button>
+    
+      <button class="tab-button " onclick="showCategory('assertion')">
+        assertion (4)
+      </button>
+    
+        </div>
+
+        <div class="category-container">
+          
+      <div id="category-timeout" class="category-content" style="display: none">
+        
+        <div class="failure-card" data-category="timeout">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">Test AI-driven dynamic content analysis</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
                 </span>
-              </td>
-              <td>
-                <span class="provider-cell">
-                  None
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">timeout</span>
+                <span class="tag severity-tag severity-medium">
+                  MEDIUM
                 </span>
-              </td>
-              <td>System Error</td>
-              <td>
-                <span class="severity-low">
-                  LOW
-                </span>
-              </td>
-              <td class="action-cell">
-                <button class="action-button" onclick="toggleFailure('failure-0')">View Details</button>
-                <button class="action-button" onclick="window.open('screenshots/1756196023298-test-failed-1.png', '_blank')">View Screenshot</button>
-                
-              </td>
-            </tr>
-            <tr class="failure-details" id="failure-0" style="display: none;">
-              <td colspan="6">
-                <div class="failure-analysis-details">
-                  <div class="failure-section">
-                    <h4>Failure Reason:</h4>
-                    <p>All analysis providers failed</p>
-                  </div>
-                  <div class="failure-section">
-                    <h4>Resolution Steps:</h4>
-                    <p>Please check logs for provider errors</p>
-                  </div>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-timeout-0" class="action-btn primary" onclick="toggleFailureDetails('timeout-0')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-timeout-0" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
                   
-                    <div class="failure-section">
-                      <h4>Error Message:</h4>
-                      <pre class="error-message"># Page snapshot</pre>
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
                     </div>
                   
                 </div>
-              </td>
-            </tr>
-          
-        </tbody>
-      </table>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Increase the wait timeout or check if the element is actually present in the page</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Self-healing wait failed for selectors: #finish, .finish</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing wait failed for selectors: #finish, .finish')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Self-healing wait failed for selectors: #finish, .finish
+    at selfHealingWait (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:75:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:167:9</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing wait failed for selectors: #finish, .finish
+    at selfHealingWait (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:75:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:167:9')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">timeout</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="timeout">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@ai-analysis Network resilience analysis</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">timeout</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-timeout-1" class="action-btn primary" onclick="toggleFailureDetails('timeout-1')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-timeout-1" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Element not found within specified timeout period</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Increase the wait timeout or check if the element is actually present in the page</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected) Locator: locator(&#039;img&#039;).first() Expected string: &quot;0&quot; Received string: &quot;&quot; Call log:   - Expect &quot;toHaveAttribute&quot; with timeout 2000ms   - waiting for locator(&#039;img&#039;).first()     6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;       - unexpected value &quot;null&quot;</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected) Locator: locator(&#039;img&#039;).first() Expected string: &quot;0&quot; Received string: &quot;&quot; Call log:   - Expect &quot;toHaveAttribute&quot; with timeout 2000ms   - waiting for locator(&#039;img&#039;).first()     6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;       - unexpected value &quot;null&quot;')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected)
+
+Locator: locator(&#039;img&#039;).first()
+Expected string: &quot;0&quot;
+Received string: &quot;&quot;
+Call log:
+  - Expect &quot;toHaveAttribute&quot; with timeout 2000ms
+  - waiting for locator(&#039;img&#039;).first()
+    6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;
+      - unexpected value &quot;null&quot;
+
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:202:38</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected)
+
+Locator: locator(&#039;img&#039;).first()
+Expected string: &quot;0&quot;
+Received string: &quot;&quot;
+Call log:
+  - Expect &quot;toHaveAttribute&quot; with timeout 2000ms
+  - waiting for locator(&#039;img&#039;).first()
+    6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;
+      - unexpected value &quot;null&quot;
+
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:202:38')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">timeout</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="timeout">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@ai-analysis Network resilience analysis (Retry 1)</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">timeout</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-timeout-2" class="action-btn primary" onclick="toggleFailureDetails('timeout-2')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-timeout-2" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Element not found within specified timeout period</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Increase the wait timeout or check if the element is actually present in the page</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected) Locator: locator(&#039;img&#039;).first() Expected string: &quot;0&quot; Received string: &quot;&quot; Call log:   - Expect &quot;toHaveAttribute&quot; with timeout 2000ms   - waiting for locator(&#039;img&#039;).first()     6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;       - unexpected value &quot;null&quot;</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected) Locator: locator(&#039;img&#039;).first() Expected string: &quot;0&quot; Received string: &quot;&quot; Call log:   - Expect &quot;toHaveAttribute&quot; with timeout 2000ms   - waiting for locator(&#039;img&#039;).first()     6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;       - unexpected value &quot;null&quot;')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected)
+
+Locator: locator(&#039;img&#039;).first()
+Expected string: &quot;0&quot;
+Received string: &quot;&quot;
+Call log:
+  - Expect &quot;toHaveAttribute&quot; with timeout 2000ms
+  - waiting for locator(&#039;img&#039;).first()
+    6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;
+      - unexpected value &quot;null&quot;
+
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:202:38</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected)
+
+Locator: locator(&#039;img&#039;).first()
+Expected string: &quot;0&quot;
+Received string: &quot;&quot;
+Call log:
+  - Expect &quot;toHaveAttribute&quot; with timeout 2000ms
+  - waiting for locator(&#039;img&#039;).first()
+    6 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;
+      - unexpected value &quot;null&quot;
+
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:202:38')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">timeout</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="timeout">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">Test AI-driven error recovery analysis</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">timeout</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-timeout-3" class="action-btn primary" onclick="toggleFailureDetails('timeout-3')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-timeout-3" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Element not found within specified timeout period</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Increase the wait timeout or check if the element is actually present in the page</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Timed out 2000ms waiting for expect(locator).toHaveText(expected) Locator: locator(&#039;h2&#039;) Expected string: &quot;Welcome to the-internet&quot; Received: &lt;element(s) not found&gt; Call log:   - Expect &quot;toHaveText&quot; with timeout 2000ms   - waiting for locator(&#039;h2&#039;)</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Timed out 2000ms waiting for expect(locator).toHaveText(expected) Locator: locator(&#039;h2&#039;) Expected string: &quot;Welcome to the-internet&quot; Received: &lt;element(s) not found&gt; Call log:   - Expect &quot;toHaveText&quot; with timeout 2000ms   - waiting for locator(&#039;h2&#039;)')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Timed out 2000ms waiting for expect(locator).toHaveText(expected)
+
+Locator: locator(&#039;h2&#039;)
+Expected string: &quot;Welcome to the-internet&quot;
+Received: &lt;element(s) not found&gt;
+Call log:
+  - Expect &quot;toHaveText&quot; with timeout 2000ms
+  - waiting for locator(&#039;h2&#039;)
+
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:296:57</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Timed out 2000ms waiting for expect(locator).toHaveText(expected)
+
+Locator: locator(&#039;h2&#039;)
+Expected string: &quot;Welcome to the-internet&quot;
+Received: &lt;element(s) not found&gt;
+Call log:
+  - Expect &quot;toHaveText&quot; with timeout 2000ms
+  - waiting for locator(&#039;h2&#039;)
+
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:296:57')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">timeout</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
     
+      <div id="category-unknown" class="category-content" style="display: none">
+        
+        <div class="failure-card" data-category="unknown">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@ai-analysis DOM mutation analysis</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">unknown</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-unknown-0" class="action-btn primary" onclick="toggleFailureDetails('unknown-0')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-unknown-0" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Manual investigation required</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Self-healing click failed for selectors: .wrong-delete-button, .delete</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: .wrong-delete-button, .delete')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Self-healing click failed for selectors: .wrong-delete-button, .delete
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:183:9</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: .wrong-delete-button, .delete
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:183:9')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">unknown</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="unknown">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@ai-analysis DOM mutation analysis (Retry 1)</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">unknown</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-unknown-1" class="action-btn primary" onclick="toggleFailureDetails('unknown-1')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-unknown-1" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Manual investigation required</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Self-healing click failed for selectors: .wrong-delete-button, .delete</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: .wrong-delete-button, .delete')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Self-healing click failed for selectors: .wrong-delete-button, .delete
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:183:9</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: .wrong-delete-button, .delete
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:183:9')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">unknown</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="unknown">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">Test AI analysis of form validation</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">unknown</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-unknown-2" class="action-btn primary" onclick="toggleFailureDetails('unknown-2')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-unknown-2" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Manual investigation required</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Unable to fill any of the provided selectors: input[type=&quot;number&quot;]</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Unable to fill any of the provided selectors: input[type=&quot;number&quot;]')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Unable to fill any of the provided selectors: input[type=&quot;number&quot;]
+    at selfHealingFill (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:48:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:218:9</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Unable to fill any of the provided selectors: input[type=&quot;number&quot;]
+    at selfHealingFill (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:48:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:218:9')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">unknown</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="unknown">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@batch Shadow DOM analysis</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">unknown</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-unknown-3" class="action-btn primary" onclick="toggleFailureDetails('unknown-3')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-unknown-3" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Manual investigation required</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:243:9</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:243:9')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">unknown</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="unknown">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@batch Shadow DOM analysis (Retry 1)</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">unknown</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-unknown-4" class="action-btn primary" onclick="toggleFailureDetails('unknown-4')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-unknown-4" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Manual investigation required</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:243:9</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:243:9')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">unknown</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="unknown">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@reporting Iframe interaction analysis</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">unknown</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-unknown-5" class="action-btn primary" onclick="toggleFailureDetails('unknown-5')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-unknown-5" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Manual investigation required</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Self-healing click failed for selectors: #mce_0_ifr</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: #mce_0_ifr')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Self-healing click failed for selectors: #mce_0_ifr
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:264:9</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: #mce_0_ifr
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:264:9')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">unknown</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="unknown">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@reporting Iframe interaction analysis (Retry 1)</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">unknown</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-unknown-6" class="action-btn primary" onclick="toggleFailureDetails('unknown-6')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-unknown-6" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Manual investigation required</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Self-healing click failed for selectors: #mce_0_ifr</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: #mce_0_ifr')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Self-healing click failed for selectors: #mce_0_ifr
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:264:9</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Self-healing click failed for selectors: #mce_0_ifr
+    at selfHealingClick (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\selfHealing.ts:23:9)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:264:9')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">unknown</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    
+      <div id="category-assertion" class="category-content" style="display: none">
+        
+        <div class="failure-card" data-category="assertion">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@batch State management analysis</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">assertion</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-assertion-0" class="action-btn primary" onclick="toggleFailureDetails('assertion-0')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-assertion-0" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Verify the expected values and actual values match</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: expect(received).toBe(expected) // Object.is equality Expected: 3 Received: 1</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: expect(received).toBe(expected) // Object.is equality Expected: 3 Received: 1')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 3
+Received: 1
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:235:30</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 3
+Received: 1
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:235:30')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">assertion</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="assertion">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@batch State management analysis (Retry 1)</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">assertion</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-assertion-1" class="action-btn primary" onclick="toggleFailureDetails('assertion-1')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-assertion-1" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Verify the expected values and actual values match</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: expect(received).toBe(expected) // Object.is equality Expected: 3 Received: 1</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: expect(received).toBe(expected) // Object.is equality Expected: 3 Received: 1')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 3
+Received: 1
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:235:30</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 3
+Received: 1
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:235:30')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">assertion</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="assertion">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@integration Mixed success and failure scenarios</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">assertion</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-assertion-2" class="action-btn primary" onclick="toggleFailureDetails('assertion-2')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-assertion-2" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Verify the expected values and actual values match</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: expect(received).toBe(expected) // Object.is equality Expected: 1 Received: 2</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: expect(received).toBe(expected) // Object.is equality Expected: 1 Received: 2')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 1
+Received: 2
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:331:31</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 1
+Received: 2
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:331:31')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">assertion</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="assertion">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">@integration Mixed success and failure scenarios (Retry 1)</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">assertion</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-assertion-3" class="action-btn primary" onclick="toggleFailureDetails('assertion-3')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-assertion-3" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Unknown root cause</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Verify the expected values and actual values match</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: expect(received).toBe(expected) // Object.is equality Expected: 1 Received: 2</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: expect(received).toBe(expected) // Object.is equality Expected: 1 Received: 2')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 1
+Received: 2
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:331:31</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 1
+Received: 2
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:331:31')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">assertion</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    
+        </div>
+
         <script>
-          function toggleFailure(id) {
-            const row = document.getElementById(id);
-            if (row) {
-              row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+          function showCategory(categoryName) {
+            // Hide all category content
+            document.querySelectorAll('.category-content').forEach(el => {
+              el.style.display = 'none';
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-button').forEach(el => {
+              el.classList.remove('active');
+            });
+
+            // Show selected category
+            document.getElementById('category-' + categoryName).style.display = 'block';
+
+            // Add active class to selected tab
+            event.target.classList.add('active');
+          }
+
+          function toggleFailureDetails(id) {
+            const details = document.getElementById('details-' + id);
+            const button = document.getElementById('btn-' + id);
+
+            if (details.style.display === 'none') {
+              details.style.display = 'block';
+              button.textContent = 'Hide Details';
+              button.classList.add('expanded');
+            } else {
+              details.style.display = 'none';
+              button.textContent = 'Show Details';
+              button.classList.remove('expanded');
             }
+          }
+
+          function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+              // Show temporary feedback
+              const btn = event.target;
+              const originalText = btn.textContent;
+              btn.textContent = 'Copied!';
+              btn.classList.add('copied');
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.remove('copied');
+              }, 2000);
+            });
           }
         </script>
       </section>
     
-            
+
+            <div class="performance-summary">
+              <h2>📊 Performance & Quality Metrics</h2>
+              <div class="metrics-grid">
+                <div class="metric-card">
+                  <h3>Analysis Performance</h3>
+                  <div class="metric-content">
+                    <div class="metric-item">
+                      <span class="metric-label">Processing Method:</span>
+                      <span class="metric-value">Batch Processing</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">AI Providers:</span>
+                      <span class="metric-value">Rule-based</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Average Confidence:</span>
+                      <span class="metric-value">70%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="metric-card">
+                  <h3>Test Quality Insights</h3>
+                  <div class="metric-content">
+                    <div class="metric-item">
+                      <span class="metric-label">Failure Categories:</span>
+                      <span class="metric-value">3</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Most Common Issue:</span>
+                      <span class="metric-value">Element Interaction</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Test Stability:</span>
+                      <span class="metric-value">0% Pass Rate</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="metric-card">
+                  <h3>Recommendations</h3>
+                  <div class="metric-content">
+                    <div class="recommendation-list">
+                      
+        <div class="recommendation-item">
+          <div class="recommendation-icon">🎯</div>
+          <div class="recommendation-content">
+            <h4>Address Element Interaction Issues</h4>
+            <p>44% of failures are element interaction-related. Focus testing efforts on this area.</p>
+          </div>
+        </div>
+      
+        <div class="recommendation-item">
+          <div class="recommendation-icon">🧠</div>
+          <div class="recommendation-content">
+            <h4>Improve AI Analysis Quality</h4>
+            <p>AI confidence is below optimal (70%). Consider providing more context or using different AI providers.</p>
+          </div>
+        </div>
+      
+        <div class="recommendation-item">
+          <div class="recommendation-icon">📈</div>
+          <div class="recommendation-content">
+            <h4>Enhance Test Stability</h4>
+          <p>Implement self-healing mechanisms and improve element selectors to reduce 18 failure instances.</p>
+        </div>
+      </div>
+      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="analytics-grid">
               <div class="analytics-card">
                 <h3>Failure Cluster Distribution</h3>
@@ -633,9 +3091,9 @@
           new Chart(clusterCtx, {
             type: 'doughnut',
             data: {
-              labels: ["Other"],
+              labels: ["Timeout Issues","Element Interaction","Assertion Failures"],
               datasets: [{
-                data: [100],
+                data: [33,44,22],
                 backgroundColor: [
                   '#f56565',
                   '#ed8936',
@@ -673,10 +3131,10 @@
           new Chart(trendCtx, {
             type: 'line',
             data: {
-              labels: ["Aug 26","Aug 26","Aug 26","Aug 26","Aug 26","Aug 26","Aug 26"],
+              labels: ["Oct 8","Oct 8","Oct 8","Oct 8","Oct 8","Oct 8","Oct 8"],
               datasets: [{
                 label: 'Number of Failures',
-                data: [1,1,1,1,1,1,1],
+                data: [0,0,18,18,18,18,18],
                 borderColor: '#f56565',
                 backgroundColor: 'rgba(245, 101, 101, 0.1)',
                 tension: 0.4,

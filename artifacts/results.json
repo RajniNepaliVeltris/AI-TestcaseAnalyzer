@@ -1,10 +1,148 @@
 {
   "failed": [
     {
-      "testName": "Test intelligent authentication analysis",
-      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Login Page\" [level=2]\n- heading \"This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password. If the information is wrong you should see error messages.\" [level=4]:\n  - text: This is where you can log into the secure area. Enter\n  - emphasis: tomsmith\n  - text: for the username and\n  - emphasis: SuperSecretPassword!\n  - text: for the password. If the information is wrong you should see error messages.\n- text: Username\n- textbox \"Username\": invalid_user\n- text: Password\n- textbox \"Password\": wrong_password\n- button \" Login\"\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```"
+      "testName": "@ai-analysis Dynamic content timing analysis",
+      "error": "Error: Self-healing wait failed for selectors: #finish, .finish",
+      "stack": "Error: Self-healing wait failed for selectors: #finish, .finish\n    at selfHealingWait (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:75:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:167:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Dynamically Loaded Page Elements\" [level=3]\n- 'heading \"Example 2: Element rendered after the fact\" [level=4]'\n- button \"Start\"\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@ai-analysis Dynamic content timing analysis (Retry 1)",
+      "error": "Error: Self-healing wait failed for selectors: #finish, .finish",
+      "stack": "Error: Self-healing wait failed for selectors: #finish, .finish\n    at selfHealingWait (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:75:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:167:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Dynamically Loaded Page Elements\" [level=3]\n- 'heading \"Example 2: Element rendered after the fact\" [level=4]'\n- button \"Start\"\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 1
+    },
+    {
+      "testName": "@ai-analysis DOM mutation analysis",
+      "error": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete",
+      "stack": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:183:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Add/Remove Elements\" [level=3]\n- button \"Add Element\"\n- separator\n- button \"Delete\"\n- button \"Delete\"\n- button \"Delete\"\n- button \"Delete\"\n- button \"Delete\"\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@ai-analysis DOM mutation analysis (Retry 1)",
+      "error": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete",
+      "stack": "Error: Self-healing click failed for selectors: .wrong-delete-button, .delete\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:183:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Add/Remove Elements\" [level=3]\n- button \"Add Element\"\n- separator\n- button \"Delete\"\n- button \"Delete\"\n- button \"Delete\"\n- button \"Delete\"\n- button \"Delete\"\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 1
+    },
+    {
+      "testName": "@ai-analysis Network resilience analysis",
+      "error": "Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected) Locator: locator('img').first() Expected string: \"0\" Received string: \"\" Call log:   - Expect \"toHaveAttribute\" with timeout 2000ms   - waiting for locator('img').first()     6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>       - unexpected value \"null\"",
+      "stack": "Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected)\n\nLocator: locator('img').first()\nExpected string: \"0\"\nReceived string: \"\"\nCall log:\n  - Expect \"toHaveAttribute\" with timeout 2000ms\n  - waiting for locator('img').first()\n    6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>\n      - unexpected value \"null\"\n\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:202:38",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Broken Images\" [level=3]\n- img\n- img\n- img\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@ai-analysis Network resilience analysis (Retry 1)",
+      "error": "Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected) Locator: locator('img').first() Expected string: \"0\" Received string: \"\" Call log:   - Expect \"toHaveAttribute\" with timeout 2000ms   - waiting for locator('img').first()     6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>       - unexpected value \"null\"",
+      "stack": "Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected)\n\nLocator: locator('img').first()\nExpected string: \"0\"\nReceived string: \"\"\nCall log:\n  - Expect \"toHaveAttribute\" with timeout 2000ms\n  - waiting for locator('img').first()\n    6 × locator resolved to <img alt=\"Fork me on GitHub\" src=\"/img/forkme_right_green_007200.png\"/>\n      - unexpected value \"null\"\n\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:202:38",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Broken Images\" [level=3]\n- img\n- img\n- img\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 1
+    },
+    {
+      "testName": "@batch Form validation analysis",
+      "error": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]",
+      "stack": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]\n    at selfHealingFill (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:48:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:218:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Inputs\" [level=3]\n- paragraph: Number\n- spinbutton\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@batch Form validation analysis (Retry 1)",
+      "error": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]",
+      "stack": "Error: Unable to fill any of the provided selectors: input[type=\"number\"]\n    at selfHealingFill (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:48:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:218:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Inputs\" [level=3]\n- paragraph: Number\n- spinbutton\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 1
+    },
+    {
+      "testName": "@batch State management analysis",
+      "error": "Error: expect(received).toBe(expected) // Object.is equality Expected: 3 Received: 1",
+      "stack": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 3\nReceived: 1\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:235:30",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Checkboxes\" [level=3]\n- checkbox\n- text: checkbox 1\n- checkbox [checked]\n- text: checkbox 2\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@batch State management analysis (Retry 1)",
+      "error": "Error: expect(received).toBe(expected) // Object.is equality Expected: 3 Received: 1",
+      "stack": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 3\nReceived: 1\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:235:30",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Checkboxes\" [level=3]\n- checkbox\n- text: checkbox 1\n- checkbox [checked]\n- text: checkbox 2\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 1
+    },
+    {
+      "testName": "@batch Shadow DOM analysis",
+      "error": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text",
+      "stack": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:243:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Simple template\" [level=1]\n- paragraph: Let's have some different text!\n- paragraph:\n  - list:\n    - listitem: Let's have some different text!\n    - listitem: In a list!\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@batch Shadow DOM analysis (Retry 1)",
+      "error": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text",
+      "stack": "Error: Self-healing click failed for selectors: #shadow_content, ::shadow span, text=My default text\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:243:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Simple template\" [level=1]\n- paragraph: Let's have some different text!\n- paragraph:\n  - list:\n    - listitem: Let's have some different text!\n    - listitem: In a list!\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 1
+    },
+    {
+      "testName": "@reporting Iframe interaction analysis",
+      "error": "Error: Self-healing click failed for selectors: #mce_0_ifr",
+      "stack": "Error: Self-healing click failed for selectors: #mce_0_ifr\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:264:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"An iFrame containing the TinyMCE WYSIWYG Editor\" [level=3]\n- application [disabled]:\n  - menubar [disabled]:\n    - menuitem \"File\" [disabled]\n    - menuitem \"Edit\" [disabled]\n    - menuitem \"View\" [disabled]\n    - menuitem \"Format\" [disabled]\n  - group [disabled]:\n    - group [disabled]:\n      - toolbar \"history\" [disabled]:\n        - button \"Undo\" [disabled]:\n          - img\n        - button \"Redo\" [disabled]:\n          - img\n      - toolbar \"styles\" [disabled]:\n        - button \"Formats\" [disabled]:\n          - text: Paragraph\n          - img\n      - toolbar \"formatting\" [disabled]:\n        - button \"Bold\" [disabled]:\n          - img\n        - button \"Italic\" [disabled]:\n          - img\n      - toolbar \"alignment\" [disabled]:\n        - button \"Align left\" [disabled]:\n          - img\n        - button \"Align center\" [disabled]:\n          - img\n        - button \"Align right\" [disabled]:\n          - img\n        - button \"Justify\" [disabled]:\n          - img\n      - toolbar \"indentation\" [disabled]:\n        - button \"Decrease indent\" [disabled]:\n          - img\n        - button \"Increase indent\" [disabled]:\n          - img\n  - iframe\n  - complementary\n  - navigation\n  - link \"Powered by Tiny\" [disabled]:\n    - /url: https://www.tiny.cloud/?utm_campaign=editor_referral&utm_medium=poweredby&utm_source=tinymce&utm_content=v5\n  - img\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n- alert:\n  - img\n  - paragraph:\n    - text: TinyMCE is in read-only mode because you have no more editor loads available this month.\n    - strong: Please request that the admin\n    - text: upgrade your plan or add a valid payment method for additional editor load charges.\n    - link \"Learn more.\":\n      - /url: https://www.tiny.cloud/docs/tinymce/latest/usage-based-billing/?utm_campaign=editor_blocked_learn_more&utm_source=tiny&utm_medium=referral\n  - button \"Close\":\n    - img\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@reporting Iframe interaction analysis (Retry 1)",
+      "error": "Error: Self-healing click failed for selectors: #mce_0_ifr",
+      "stack": "Error: Self-healing click failed for selectors: #mce_0_ifr\n    at selfHealingClick (C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\src\\selfHealing.ts:23:9)\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:264:9",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"An iFrame containing the TinyMCE WYSIWYG Editor\" [level=3]\n- application [disabled]:\n  - menubar [disabled]:\n    - menuitem \"File\" [disabled]\n    - menuitem \"Edit\" [disabled]\n    - menuitem \"View\" [disabled]\n    - menuitem \"Format\" [disabled]\n  - group [disabled]:\n    - group [disabled]:\n      - toolbar \"history\" [disabled]:\n        - button \"Undo\" [disabled]:\n          - img\n        - button \"Redo\" [disabled]:\n          - img\n      - toolbar \"styles\" [disabled]:\n        - button \"Formats\" [disabled]:\n          - text: Paragraph\n          - img\n      - toolbar \"formatting\" [disabled]:\n        - button \"Bold\" [disabled]:\n          - img\n        - button \"Italic\" [disabled]:\n          - img\n      - toolbar \"alignment\" [disabled]:\n        - button \"Align left\" [disabled]:\n          - img\n        - button \"Align center\" [disabled]:\n          - img\n        - button \"Align right\" [disabled]:\n          - img\n        - button \"Justify\" [disabled]:\n          - img\n      - toolbar \"indentation\" [disabled]:\n        - button \"Decrease indent\" [disabled]:\n          - img\n        - button \"Increase indent\" [disabled]:\n          - img\n  - iframe\n  - complementary\n  - navigation\n  - link \"Powered by Tiny\" [disabled]:\n    - /url: https://www.tiny.cloud/?utm_campaign=editor_referral&utm_medium=poweredby&utm_source=tinymce&utm_content=v5\n  - img\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n- alert:\n  - img\n  - paragraph:\n    - text: TinyMCE is in read-only mode because you have no more editor loads available this month.\n    - strong: Please request that the admin\n    - text: upgrade your plan or add a valid payment method for additional editor load charges.\n    - link \"Learn more.\":\n      - /url: https://www.tiny.cloud/docs/tinymce/latest/usage-based-billing/?utm_campaign=editor_blocked_learn_more&utm_source=tiny&utm_medium=referral\n  - button \"Close\":\n    - img\n```",
+      "retry": 1
+    },
+    {
+      "testName": "@reporting Error recovery analysis",
+      "error": "Error: Timed out 2000ms waiting for expect(locator).toHaveText(expected) Locator: locator('h2') Expected string: \"Welcome to the-internet\" Received: <element(s) not found> Call log:   - Expect \"toHaveText\" with timeout 2000ms   - waiting for locator('h2')",
+      "stack": "Error: Timed out 2000ms waiting for expect(locator).toHaveText(expected)\n\nLocator: locator('h2')\nExpected string: \"Welcome to the-internet\"\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toHaveText\" with timeout 2000ms\n  - waiting for locator('h2')\n\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:296:57",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Status Codes\" [level=3]\n- paragraph:\n  - text: This page returned a 500 status code. For a definition and common list of HTTP status codes, go\n  - link \"here\":\n    - /url: /status_codes\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@reporting Error recovery analysis (Retry 1)",
+      "error": "Error: Timed out 2000ms waiting for expect(locator).toHaveText(expected) Locator: locator('h2') Expected string: \"Welcome to the-internet\" Received: <element(s) not found> Call log:   - Expect \"toHaveText\" with timeout 2000ms   - waiting for locator('h2')",
+      "stack": "Error: Timed out 2000ms waiting for expect(locator).toHaveText(expected)\n\nLocator: locator('h2')\nExpected string: \"Welcome to the-internet\"\nReceived: <element(s) not found>\nCall log:\n  - Expect \"toHaveText\" with timeout 2000ms\n  - waiting for locator('h2')\n\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:296:57",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Status Codes\" [level=3]\n- paragraph:\n  - text: This page returned a 500 status code. For a definition and common list of HTTP status codes, go\n  - link \"here\":\n    - /url: /status_codes\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 1
+    },
+    {
+      "testName": "@integration Mixed success and failure scenarios",
+      "error": "Error: expect(received).toBe(expected) // Object.is equality Expected: 1 Received: 2",
+      "stack": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 1\nReceived: 2\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:331:31",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Checkboxes\" [level=3]\n- checkbox [checked]\n- text: checkbox 1\n- checkbox [checked]\n- text: checkbox 2\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 0
+    },
+    {
+      "testName": "@integration Mixed success and failure scenarios (Retry 1)",
+      "error": "Error: expect(received).toBe(expected) // Object.is equality Expected: 1 Received: 2",
+      "stack": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 1\nReceived: 2\n    at C:\\workingProject\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:331:31",
+      "context": "# Page snapshot\n\n```yaml\n- link \"Fork me on GitHub\":\n  - /url: https://github.com/tourdedave/the-internet\n  - img \"Fork me on GitHub\"\n- heading \"Checkboxes\" [level=3]\n- checkbox [checked]\n- text: checkbox 1\n- checkbox [checked]\n- text: checkbox 2\n- separator\n- text: Powered by\n- link \"Elemental Selenium\":\n  - /url: http://elementalselenium.com/\n```",
+      "retry": 1
     }
   ],
-  "passed": [],
-  "total": 1
+  "passed": [
+    {
+      "testName": "@selfheal-success Basic form interaction with self-healing"
+    },
+    {
+      "testName": "@selfheal-success Dynamic element interaction"
+    },
+    {
+      "testName": "@selfheal-success Checkbox state management"
+    },
+    {
+      "testName": "@reporting Race condition analysis"
+    },
+    {
+      "testName": "@integration Complete user journey with self-healing"
+    }
+  ],
+  "total": 23
 }

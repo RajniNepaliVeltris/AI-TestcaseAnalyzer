@@ -1,24 +1,24 @@
 AI Report Generation Error
 ========================
-Time: 2025-08-25T22:27:47.910Z
+Time: 2025-10-08T11:50:17.348Z
 Severity: Critical
 Component: Report Generator
-Error: EISDIR: illegal operation on a directory, read
+Error: Cannot read properties of undefined (reading 'includes')
 
 Stack Trace:
-Error: EISDIR: illegal operation on a directory, read
-    at Object.readFileSync (node:fs:441:20)
-    at FileManager.validateResultsFile (C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\reporting\FileManager.ts:17:31)
-    at ReportGenerator.generateReport (C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\reporting\ReportGenerator.ts:78:24)
-    at generateReport (C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\report-generator.ts:120:27)
-    at Object.<anonymous> (C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\report-generator.ts:128:1)
-    at Module._compile (node:internal/modules/cjs/loader:1688:14)
-    at Module.m._compile (C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\node_modules\ts-node\src\index.ts:1618:23)
-    at node:internal/modules/cjs/loader:1820:10
-    at Object.require.extensions.<computed> [as .ts] (C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\node_modules\ts-node\src\index.ts:1621:12)
-    at Module.load (node:internal/modules/cjs/loader:1423:32)
+TypeError: Cannot read properties of undefined (reading 'includes')
+    at getFixedTestTitle (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\utils\test-title-fixer.ts:27:18)
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\reporting\ReportGenerator.ts:137:38
+    at Array.map (<anonymous>)
+    at ReportGenerator.generateReport (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\reporting\ReportGenerator.ts:135:50)
+    at generateReport (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\report-generator.ts:235:27)
+    at Object.<anonymous> (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\src\report-generator.ts:243:1)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module.m._compile (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\node_modules\ts-node\src\index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Object.require.extensions.<computed> [as .ts] (C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\node_modules\ts-node\src\index.ts:1621:12)
 
 Context:
-- Results Path: C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\test-results
-- Output Path: C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\artifacts\html-report\ai-analysis-report.html
-- History Path: C:\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\artifacts\analytics-history.json
+- Results Path: C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\artifacts\results.json
+- Output Path: C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\artifacts\html-report\ai-analysis-report.html
+- History Path: C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\artifacts\analytics-history.json

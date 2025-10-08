@@ -106,5 +106,125 @@
     "total": 1,
     "failed": 1,
     "passed": 0
+  },
+  {
+    "date": "2025-10-08T09:54:15.759Z",
+    "total": 1,
+    "failed": 1,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:01:08.296Z",
+    "total": 1,
+    "failed": 1,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:08:51.441Z",
+    "total": 1,
+    "failed": 1,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:19:06.517Z",
+    "total": 9,
+    "failed": 9,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:33:19.470Z",
+    "total": 13,
+    "failed": 13,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:45:57.942Z",
+    "total": 10,
+    "failed": 10,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:49:18.692Z",
+    "total": 10,
+    "failed": 10,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:50:33.800Z",
+    "total": 10,
+    "failed": 10,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:51:36.341Z",
+    "total": 10,
+    "failed": 10,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:54:41.887Z",
+    "total": 10,
+    "failed": 10,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T10:55:35.232Z",
+    "total": 10,
+    "failed": 10,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:23:08.003Z",
+    "total": 0,
+    "failed": 0,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:28:20.217Z",
+    "total": 0,
+    "failed": 0,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:45:14.115Z",
+    "total": 0,
+    "failed": 0,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:50:01.907Z",
+    "total": 0,
+    "failed": 0,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:51:21.406Z",
+    "total": 18,
+    "failed": 18,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:55:13.969Z",
+    "total": 18,
+    "failed": 18,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:55:31.960Z",
+    "total": 18,
+    "failed": 18,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:55:55.818Z",
+    "total": 18,
+    "failed": 18,
+    "passed": 0
+  },
+  {
+    "date": "2025-10-08T11:57:06.934Z",
+    "total": 18,
+    "failed": 18,
+    "passed": 0
   }
 ]

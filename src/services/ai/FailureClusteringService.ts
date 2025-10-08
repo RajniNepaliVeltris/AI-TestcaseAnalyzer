@@ -11,25 +11,39 @@ export interface FailureCluster {
     frequency: number;
 }
 
+export interface ClusteringOptions {
+    similarityThreshold: number;
+    maxClusters: number;
+    enableParallelProcessing: boolean;
+    batchSize: number;
+}
+
 export class FailureClusteringService {
     private tfidf: natural.TfIdf;
     private clusters: Map<string, FailureCluster>;
-    private similarityThreshold: number;
+    private options: ClusteringOptions;
 
-    constructor(similarityThreshold: number = 0.7) {
+    constructor(options: Partial<ClusteringOptions> = {}) {
         this.tfidf = new natural.TfIdf();
         this.clusters = new Map();
-        this.similarityThreshold = similarityThreshold;
+        this.options = {
+            similarityThreshold: 0.7,
+            maxClusters: 100,
+            enableParallelProcessing: true,
+            batchSize: 50,
+            ...options
+        };
     }
 
+    /**
+     * Add a single failure to clustering
+     */
     public addFailure(failure: TestFailure): void {
-        // Convert failure to document for TF-IDF
         const document = this.failureToDocument(failure);
         this.tfidf.addDocument(document);
 
-        // Find the most similar cluster or create a new one
         const similarCluster = this.findSimilarCluster(document);
-        
+
         if (similarCluster) {
             this.updateCluster(similarCluster, failure);
         } else {
@@ -37,8 +51,155 @@ export class FailureClusteringService {
         }
     }
 
-    public getClusters(): FailureCluster[] {
-        return Array.from(this.clusters.values());
+    /**
+     * Add multiple failures in batch for better performance
+     */
+    public async addFailuresBatch(failures: TestFailure[]): Promise<void> {
+        if (!this.options.enableParallelProcessing || failures.length < this.options.batchSize) {
+            // Process sequentially for small batches
+            failures.forEach(failure => this.addFailure(failure));
+            return;
+        }
+
+        // Process in batches for better performance
+        const batches = this.createBatches(failures, this.options.batchSize);
+
+        for (const batch of batches) {
+            await this.processBatch(batch);
+        }
+
+        // Re-cluster if we have too many clusters
+        if (this.clusters.size > this.options.maxClusters) {
+            await this.consolidateClusters();
+        }
+    }
+
+    /**
+     * Process a batch of failures
+     */
+    private async processBatch(failures: TestFailure[]): Promise<void> {
+        const documents = failures.map(failure => this.failureToDocument(failure));
+
+        // Add all documents to TF-IDF at once
+        documents.forEach(doc => this.tfidf.addDocument(doc));
+
+        // Process each failure
+        const promises = failures.map(async (failure, index) => {
+            const document = documents[index];
+            const similarCluster = this.findSimilarCluster(document);
+
+            if (similarCluster) {
+                this.updateCluster(similarCluster, failure);
+            } else {
+                this.createNewCluster(failure);
+            }
+        });
+
+        // Process with controlled concurrency
+        await this.processWithConcurrency(promises, 10);
+    }
+
+    /**
+     * Process promises with controlled concurrency
+     */
+    private async processWithConcurrency<T>(
+        promises: Promise<T>[],
+        concurrency: number
+    ): Promise<T[]> {
+        const results: T[] = [];
+        const chunks = this.chunkArray(promises, concurrency);
+
+        for (const chunk of chunks) {
+            const chunkResults = await Promise.allSettled(chunk);
+            for (const result of chunkResults) {
+                if (result.status === 'fulfilled') {
+                    results.push(result.value);
+                }
+            }
+        }
+
+        return results;
+    }
+
+    /**
+     * Consolidate clusters when we have too many
+     */
+    private async consolidateClusters(): Promise<void> {
+        console.log(`Consolidating ${this.clusters.size} clusters...`);
+
+        const allClusters = Array.from(this.clusters.values());
+        const consolidatedClusters = new Map<string, FailureCluster>();
+
+        // Merge similar clusters
+        for (const cluster of allClusters) {
+            let merged = false;
+
+            for (const [id, existingCluster] of consolidatedClusters) {
+                if (this.clustersSimilar(cluster, existingCluster)) {
+                    // Merge clusters
+                    existingCluster.failures.push(...cluster.failures);
+                    existingCluster.frequency += cluster.frequency;
+                    existingCluster.lastOccurrence = cluster.lastOccurrence;
+                    existingCluster.commonPatterns = this.mergePatterns(
+                        existingCluster.commonPatterns,
+                        cluster.commonPatterns
+                    );
+                    merged = true;
+                    break;
+                }
+            }
+
+            if (!merged && consolidatedClusters.size < this.options.maxClusters) {
+                consolidatedClusters.set(cluster.id, cluster);
+            }
+        }
+
+        this.clusters = consolidatedClusters;
+        console.log(`Consolidated to ${this.clusters.size} clusters`);
+    }
+
+    /**
+     * Check if two clusters are similar
+     */
+    private clustersSimilar(cluster1: FailureCluster, cluster2: FailureCluster): boolean {
+        // Simple similarity check based on category and patterns
+        if (cluster1.category !== cluster2.category) return false;
+
+        const commonPatterns = cluster1.commonPatterns.filter(pattern =>
+            cluster2.commonPatterns.includes(pattern)
+        );
+
+        return commonPatterns.length > 0;
+    }
+
+    /**
+     * Merge common patterns from two clusters
+     */
+    private mergePatterns(patterns1: string[], patterns2: string[]): string[] {
+        const combined = new Set([...patterns1, ...patterns2]);
+        return Array.from(combined).slice(0, 10); // Limit to top 10 patterns
+    }
+
+    /**
+     * Create batches from array
+     */
+    private createBatches<T>(array: T[], batchSize: number): T[][] {
+        const batches: T[][] = [];
+        for (let i = 0; i < array.length; i += batchSize) {
+            batches.push(array.slice(i, i + batchSize));
+        }
+        return batches;
+    }
+
+    /**
+     * Split array into chunks
+     */
+    private chunkArray<T>(array: T[], chunkSize: number): T[][] {
+        const chunks: T[][] = [];
+        for (let i = 0; i < array.length; i += chunkSize) {
+            chunks.push(array.slice(i, i + chunkSize));
+        }
+        return chunks;
     }
 
     private failureToDocument(failure: TestFailure): string {
@@ -63,7 +224,7 @@ export class FailureClusteringService {
 
         this.clusters.forEach(cluster => {
             const similarity = this.calculateSimilarity(document, cluster);
-            if (similarity > maxSimilarity && similarity >= this.similarityThreshold) {
+            if (similarity > maxSimilarity && similarity >= this.options.similarityThreshold) {
                 maxSimilarity = similarity;
                 mostSimilarCluster = cluster;
             }

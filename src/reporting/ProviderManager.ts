@@ -1,5 +1,6 @@
 import { AnalysisResult, TestContext } from '../types/shared';
 import { analyzeFailureAI } from '../ai-failure-analyzer';
+import { BatchAIService } from '../services/ai/BatchAIService';
 import type { FailureArtifact } from '../types/shared';
 import { getMockAnalysis } from '../providers/mock-provider';
 
@@ -16,11 +17,16 @@ export interface ProviderManagerOptions {
 
 export class ProviderManager {
   private useMockProviders: boolean;
-  
-  private mockResponses: any;
+  private batchService: BatchAIService;
 
-  constructor(options?: ProviderManagerOptions) {
+  private mockResponses: any;  constructor(options?: ProviderManagerOptions) {
     this.useMockProviders = options?.useMockProviders || process.argv.includes('--demo') || process.env.NODE_ENV === 'demo' || process.env.AI_DEMO === 'true' || false;
+    this.batchService = new BatchAIService({
+      concurrency: 5,
+      batchSize: 10,
+      enableParallel: !this.useMockProviders, // Disable parallel in demo mode
+      enableCaching: true
+    });
     this.mockResponses = {
       authFailure: {
         reason: "Authentication system failure detected",
@@ -152,6 +158,66 @@ export class ProviderManager {
       category: "System Error",
       prevention: "Ensure AI providers are properly configured"
     };
+  }
+
+  /**
+   * Analyze multiple failures in batch for better performance
+   */
+  async analyzeBatchWithProviders(failures: FailureArtifact[]): Promise<EnhancedAnalysisResult[]> {
+    if (this.useMockProviders) {
+      console.log(`🔍 Batch analyzing ${failures.length} test failures (Demo Mode)`);
+
+      const results = failures.map((failure, index) => {
+        // Determine failure type from error message
+        let analysisType = 'element'; // default
+
+        if (failure.error.toLowerCase().includes('auth') || failure.error.toLowerCase().includes('login')) {
+          analysisType = 'authFailure';
+        } else if (failure.error.toLowerCase().includes('timeout') || failure.error.toLowerCase().includes('wait')) {
+          analysisType = 'timeout';
+        }
+
+        const analysis = { ...this.mockResponses[analysisType] };
+        analysis.testName = failure.testName;
+        analysis.error = failure.error;
+        analysis.stack = failure.stack;
+
+        console.log(`✨ Mock analysis complete for failure ${index + 1}/${failures.length}`);
+        return analysis;
+      });
+
+      return results;
+    }
+
+    // Production mode: Use batch AI service
+    console.log(`🔍 Batch analyzing ${failures.length} test failures with AI`);
+
+    // Convert FailureArtifact to TestFailure format
+    const testFailures = failures.map(failure => ({
+      testName: failure.testName,
+      error: failure.error,
+      stackTrace: failure.stack || '',
+      timestamp: new Date(),
+      screenshot: failure.screenshotPath
+    }));
+
+    // Use batch processing for better performance
+    const batchResult = await this.batchService.analyzeBatch(testFailures);
+
+    console.log(`✨ Batch analysis complete: ${batchResult.totalProcessed} processed, ${batchResult.totalErrors} errors, ${batchResult.processingTime}ms`);
+
+    // Convert back to EnhancedAnalysisResult format
+    return batchResult.results.map(result => ({
+      reason: result.rootCause,
+      resolution: result.suggestedFix,
+      provider: 'Batch AI',
+      category: result.category,
+      prevention: 'Implemented via batch processing',
+      confidence: result.confidence,
+      testName: result.failure.testName,
+      error: result.failure.error,
+      stack: result.failure.stackTrace
+    }));
   }
 
   getProviderError(err: unknown): { message: string; type: 'quota' | 'auth' | 'other' } {

@@ -37,21 +37,29 @@ export function clusterFailures(failures: TestFailure[]): Record<string, Failure
     console.log(`[DEBUG] Processing test failure: ${fail.testName}`);
     uniqueTests.add(fail.testName);
     
-    // Determine failure category
-    if (/timeout|timed out|exceeded.*ms/i.test(errorMessage)) {
-      key = 'Timeout';
-    } else if (/toBeVisible|locator|selector|element not found/i.test(errorMessage)) {
-      key = 'Element Visibility';
-    } else if (/network|connection|net::ERR_/i.test(errorMessage)) {
-      key = 'Network Issue';
-    } else if (/assert|expect|match|should/i.test(errorMessage)) {
-      key = 'Assertion Failure';
-    } else if (/auth|login|credentials/i.test(errorMessage)) {
+    // Determine failure category based on actual error patterns from tests
+    if (/self-healing wait failed|timeout|timed out|exceeded.*ms/i.test(errorMessage)) {
+      key = 'Timeout Issues';
+    } else if (/self-healing click failed|self-healing fill failed|unable to fill|locator.*timeout|element.*not found|selector.*failed/i.test(errorMessage)) {
+      key = 'Element Interaction';
+    } else if (/network|connection|net::ERR_|resilience|naturalWidth/i.test(errorMessage)) {
+      key = 'Network Issues';
+    } else if (/expect.*toBe|expect.*toHave|assertion|received.*expected/i.test(errorMessage)) {
+      key = 'Assertion Failures';
+    } else if (/auth|login|credentials|authentication/i.test(errorMessage)) {
       key = 'Authentication';
-    } else if (/iframe|frame/i.test(errorMessage)) {
-      key = 'IFrame Issue';
-    } else if (/form|input|validation/i.test(errorMessage)) {
+    } else if (/iframe|frame|tinymce/i.test(errorMessage)) {
+      key = 'IFrame Issues';
+    } else if (/form|input|validation|type.*number/i.test(errorMessage)) {
       key = 'Form Validation';
+    } else if (/shadow.*dom|::shadow/i.test(errorMessage)) {
+      key = 'Shadow DOM';
+    } else if (/dom mutation|dynamic.*content/i.test(errorMessage)) {
+      key = 'DOM Issues';
+    } else if (/race.*condition|notification.*message/i.test(errorMessage)) {
+      key = 'Race Conditions';
+    } else if (/error.*recovery|status.*codes/i.test(errorMessage)) {
+      key = 'Error Recovery';
     }
     
     console.log(`[DEBUG] Classified as: ${key}`);

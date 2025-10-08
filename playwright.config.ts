@@ -5,7 +5,7 @@ export default defineConfig({
   timeout: 30000,
   retries: 1,
   reporter: [
-    ['json', { outputFile: 'artifacts/results.json' }],
+    ['json', { outputFile: 'artifacts/playwright-results.json' }],
     ['html', { outputFolder: 'artifacts/html-report', open: 'never' }]
   ],
   use: {
