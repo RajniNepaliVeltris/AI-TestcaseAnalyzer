@@ -11,26 +11,14 @@ import { FailureClusteringService } from "./services/ai/FailureClusteringService
 import { fixTestTitles } from "./utils/test-title-fixer";
 
 // Load environment variables
-const isDemo = process.argv.includes('--demo') || process.env.NODE_ENV === 'demo';
-if (!isDemo) {
-  // Load production environment file
-  const envPath = path.resolve('.env.prod');
-  if (fs.existsSync(envPath)) {
-    dotenv.config({ path: envPath });
-    console.log('✅ Loaded production environment from .env.prod');
-  } else {
-    console.warn('⚠️  .env.prod file not found, loading default .env');
-    dotenv.config();
-  }
+// Load production environment file
+const envPath = path.resolve('.env.prod');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+  console.log('✅ Loaded production environment from .env.prod');
 } else {
-  // Load demo environment file
-  const envPath = path.resolve('.env.demo');
-  if (fs.existsSync(envPath)) {
-    dotenv.config({ path: envPath });
-    console.log('🧪 Loaded demo environment from .env.demo');
-  } else {
-    dotenv.config();
-  }
+  console.warn('⚠️  .env.prod file not found, loading default .env');
+  dotenv.config();
 }
 
 // Configuration
@@ -38,15 +26,7 @@ const CONFIG = {
   resultsDir: path.resolve('test-results'),
   artifactsDir: path.resolve('artifacts'),
   reportDir: path.resolve('artifacts/html-report'),
-  historyFile: path.resolve('artifacts/analytics-history.json'),
-  isDemo: isDemo,
-  mockData: {
-    openai: {
-      authFailure: "Authentication failure detected. Common issues: invalid credentials, rate limiting, or network issues. Recommended actions: 1) Verify credentials, 2) Implement retry mechanism, 3) Add error logging.",
-      timingIssue: "Timing-related failure detected. Potential causes: race conditions, slow responses, or dynamic content. Solutions: 1) Increase timeout, 2) Add wait conditions, 3) Improve error handling.",
-      domMutation: "DOM element not found. Likely causes: element not loaded, dynamic content, or incorrect selector. Fixes: 1) Add wait conditions, 2) Use more reliable selectors, 3) Handle dynamic content."
-    }
-  }
+  historyFile: path.resolve('artifacts/analytics-history.json')
 };
 
 // Paths (can be made configurable via env)
@@ -156,10 +136,9 @@ const REPORT_PATH = path.resolve('artifacts/html-report/ai-analysis-report.html'
 
 async function generateReport() {
   try {
-    console.log(`=== Starting Report Generation in ${CONFIG.isDemo ? 'DEMO' : 'PRODUCTION'} mode ===\n`);
+    console.log(`=== Starting Report Generation ===\n`);
     console.log(`DEBUG - NODE_ENV: ${process.env.NODE_ENV}`);
     console.log(`DEBUG - argv: ${process.argv.join(' ')}`);
-    console.log(`DEBUG - isDemo: ${CONFIG.isDemo}`);
     console.log(`DEBUG - reportDir: ${CONFIG.reportDir}`);
 
     // Make sure directories exist but don't delete existing content
@@ -185,13 +164,6 @@ async function generateReport() {
       } else {
         fs.rmSync(resultsJsonPath, { force: true });
       }
-    }
-
-    if (CONFIG.isDemo) {
-      console.log("🤖 Running in DEMO mode");
-      console.log("- Using simulated AI responses");
-      console.log("- No API calls will be made");
-      console.log("- Demonstrating analysis capabilities\n");
     }
 
     console.log("🔎 Locating test results...");

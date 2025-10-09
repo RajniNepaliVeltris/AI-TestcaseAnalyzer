@@ -1,14 +1,8 @@
-# Environment files# Environment files
-
-.env.env
-
-.env.local.env.local
-
-.env.production.env.production
-
-.env.demo.env.demo
-
-.env.prod.env.prod
+# Environment files
+.env
+.env.local
+.env.production
+.env.prod
 
 
 

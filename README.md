@@ -13,8 +13,6 @@ A powerful test automation framework that leverages AI to analyze test failures,
 - **Enhanced HTML Reports**: Detailed, interactive reports with AI-driven insights and visualizations
 - **Self-Healing Mechanisms**: Adaptive element selection to improve test stability
 - **Historical Trend Analysis**: Track test reliability and improvement over time
-- **Demo Mode**: Demonstrate AI analysis capabilities without requiring API keys
-- **Multiple Environments**: Run in development, demo, or production modes
 - **Customizable**: Configurable paths, AI providers, and report settings
 - **Reusable**: Can be integrated into any Playwright project
 
@@ -75,12 +73,6 @@ TOGETHER_AI_KEY=your-together-ai-key
 
 ### Running Tests with AI Analysis
 
-To run tests with AI analysis in demo mode (uses simulated AI responses):
-
-```bash
-npm run demo:full
-```
-
 To run tests with AI analysis in production mode (uses actual AI providers):
 
 ```bash
@@ -94,11 +86,6 @@ npm run test
 ```
 
 ### Generating AI Analysis Report Only
-
-For demo mode:
-```bash
-npm run demo:report
-```
 
 For production mode:
 ```bash
