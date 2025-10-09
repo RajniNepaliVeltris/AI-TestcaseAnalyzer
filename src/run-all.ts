@@ -24,9 +24,32 @@ interface TestRunStats {
   skipped: number;
 }
 
-// Optimized Playwright test execution and report generation
+interface TestResult {
+  testFile: string;
+  testName: string;
+  error?: string;
+  errorMessage?: string;
+  stack?: string;
+  status: 'passed' | 'failed' | 'skipped';
+  duration: number;
+  failureDetails?: any;
+}
+
+interface TestResultsData {
+  stats: TestRunStats;
+  failures: number;
+  tests: TestResult[];
+  metadata: {
+    timestamp: string;
+    environment: string;
+    browser: string;
+    mode: string;
+  };
+}
+
+// Optimized Playwright test execution
 function buildPlaywrightCommand(options: TestRunOptions = {}): string {
-  const parts = ['npx playwright test --config=playwright.config.ts'];
+  const parts = ['npx playwright test'];
 
   if (options.tags?.length) {
     parts.push(`--grep "@(${options.tags.join('|')})"`);
@@ -65,7 +88,7 @@ function parseTestResults(output: string): TestRunStats {
       if (line.includes('skipped')) stats.skipped++;
       if (line.includes('retried')) stats.retried++;
     }
-    stats.total = stats.passed + stats.failed;
+    stats.total = stats.passed + stats.failed + stats.skipped;
   } catch (error) {
     console.warn('Could not parse test results:', error);
   }
@@ -85,13 +108,9 @@ async function runPlaywrightTests(options: TestRunOptions = {}): Promise<TestRun
       const stats = parseTestResults(output);
       stats.duration = (performance.now() - startTime) / 1000;
 
-      if (error) {
-        if (stderr.includes('Test failed')) {
-          resolve(stats);
-        } else {
-          console.error('Playwright test execution error:', stderr);
-          reject(error);
-        }
+      if (error && !stderr.includes('Test failed')) {
+        console.error('Playwright test execution error:', stderr);
+        reject(error);
       } else {
         resolve(stats);
       }
@@ -112,12 +131,8 @@ function runReportGenerator(): Promise<void> {
   return new Promise((resolve, reject) => {
     console.log('Running report generator...');
 
-    const env = {
-      ...process.env
-    };
-
     const reportProcess = exec('npx ts-node src/report-generator.ts --ai-analysis', {
-      env,
+      env: process.env,
       maxBuffer: 20 * 1024 * 1024
     });
 
@@ -145,20 +160,23 @@ function runReportGenerator(): Promise<void> {
   });
 }
 
-// Check AI configuration
+// Environment validation functions
 function validateAIConfig(): boolean {
-  if (!process.env.OPENAI_API_KEY) {
+  const hasOpenAI = !!process.env.OPENAI_API_KEY;
+  const hasTogether = !!process.env.TOGETHER_API_KEY;
+
+  if (!hasOpenAI) {
     console.warn('⚠️ OpenAI API key not found. AI analysis will fall back to Together AI.');
   }
-  if (!process.env.TOGETHER_API_KEY) {
+  if (!hasTogether) {
     console.warn('⚠️ Together AI API key not found. AI analysis will fall back to rule-based analysis.');
   }
-  return true;
+
+  return hasOpenAI || hasTogether;
 }
 
 async function validateTestEnvironment(): Promise<boolean> {
   try {
-    // Check if tests directory exists and contains spec files
     const testsDir = path.join(process.cwd(), 'tests');
     if (!fs.existsSync(testsDir)) {
       console.error('\u2717 Tests directory not found:', testsDir);
@@ -173,7 +191,7 @@ async function validateTestEnvironment(): Promise<boolean> {
 
     console.log('\u2713 Found', specFiles.length, 'test files:');
     specFiles.forEach((file: string) => console.log(` - ${file}`));
-    
+
     return true;
   } catch (error) {
     console.error('\u2717 Error validating test environment:', error);
@@ -181,191 +199,191 @@ async function validateTestEnvironment(): Promise<boolean> {
   }
 }
 
-async function runAll(options: TestRunOptions = {}, generateReport: boolean = false) {
-  console.log(`=== Starting Test Execution ===`);
-  
-  // Validate test environment and AI configuration
-  console.log('\nValidating environment...');
-  if (!await validateTestEnvironment()) {
-    console.error('\u2717 Test environment validation failed');
-    process.exit(1);
+function createTestResults(stats: TestRunStats): TestResultsData {
+  return {
+    stats,
+    failures: stats.failed,
+    tests: [], // Will be populated by actual test results parsing
+    metadata: {
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV || 'development',
+      browser: 'chromium',
+      mode: 'automated'
+    }
+  };
+}
+
+function saveTestResults(results: TestResultsData): void {
+  try {
+    console.log('\nSaving test results...');
+
+    // Clean up existing results
+    const htmlReportDir = 'artifacts/html-report';
+    const resultsFile = 'artifacts/results.json';
+
+    if (fs.existsSync(htmlReportDir)) {
+      fs.rmSync(htmlReportDir, { recursive: true, force: true });
+    }
+    if (fs.existsSync(resultsFile)) {
+      fs.rmSync(resultsFile, { force: true });
+    }
+
+    if (!fs.existsSync('artifacts')) {
+      fs.mkdirSync('artifacts');
+    }
+
+    fs.writeFileSync(resultsFile, JSON.stringify(results, null, 2));
+    console.log('✓ Test results saved successfully');
+  } catch (error) {
+    console.error('✗ Error saving test results:', error);
   }
-  
-  if (!validateAIConfig()) {
-    console.error('\u2717 AI configuration validation failed');
-    process.exit(1);
-  }
-  
-  console.log('\u2713 Environment validation passed\n');
-  
-  // Print run configuration
+}
+
+function printConfiguration(options: TestRunOptions): void {
   console.log('Configuration:');
   console.log(` - Workers: ${options.workers || 'default'}`);
   console.log(` - Retries: ${options.retries !== undefined ? options.retries : 'from config'}`);
   console.log(` - Browser: ${options.headed ? 'headed' : 'headless'}`);
   if (options.tags?.length) console.log(` - Tags: ${options.tags.join(', ')}`);
   if (options.grep) console.log(` - Filter: ${options.grep}`);
-  
-  let testStats: TestRunStats | null = null;
+}
+
+function printTestSummary(stats: TestRunStats): void {
+  console.log('\n=== Test Execution Summary ===');
+  console.log(`Duration: ${stats.duration.toFixed(2)}s`);
+  console.log(`Total Tests: ${stats.total}`);
+  console.log(`✅ Passed: ${stats.passed}`);
+  console.log(`❌ Failed: ${stats.failed}`);
+  if (stats.retried > 0) console.log(`⚠️ Retried: ${stats.retried}`);
+  if (stats.skipped > 0) console.log(`⏭️ Skipped: ${stats.skipped}`);
+
+  if (stats.failed > 0) {
+    console.log('\n❌ Some tests failed - check the reports for details:');
+  } else {
+    console.log('\n✅ All tests completed successfully!');
+  }
+
+  console.log('\nReports:');
+  console.log(' - HTML Report: artifacts/html-report/index.html');
+  console.log(' - JSON Results: artifacts/results.json');
+}
+
+async function runAllTests(options: TestRunOptions = {}): Promise<TestRunStats> {
+  console.log(`=== Starting Test Execution ===`);
+
+  // Validate environment
+  console.log('\nValidating environment...');
+  if (!await validateTestEnvironment()) {
+    throw new Error('Test environment validation failed');
+  }
+
+  if (!validateAIConfig()) {
+    console.warn('\u2717 AI configuration incomplete - analysis may be limited');
+  }
+
+  console.log('\u2713 Environment validation passed\n');
+
+  printConfiguration(options);
+
+  let testStats: TestRunStats;
   try {
     console.log('\nExecuting Playwright tests...');
     console.log('Test Directory: ./tests');
     console.log('Test Pattern: *.spec.ts');
-    
+
     testStats = await runPlaywrightTests(options);
     console.log('✓ Playwright tests execution completed');
-  } catch (err) {
+  } catch (error) {
     console.error('✗ Playwright tests failed');
-    if (err instanceof Error) {
-      console.error('Error details:', err.message);
-    }
-    console.log('\nTroubleshooting tips:');
-    console.log('1. Check if all test files exist in ./tests directory');
-    console.log('2. Verify test file names end with .spec.ts');
-    console.log('3. Ensure playwright.config.ts is properly configured');
-    process.exit(1);
+    throw error;
   }
 
-  // Save test results with detailed test information
+  // Save test results
+  const testResults = createTestResults(testStats);
+  saveTestResults(testResults);
+
+  printTestSummary(testStats);
+
+  return testStats;
+}
+
+// Command line argument parsing
+function parseCommandLineArgs(): { options: TestRunOptions; shouldGenerateReport: boolean } {
+  const args = process.argv.slice(2);
+  const options: TestRunOptions = {
+    workers: args.includes('--parallel') ? 4 : undefined,
+    headed: args.includes('--headed'),
+    tags: args.includes('--tags') ? args[args.indexOf('--tags') + 1]?.split(',') : undefined,
+    grep: args.includes('--grep') ? args[args.indexOf('--grep') + 1] : undefined,
+    retries: args.includes('--retries') ? parseInt(args[args.indexOf('--retries') + 1] || '0') : undefined
+  };
+
+  const shouldGenerateReport = args.includes('--report');
+
+  return { options, shouldGenerateReport };
+}
+
+async function generateAndOpenReport(): Promise<void> {
+  console.log('\nStarting AI Analysis Report generation...');
+
   try {
-    console.log('\nSaving test results...');
-    // Clean up existing results
-    if (fs.existsSync('artifacts/html-report')) {
-      fs.rmSync('artifacts/html-report', { recursive: true, force: true });
-    }
-    if (fs.existsSync('artifacts/results.json')) {
-      fs.rmSync('artifacts/results.json', { force: true });
-    }
-    if (!fs.existsSync('artifacts')) {
-      fs.mkdirSync('artifacts');
-    }
-    
-    // Create more detailed test results
-    const testResults = {
-      stats: testStats,
-      failures: testStats?.failed || 0,
-      tests: [
-        {
-          testFile: 'tests/ai-analysis-demo.spec.ts',
-          testName: '@auth Test intelligent authentication analysis',
-          error: 'Test timeout of 30000ms exceeded.',
-          errorMessage: 'Expected element .flash.success to be visible',
-          stack: 'Error: expect(locator).toBeVisible()\n    at C:\\VeltrisAIBasedMiniProject\\AI-TestcaseAnalyzer\\tests\\ai-analysis-demo.spec.ts:18:50',
-          status: 'failed',
-          duration: 30000,
-          failureDetails: {
-            type: 'timeout',
-            location: {
-              file: 'ai-analysis-demo.spec.ts',
-              line: 18,
-              column: 50
-            },
-            expected: 'element to be visible',
-            actual: 'element not found'
-          }
-        }
-      ],
-      metadata: {
-        timestamp: new Date().toISOString(),
-        environment: 'demo',
-        browser: 'chromium',
-        mode: 'headed'
-      }
-    };
+    await runReportGenerator();
+    console.log('✓ AI Analysis Report generated successfully');
 
-    fs.writeFileSync('artifacts/results.json', JSON.stringify(testResults, null, 2));
-    console.log('✓ Test results saved successfully');
-  } catch (saveErr) {
-    console.error('✗ Error saving test results:', saveErr);
-  }
-
-  // Report will be generated by the main() function if --report flag is present
-
-  if (testStats) {
-    console.log('\n=== Test Execution Summary ===');
-    console.log(`Duration: ${testStats.duration.toFixed(2)}s`);
-    console.log(`Total Tests: ${testStats.total}`);
-    console.log(`✅ Passed: ${testStats.passed}`);
-    console.log(`❌ Failed: ${testStats.failed}`);
-    if (testStats.retried > 0) console.log(`⚠️ Retried: ${testStats.retried}`);
-    if (testStats.skipped > 0) console.log(`⏭️ Skipped: ${testStats.skipped}`);
-    
-    if (testStats.failed > 0) {
-      console.log('\n❌ Some tests failed - check the reports for details:');
+    const reportPath = 'artifacts/html-report/ai-analysis-report.html';
+    if (fs.existsSync(reportPath)) {
+      console.log('\nOpening report in browser...');
+      const openCommand = process.platform === 'win32' ? 'start' : 'open';
+      exec(`${openCommand} "${reportPath}"`);
     } else {
-      console.log('\n✅ All tests completed successfully!');
+      throw new Error('Report file not found at expected location');
     }
-    
-    console.log('\nReports:');
-    console.log(' - HTML Report: artifacts/html-report/index.html');
-    console.log(' - JSON Results: artifacts/results.json');
-    
-    // In production mode, don't exit on test failures when generating report
-    if (testStats.failed > 0 && !generateReport) {
-      process.exit(1);
-    }
+  } catch (error) {
+    const reportError = error instanceof Error ? error : new Error(String(error));
+    console.error('✗ Error generating AI report:');
+    console.error('  Details:', reportError.message);
+    console.log('\nTroubleshooting steps:');
+    console.log('1. Verify test results exist in artifacts/results.json');
+    console.log('2. Check report-generator.ts for errors');
+    console.log('3. Try running npm run prod:report separately');
+    throw error;
   }
 }
 
-// Parse command line arguments with mode support
-const args = process.argv.slice(2);
-const options: TestRunOptions = {
-  workers: args.includes('--parallel') ? 4 : undefined,
-  headed: args.includes('--headed'),
-  tags: args.includes('--tags') ? args[args.indexOf('--tags') + 1]?.split(',') : undefined,
-  grep: args.includes('--grep') ? args[args.indexOf('--grep') + 1] : undefined,
-  retries: args.includes('--retries') ? parseInt(args[args.indexOf('--retries') + 1]) : undefined
-};
-
-// If --report flag is present, generate report after tests
-const shouldGenerateReport = args.includes('--report');
-
-async function main() {
+async function main(): Promise<void> {
   try {
     // Ensure required directories exist
-    if (!fs.existsSync('artifacts')) {
-      fs.mkdirSync('artifacts');
-    }
-    if (!fs.existsSync('artifacts/html-report')) {
-      fs.mkdirSync('artifacts/html-report', { recursive: true });
-    }
+    const dirs = ['artifacts', 'artifacts/html-report'];
+    dirs.forEach(dir => {
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+    });
+
+    const { options, shouldGenerateReport } = parseCommandLineArgs();
 
     // Run tests
-    await runAll(options);
-    
-    // Generate report if --report flag is present
-    // Always continue to report generation in demo:full mode
-    console.log('\nReport flag status:', shouldGenerateReport);
+    const stats = await runAllTests(options);
+
+    // Generate report if requested
     if (shouldGenerateReport) {
-      console.log('\nStarting AI Analysis Report generation...');
-      
-      try {
-        await runReportGenerator();
-        console.log('✓ AI Analysis Report generated successfully');
-        
-        // Open the report in the default browser
-        if (fs.existsSync('artifacts/html-report/ai-analysis-report.html')) {
-          console.log('\nOpening report in browser...');
-          const openCommand = process.platform === 'win32' ? 'start' : 'open';
-          exec(`${openCommand} artifacts/html-report/ai-analysis-report.html`);
-        } else {
-          throw new Error('Report file not found at expected location');
-        }
-      } catch (err) {
-        const reportErr = err instanceof Error ? err : new Error(String(err));
-        console.error('✗ Error generating AI report:');
-        console.error('  Details:', reportErr.message);
-        console.log('\nTroubleshooting steps:');
-        console.log('1. Verify test results exist in artifacts/results.json');
-        console.log('2. Check report-generator.ts for errors');
-        console.log('3. Try running npm run demo:report separately');
-        process.exit(1);
-      }
+      await generateAndOpenReport();
     }
-  } catch (err) {
-    console.error('Error:', err);
+
+    // Exit with appropriate code
+    if (stats.failed > 0 && !shouldGenerateReport) {
+      process.exit(1);
+    }
+  } catch (error) {
+    console.error('Error:', error);
     process.exit(1);
   }
 }
 
-main();
+// Export functions for external use
+export { runAllTests, TestRunOptions, TestRunStats };
+
+// Run main if this file is executed directly
+if (require.main === module) {
+  main();
+}

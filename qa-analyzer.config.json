@@ -8,6 +8,48 @@
   "fallback": "Rule-based",
   "reportSettings": {
     "includeCharts": true,
-    "includeHistory": true
+    "includeHistory": true,
+    "includeRecommendations": true,
+    "maxFailuresPerReport": 50,
+    "confidenceThreshold": 0.7
+  },
+  "aiSettings": {
+    "maxRetries": 3,
+    "timeout": 30000,
+    "batchSize": 5,
+    "rateLimitDelay": 1000
+  },
+  "clustering": {
+    "enabled": true,
+    "similarityThreshold": 0.8,
+    "maxClusters": 10
+  },
+  "logging": {
+    "level": "info",
+    "file": "artifacts/analysis.log",
+    "maxSize": "10m",
+    "maxFiles": 5
+  },
+  "notifications": {
+    "slack": {
+      "enabled": false,
+      "webhookUrl": "",
+      "channel": "#test-results",
+      "username": "AI-TestAnalyzer"
+    },
+    "email": {
+      "enabled": false,
+      "smtp": {
+        "host": "",
+        "port": 587,
+        "secure": false,
+        "auth": {
+          "user": "",
+          "pass": ""
+        }
+      },
+      "from": "test-analyzer@example.com",
+      "to": []
+    }
   }
 }
