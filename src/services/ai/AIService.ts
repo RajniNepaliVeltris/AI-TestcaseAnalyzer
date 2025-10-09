@@ -1,5 +1,7 @@
 import OpenAI from 'openai';
 import natural from 'natural';
+import { rateLimiters } from '../../utils/rateLimiter';
+import { InputValidator } from '../../utils/inputValidator';
 
 export interface TestFailure {
     testName: string;
@@ -47,13 +49,29 @@ export class AIService {
     private cacheTTL: number = 3600000; // 1 hour in milliseconds
 
     constructor(retryConfig: Partial<RetryConfig> = {}) {
-        const apiKey = process.env.OPENAI_API_KEY;
-        if (!apiKey) {
-            console.warn('OpenAI API key not found, falling back to local analysis');
+        // Validate environment
+        const envValidation = InputValidator.validateEnvironment();
+        if (!envValidation.isValid) {
+            console.warn('Environment validation warnings:', envValidation.errors.join(', '));
+        }
+
+        // Validate API keys
+        if (process.env.OPENAI_API_KEY) {
+            const keyValidation = InputValidator.validateApiKey(process.env.OPENAI_API_KEY, 'OpenAI');
+            if (!keyValidation.isValid) {
+                console.warn('OpenAI API key validation warnings:', keyValidation.errors.join(', '));
+            }
+        }
+
+        if (process.env.TOGETHER_AI_KEY) {
+            const keyValidation = InputValidator.validateApiKey(process.env.TOGETHER_AI_KEY, 'TogetherAI');
+            if (!keyValidation.isValid) {
+                console.warn('TogetherAI API key validation warnings:', keyValidation.errors.join(', '));
+            }
         }
 
         this.openai = new OpenAI({
-            apiKey: apiKey || 'dummy-key'
+            apiKey: process.env.OPENAI_API_KEY || 'dummy-key'
         });
 
         this.tokenizer = new natural.WordTokenizer();
@@ -78,11 +96,26 @@ export class AIService {
     }
 
     async analyzeFailure(failure: TestFailure): Promise<AnalysisResult> {
+        // Validate input
+        const validation = InputValidator.validateTestFailure(failure);
+        if (!validation.isValid) {
+            throw new Error(`Invalid test failure input: ${validation.errors.join(', ')}`);
+        }
+
+        // Sanitize inputs
+        const sanitizedFailure: TestFailure = {
+            ...failure,
+            testName: InputValidator.sanitizeInput(failure.testName),
+            error: InputValidator.sanitizeInput(failure.error),
+            stackTrace: failure.stackTrace ? InputValidator.sanitizeInput(failure.stackTrace) : '',
+            screenshot: failure.screenshot
+        };
+
         // Check cache first
-        const cacheKey = this.generateCacheKey(failure);
+        const cacheKey = this.generateCacheKey(sanitizedFailure);
         const cachedResult = this.getCachedResult(cacheKey);
         if (cachedResult) {
-            console.log(`Using cached result for failure: ${failure.testName}`);
+            console.log(`Using cached result for failure: ${sanitizedFailure.testName}`);
             return cachedResult;
         }
 
@@ -93,7 +126,7 @@ export class AIService {
         if (process.env.OPENAI_API_KEY && this.isCircuitBreakerClosed('openai')) {
             try {
                 result = await this.withRetry(
-                    () => this.analyzeWithOpenAI(failure),
+                    () => this.analyzeWithOpenAI(sanitizedFailure),
                     'openai'
                 );
                 this.recordSuccess('openai');
@@ -105,10 +138,10 @@ export class AIService {
         }
 
         // Try TogetherAI if OpenAI failed
-        if (!result && process.env.TOGETHER_API_KEY && this.isCircuitBreakerClosed('together')) {
+        if (!result && process.env.TOGETHER_AI_KEY && this.isCircuitBreakerClosed('together')) {
             try {
                 result = await this.withRetry(
-                    () => this.analyzeWithTogetherAI(failure),
+                    () => this.analyzeWithTogetherAI(sanitizedFailure),
                     'together'
                 );
                 this.recordSuccess('together');
@@ -122,7 +155,7 @@ export class AIService {
         // Final fallback: Local rule-based analysis
         if (!result) {
             console.log('Using local rule-based analysis as fallback');
-            result = this.localRuleBasedAnalysis(failure);
+            result = this.localRuleBasedAnalysis(sanitizedFailure);
         }
 
         // Cache the result
@@ -246,6 +279,9 @@ export class AIService {
     private async analyzeWithOpenAI(failure: TestFailure): Promise<AnalysisResult> {
         const prompt = this.constructAnalysisPrompt(failure);
 
+        // Apply rate limiting
+        await rateLimiters.openai.waitForSlot();
+
         try {
             const response = await this.openai.chat.completions.create({
                 model: process.env.OPENAI_MODEL || 'gpt-4',
@@ -287,9 +323,10 @@ export class AIService {
         // Implementation for Together AI analysis
         const prompt = this.constructAnalysisPrompt(failure);
 
+        // Apply rate limiting
+        await rateLimiters.together.waitForSlot();
+
         try {
-            // TogetherAI API call (placeholder - would need actual implementation)
-            // This is a mock implementation for now
             const response = await fetch('https://api.together.xyz/v1/chat/completions', {
                 method: 'POST',
                 headers: {
