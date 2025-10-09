@@ -1,0 +1,19 @@
+```mermaid
+flowchart TD
+    START([🚀 Start]) --> CONFIG[⚙️ Configure<br/>AI Providers]
+    CONFIG --> TEST_EXEC[🎭 Run<br/>Playwright Tests]
+    TEST_EXEC --> RESULTS{Tests<br/>Pass?}
+
+    RESULTS -->|✅ Yes| SUCCESS[📊 Generate<br/>Success Report]
+    RESULTS -->|❌ No| AI_ANALYZE[🤖 AI Failure<br/>Analysis]
+
+    AI_ANALYZE --> CLUSTER[🔗 Cluster<br/>Similar Failures]
+    CLUSTER --> REPORT[📄 Generate<br/>AI Report]
+
+    REPORT --> NOTIFY{Slack<br/>Enabled?}
+    NOTIFY -->|Yes| SLACK[📢 Send<br/>Notification]
+    NOTIFY -->|No| COMPLETE
+
+    SUCCESS --> COMPLETE
+    SLACK --> COMPLETE([✅ Complete])
+```
