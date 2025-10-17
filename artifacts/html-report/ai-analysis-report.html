@@ -969,12 +969,12 @@
       <section class="summary-cards" aria-label="Test execution summary">
         <div class="stat-card white" role="region" aria-label="Total test count">
           <h3>Total Tests</h3>
-          <div class="stat-value">18</div>
+          <div class="stat-value">90</div>
         </div>
         <div class="stat-card red" role="region" aria-label="Failed test count">
           <h3>Failures</h3>
-          <div class="stat-value">9</div>
-          <div style="font-size:12px;margin-top:5px">Includes 9 retry attempts</div>
+          <div class="stat-value">45</div>
+          <div style="font-size:12px;margin-top:5px">Includes 45 retry attempts</div>
         </div>
         <div class="stat-card green" role="region" aria-label="Passed test count">
           <h3>Passed</h3>
@@ -982,7 +982,7 @@
         </div>
       </section>
       <div style="text-align:center;margin-top:10px;padding:8px;background:#f8f9fa;border-radius:4px;font-size:14px">
-        <strong>Note:</strong> This report shows 18 failure records for 9 unique test case(s). 
+        <strong>Note:</strong> This report shows 90 failure records for 45 unique test case(s). 
         Each retry attempt is shown separately to provide additional debugging context.
       </div>
     
@@ -1046,11 +1046,11 @@
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-label">Attempts</span>
-              <span class="stat-number">18</span>
+              <span class="stat-number">90</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Successes</span>
-              <span class="stat-number">18</span>
+              <span class="stat-number">90</span>
             </div>
           </div>
           <div class="success-rate">Success Rate: 100%</div>
@@ -1106,7 +1106,7 @@
           <div class="analysis-stats">
             <div class="stat-item">
               <span class="stat-label">Total Failures</span>
-              <span class="stat-value">15</span>
+              <span class="stat-value">16</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Categories</span>
@@ -1114,7 +1114,7 @@
             </div>
             <div class="stat-item">
               <span class="stat-label">AI Analyzed</span>
-              <span class="stat-value">15</span>
+              <span class="stat-value">16</span>
             </div>
           </div>
         </div>
@@ -1122,7 +1122,7 @@
         <div class="category-tabs">
           
       <button class="tab-button " onclick="showCategory('timeout')">
-        timeout (4)
+        timeout (5)
       </button>
     
       <button class="tab-button " onclick="showCategory('unknown')">
@@ -1521,7 +1521,7 @@ Call log:
           <div class="failure-header">
             <div class="failure-meta">
               <h4 class="failure-title">
-                <span class="test-name">Test AI-driven error recovery analysis</span>
+                <span class="test-name">@ai-analysis Network resilience analysis (Retry 1)</span>
                 <span class="confidence-badge confidence-medium">
                   70% confidence
                 </span>
@@ -1544,6 +1544,138 @@ Call log:
           </div>
 
           <div id="details-timeout-3" class="failure-details" style="display: none;">
+            <div class="analysis-grid">
+              <div class="analysis-section">
+                <h5>🔍 Root Cause Analysis</h5>
+                <div class="analysis-content">
+                  <p class="analysis-text">Element not found within specified timeout period</p>
+                  
+                    <div class="confidence-meter">
+                      <div class="confidence-bar">
+                        <div class="confidence-fill confidence-medium" style="width: 70%"></div>
+                      </div>
+                      <span class="confidence-label">AI Confidence: 70%</span>
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="analysis-section">
+                <h5>🛠️ Recommended Solution</h5>
+                <div class="solution-content">
+                  <div class="solution-steps">
+                    <p>Increase the wait timeout or check if the element is actually present in the page</p>
+                  </div>
+                  
+                    <div class="prevention-tips">
+                      <h6>💡 Prevention Tips:</h6>
+                      <ul>
+                        <li>Implemented via batch processing</li>
+                      </ul>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="error-details">
+              <h5>📋 Error Details</h5>
+              <div class="error-content">
+                
+                  <div class="error-message">
+                    <div class="error-label">Error Message:</div>
+                    <pre class="error-text">Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected) Locator: locator(&#039;img&#039;).first() Expected string: &quot;0&quot; Received string: &quot;&quot; Call log:   - Expect &quot;toHaveAttribute&quot; with timeout 2000ms   - waiting for locator(&#039;img&#039;).first()     5 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;       - unexpected value &quot;null&quot;</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected) Locator: locator(&#039;img&#039;).first() Expected string: &quot;0&quot; Received string: &quot;&quot; Call log:   - Expect &quot;toHaveAttribute&quot; with timeout 2000ms   - waiting for locator(&#039;img&#039;).first()     5 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;       - unexpected value &quot;null&quot;')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+
+                
+                  <div class="error-stack">
+                    <div class="error-label">Stack Trace:</div>
+                    <pre class="stack-text">Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected)
+
+Locator: locator(&#039;img&#039;).first()
+Expected string: &quot;0&quot;
+Received string: &quot;&quot;
+Call log:
+  - Expect &quot;toHaveAttribute&quot; with timeout 2000ms
+  - waiting for locator(&#039;img&#039;).first()
+    5 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;
+      - unexpected value &quot;null&quot;
+
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:202:38</pre>
+                    <button class="copy-btn" onclick="copyToClipboard('Error: Timed out 2000ms waiting for expect(locator).toHaveAttribute(expected)
+
+Locator: locator(&#039;img&#039;).first()
+Expected string: &quot;0&quot;
+Received string: &quot;&quot;
+Call log:
+  - Expect &quot;toHaveAttribute&quot; with timeout 2000ms
+  - waiting for locator(&#039;img&#039;).first()
+    5 × locator resolved to &lt;img alt=&quot;Fork me on GitHub&quot; src=&quot;/img/forkme_right_green_007200.png&quot;/&gt;
+      - unexpected value &quot;null&quot;
+
+    at C:\workingProject\VeltrisAIBasedMiniProject\AI-TestcaseAnalyzer\tests\ai-analysis-demo.spec.ts:202:38')">
+                      📋 Copy
+                    </button>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="ai-insights">
+              <h5>🤖 AI Analysis Insights</h5>
+              <div class="insights-grid">
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Provider:</span>
+                  <span class="insight-value">Batch AI</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Failure Category:</span>
+                  <span class="insight-value">timeout</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Analysis Time:</span>
+                  <span class="insight-value">~200ms</span>
+                </div>
+                <div class="insight-item">
+                  <span class="insight-label">Pattern Match:</span>
+                  <span class="insight-value">General failure patterns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="failure-card" data-category="timeout">
+          <div class="failure-header">
+            <div class="failure-meta">
+              <h4 class="failure-title">
+                <span class="test-name">Test AI-driven error recovery analysis</span>
+                <span class="confidence-badge confidence-medium">
+                  70% confidence
+                </span>
+              </h4>
+              <div class="failure-tags">
+                <span class="tag provider-tag">Batch AI</span>
+                <span class="tag category-tag">timeout</span>
+                <span class="tag severity-tag severity-low">
+                  LOW
+                </span>
+              </div>
+            </div>
+            <div class="failure-actions">
+              <button id="btn-timeout-4" class="action-btn primary" onclick="toggleFailureDetails('timeout-4')">
+                Show Details
+              </button>
+              
+              
+            </div>
+          </div>
+
+          <div id="details-timeout-4" class="failure-details" style="display: none;">
             <div class="analysis-grid">
               <div class="analysis-section">
                 <h5>🔍 Root Cause Analysis</h5>
@@ -3031,18 +3163,10 @@ Received: 2
         </div>
       
         <div class="recommendation-item">
-          <div class="recommendation-icon">🧠</div>
-          <div class="recommendation-content">
-            <h4>Improve AI Analysis Quality</h4>
-            <p>AI confidence is below optimal (70%). Consider providing more context or using different AI providers.</p>
-          </div>
-        </div>
-      
-        <div class="recommendation-item">
           <div class="recommendation-icon">📈</div>
           <div class="recommendation-content">
             <h4>Enhance Test Stability</h4>
-          <p>Implement self-healing mechanisms and improve element selectors to reduce 18 failure instances.</p>
+          <p>Implement self-healing mechanisms and improve element selectors to reduce 90 failure instances.</p>
         </div>
       </div>
       
@@ -3131,10 +3255,10 @@ Received: 2
           new Chart(trendCtx, {
             type: 'line',
             data: {
-              labels: ["Oct 8","Oct 8","Oct 8","Oct 8","Oct 8","Oct 8","Oct 8"],
+              labels: ["Oct 8","Oct 8","Oct 8","Oct 8","Oct 9","Oct 9","Oct 9"],
               datasets: [{
                 label: 'Number of Failures',
-                data: [0,0,18,18,18,18,18],
+                data: [18,18,18,18,23,23,18],
                 borderColor: '#f56565',
                 backgroundColor: 'rgba(245, 101, 101, 0.1)',
                 tension: 0.4,
